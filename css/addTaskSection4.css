@@ -1,0 +1,280 @@
+@media (max-width:1200px) {
+    .main-input-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 200px;
+    }
+
+    .input-border-container {
+        display: none;
+    }
+
+    .right-input-container {
+        width: 500px;
+    }
+
+    .left-input-container {
+        width: 500px;
+    }
+
+    .left-input-container textarea {
+        max-width: 500px;
+    }
+
+    .choosed-subcategorie-container {
+        width: 495px;
+    }
+
+    .right-left-container {
+        flex-direction: column;
+    }
+
+    .at-btn-container {
+        width: 500px;
+        bottom: 48px;
+        margin-bottom: 54px;
+    }
+
+    .at-btn-container-mobile {
+        width: 500px !important;
+    }
+
+    #added-subcategories {
+        height: 150px;
+    }
+
+    .at-btn-container-mobile {
+        margin-bottom: 0 !important;
+    }
+
+    .at-input-subcategory {
+        width: 458px;
+    }
+}
+
+@media (max-width:830px) {
+    .form-container-placement {
+        margin-left: 0;
+    }
+
+    .form-container-placement {
+        padding-bottom: 160px;
+    }
+
+    .choosed-subcategorie-container {
+        width: 494px;
+    }
+}
+
+@media (max-width: 794px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    .at-btn-container {
+        margin-bottom: 22px;
+    }
+}
+
+@media (max-width:650px) {
+    .right-input-container-mobile {
+        width: 300px;
+    }
+
+    .left-input-container-mobile {
+        width: 300px;
+    }
+
+    .at-prio-container {
+        gap: 20px;
+    }
+
+    .at-alert-description-mobile {
+        font-size: 16px;
+    }
+
+    .at-btn-container-mobile {
+        width: 320px !important;
+    }
+
+    .at-create-btn-mobile {
+        font-size: 16px;
+    }
+
+    .at-input-subcategory-template {
+        width: 258px;
+    }
+
+    .input-container-boardHTML {
+        margin-left: 15px !important;
+        font-size: 50px;
+    }
+
+}
+
+@media (max-width:650px) {
+
+    .confirmation-task-creation-hidden {
+       width: 250px;
+    }
+
+    .fs16{
+        font-size: 16px !important; 
+    }
+    .right-input-container-mobile {
+        width: 250px !important;
+    }
+
+    .left-input-container-mobile {
+        width: 250px !important;
+    }
+
+    .right-input-container {
+        width: 350px;
+    }
+
+    .left-input-container {
+        width: 350px;
+    }
+
+    .at-alert-description {
+        font-size: 16px;
+    }
+
+    .at-create-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .at-btn-container{
+        width: 350px;
+    }
+
+    .choosed-subcategorie-container {
+        width: 385px;
+    }
+
+    .at-alert-description-mobile {
+        font-size: 16px !important;
+    }
+
+    .at-btn-container-mobile {
+        width: 266px !important;
+    }
+
+    .at-create-btn-mobile {
+        font-size: 16px !important;
+    }
+
+    .at-input-subcategory {
+        width: 308px;
+    }
+
+    .at-input-subcategory-template {
+        width: 207px;
+        font-size: 16px !important;
+    }
+
+    input::-webkit-input-placeholder{
+        font-size: 16px !important;
+    }
+
+    textarea::-webkit-input-placeholder{
+        font-size: 16px !important;
+    }
+
+    .at-prio-item-template {
+        font-size: 16px;
+    }
+
+    .at-prio-container-template {
+        gap: 10px;
+    }
+
+    .input-container-bordHTML-headline {
+        font-size: 50px;
+        padding-bottom: 0px;
+        margin-left: 20px;
+    }
+
+}
+
+@media (max-width:649px) {
+    .right-input-container {
+        width: 275px;
+    }
+
+    .left-input-container {
+        width: 275px;
+    }
+
+    .left-input-container textarea {
+        max-width: 275px;
+    }
+
+    .at-alert-description {
+        font-size: 16px;
+    }
+
+    .at-btn-container {
+        width: 275px;
+    }
+
+    .choosed-subcategorie-container {
+        max-width: 260px;
+    }
+
+    .at-input-headlines {
+        font-size: 18px;
+    }
+
+    .left-input-container input {
+        font-size: 16px;
+    }
+
+    .right-input-container input {
+        font-size: 16px;
+        width: 70%;
+    }
+
+    .at-prio-item {
+        font-size: 18px;
+    }
+
+    .custom-category-select {
+        font-size: 18px;
+    }
+
+    .custom-select {
+        font-size: 18px;
+    }
+
+    .at-input-date{
+        width: 85% !important;
+    }
+
+    .at-input-subcategory {
+        width: 233px;
+    }
+
+    .at-input-subcategory-template {
+        width: 226px !important;
+    }
+
+    .at-prio-container {
+        gap: 6px;
+    }
+
+    .input-container-bordHTML-headline {
+        font-size: 40px !important;
+    }
+
+    .left-input-container-mobile {
+        width: 270px !important;
+    }
+
+    .right-input-container-mobile {
+        width: 270px !important;
+    }
+}

@@ -8,6 +8,7 @@
   <link rel="icon" href="./assets/img/joinDark.png" type="image/x-icon" />
   <link rel="stylesheet" href="./css/landing.css" />
   <title>Join – Create a request</title>
+    <link rel="stylesheet" href="./css/interaction.css">
 </head>
 
 <body class="stakeholderPage">
@@ -57,7 +58,11 @@
     <a href="./privacyPolicyNoLogin.html">Privacy Policy</a>
     <a href="./legalNoticeNoLogin.html">Legal notice</a>
   </footer>
-  <script src="./js/landing.js"></script>
+    <script src="./js/landing.js"></script>
+    <template id="renderStakeholderStateTemplate">
+        <strong>{{slot0}} of {{slot1}}</strong> requests used today
+    </template>
+    <script src="./js/htmlTemplates.js"></script>
 </body>
 
 </html>

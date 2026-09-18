@@ -1,0 +1,341 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+
+}
+
+
+header,
+aside {
+    flex-shrink: 0;
+}
+
+
+.main-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 232px;
+    width: calc(100% - 232px);
+    height: 100%;
+}
+
+
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding: 40px;
+}
+
+
+main::-webkit-scrollbar {
+    display: none;
+}
+
+
+.headerClass {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 79.5px;
+
+}
+
+
+.board-heading {
+    font-size: 70px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+
+.search-and-add {
+    display: flex;
+    align-items: center;
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    max-width: 300px;
+    margin-right: 20px;
+}
+
+
+.search-bar input[type="search"] {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 7px 8px;
+    font-size: 16px;
+    color: inherit;
+    border: 1px solid transparent;
+    border-right: solid 1px #bbb;
+    flex: 1;
+}
+
+
+.search-bar input[type="search"]::placeholder {
+    color: #bbb;
+}
+
+
+.search-bar button {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.search-bar button:hover {
+    opacity: 1;
+}
+
+
+.search-bar button:focus,
+.search-bar input[type="search"]:focus {
+    box-shadow: 0 0 3px 0 #1183d6;
+    border-color: #1183d6;
+    outline: none;
+}
+
+
+.addTaskButton {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #2A3647;
+    color: white;
+    border: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+    gap: 4px;
+    font-size: 21px;
+    font-weight: 700;
+    transition: all ease 0.2s;
+}
+
+
+.addTaskButton:hover {
+    background-color: #29ABE2;
+}
+
+
+.addTaskButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+
+.addSymbol {
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    content: url(../assets/img/add.png)
+}
+
+
+.addSymbol img {
+    width: 18.67px;
+    height: 18.67px;
+}
+
+
+.allTasks {
+    display: flex;
+    justify-content: space-between;
+    gap: 26px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    color: #42526E;
+    margin-top: 30px;
+}
+
+
+.tasksHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
+
+.todo {
+    width: 244px;
+    height: 24px;
+}
+
+
+.plussButton {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid currentColor;
+    border-radius: 8px;
+    background: transparent;
+    color: #2a3647;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+
+.plussButton::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background:
+        linear-gradient(currentColor, currentColor) center / 12px 2px no-repeat,
+        linear-gradient(currentColor, currentColor) center / 2px 12px no-repeat;
+}
+
+
+.plussButton:hover{
+    color: #29abe2;
+}
+
+
+.plussButton:active{
+    color: #091931;
+}
+
+
+.taskContent {
+    width: 246px;
+    height: 688px;
+}
+
+
+.noTasks {
+    width: 246px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #E7E7E7;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    border: 2px dotted #A8A8A8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.noTaskText {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    color: #A8A8A8;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 252px;
+    min-height: 215px;
+    height: auto;
+    box-sizing: border-box;
+    border-radius: 24px;
+    padding: 16px;
+    gap: 10px;
+    box-shadow: 0px 0px 10px 3px #00000014;
+    background-color: white;
+    margin-bottom: 16px;
+}
+
+
+.cardContent {
+    width: 220px;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: 183px;
+    height: auto;
+    gap: 24px;
+    align-self: center;
+}
+
+
+.labelUser {
+    width: 113px;
+    height: 27px;
+    padding: 4px 16px 4px 16px;
+    gap: 10px;
+    border-radius: 8px;
+    opacity: 0px;
+    background-color: #0038FF;
+    color: white;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+}
+
+
+.contextContent {
+    width: 220px;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: 84px;
+    height: auto;
+    gap: 8px;
+    border-radius: 10px 0px 0px 0px;
+    padding-top: 20px;
+}
+
+
+.cardTitle {
+    width: 220px;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 38px;
+    height: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    box-sizing: border-box;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.2px;
+    text-align: left;
+    color: #2A3647;
+    white-space: normal !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+}

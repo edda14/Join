@@ -1,0 +1,313 @@
+@media (max-width: 1300px) {
+    body {
+        --contacts-navigation-height: 110px;
+    }
+
+    #contactListContent {
+        margin-left: 0px !important;
+    }
+
+    #contactListButtonContent {
+        left: 0;
+    }
+
+    #contactContent {
+        left: 400px;
+    }
+
+}
+
+
+@media (max-width: 1150px) {
+    .d-noneResp {
+        display: none !important;
+
+    }
+
+
+    #contactListContent {
+        padding-top: 0;
+        padding-left: 45px;
+        padding-bottom: 96px;
+        width: 100%;
+    }
+
+    #content {
+        display: flex;
+        justify-content: center;
+        align-items: center !important;
+        width: 100%;
+        min-height: 0;
+    }
+
+    #contactListButtonContent {
+        display: none;
+    }
+
+    #addContactResp {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        bottom: 120px;
+        right: 24px;
+        border-radius: 50%;
+        background-color: rgba(42, 54, 71, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+    }
+
+    #addContactResp:active {
+        background-color: rgba(41, 171, 226, 1);
+    }
+
+    #addNewContact {
+        flex-direction: column;
+        height: 95vh !important;
+        margin: auto;
+        width: 600px !important;
+        right: 0 !important;
+        bottom: 0;
+    }
+
+    #addNewContactFirstSection {
+        border-radius: 30px 30px 0 0;
+        width: initial !important;
+        padding: 0 !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        padding-left: 24px !important;
+    }
+
+    #addNewContactSecondSection {
+        width: initial !important;
+        padding: 0 !important;
+        border-radius: 0 0 30px 30px;
+        position: relative;
+    }
+
+    #addContactResp img {
+        width: 32px;
+        object-fit: cover;
+    }
+
+    #closeAddContactDivResp {
+        visibility: visible;
+        position: absolute !important;
+        top: 32px;
+        right: 16px;
+
+    }
+
+    #cancelButtonContact {
+        display: none;
+    }
+
+    #btnDiv {
+        align-items: center;
+        justify-content: center;
+    }
+
+    #contactInput {
+        align-items: center;
+        padding-top: 24px;
+        gap: 18px;
+    }
+
+    #closeAddContactDivResp img {
+        width: 24px;
+        height: 24px;
+    }
+
+    #closeAddContactDiv {
+        display: none;
+    }
+
+    .profilPictureDivContent {
+        position: absolute;
+        top: -60px;
+        left: 38%;
+    }
+
+    #addNewContactSlogan img {
+        display: none;
+    }
+
+    #contactContent {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        visibility: visible;
+        left: 0px !important;
+        padding: 32px 0px 32px 32px !important;
+        align-items: start !important;
+        overflow-y: auto;
+
+    }
+
+    #contactHeadline {
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+    }
+
+    #headlineLine {
+        display: none;
+    }
+
+    #headlineResp {
+        visibility: visible;
+        width: 90px;
+        background-color: rgba(41, 171, 226, 1);
+        height: 3px;
+    }
+
+    .editDivContact {
+        display: none;
+    }
+
+    #contactsHeadlineResp img {
+        padding: 4px;
+        visibility: visible;
+        height: 24px;
+        object-fit: cover;
+    }
+
+    #contactsHeadlineResp {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 90vw;
+    }
+
+    #editContactThirdSection {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        bottom: 120px;
+        right: 24px;
+        border-radius: 50%;
+        background-color: rgba(42, 54, 71, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    #oneContactResp {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rightRespDiv {
+        display: none !important;
+        right: -200px !important;
+    }
+
+    #editDivResp {
+        position: absolute;
+        bottom: 115px;
+        right: -200px;
+        width: 140px;
+        height: 100px;
+        border-radius: 20px 20px 0px 20px;
+        background-color: white;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        transition: all 0.5s;
+    }
+
+    #editDivResp div {
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 8px;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    #editDivResp div:is(:hover, :focus-visible, :active) {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: rgba(41, 171, 226, 1);
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    #editContactResp:is(:hover, :focus-visible, :active) img {
+        content: url(/assets/img/edit_contact_blue.png);
+    }
+
+    #deleteContactResp:is(:hover, :focus-visible, :active) img {
+        content: url(/assets/img/delete_contact_blue.png);
+    }
+
+
+    #editDivResp {
+        visibility: visible;
+    }
+
+    #editContact {
+        flex-direction: column;
+        height: 95vh !important;
+        margin: auto;
+        width: 600px !important;
+        right: 0 !important;
+        bottom: 0;
+    }
+
+    #contactsHeadlineResp img:is(:hover, :active) {
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    #editContact {
+        flex-direction: column;
+        height: 95vh;
+        margin: auto;
+        width: 600px !important;
+        right: 0px;
+    }
+
+    #editContactSecondSection {
+        width: initial !important;
+        padding: 0 !important;
+        border-radius: 0 0 30px 30px;
+        position: relative;
+    }
+
+    #editProfilePicture {
+        position: absolute;
+        top: -60px;
+        left: 38%
+    }
+
+    .profileName {
+        gap: 24px;
+    }
+
+    #editContactLogo {
+        display: none !important;
+    }
+
+}
+
+
+@media (max-width: 666px) {
+    #addNewContact {
+        width: 450px !important;
+    }
+
+    #editContact {
+        width: 450px !important;
+    }
+}

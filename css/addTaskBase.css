@@ -1,0 +1,291 @@
+body {
+    font-family: "inter", sans-serif;
+    position: relative;
+}
+
+#overlay {
+    position: fixed;
+
+    display: none;
+
+    width: 100%;
+
+    height: 100%;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 2;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+    animation: slideInRight 0.5s forwards;
+}
+
+.overlayUserTitle {
+    justify-content: space-between;
+    display: flex;
+    padding-bottom: 24px;
+}
+
+.overlayUser {
+
+    height: 28px;
+    padding: 4px 24px;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: #0038FF;
+    color: white;
+    font-family: Inter;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 27.6px;
+    text-align: center;
+}
+
+.closeButton {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    margin-left: 4px;
+    background-color: transparent;
+}
+
+.closeButtonAdd {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    margin-left: 4px;
+    background-color: transparent;
+}
+
+.closeButton:hover {
+    cursor: pointer;
+    background-color: rgb(214, 214, 214);
+    border-radius: 50%;
+}
+
+.closeButtonAdd:hover {
+    cursor: pointer;
+    background-color: rgb(214, 214, 214);
+    border-radius: 50%;
+}
+
+#contact-search {
+    border: none;  
+    outline: none;  
+    background-color: transparent;  
+    font-size: inherit;  
+    width: 100%;  
+    color: black;  
+    padding: 5px;  
+    position: relative;  
+    z-index: 2;  
+}
+
+#contact-search::placeholder {
+    color: transparent;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.slide-out-content {
+    animation: slideOut 0.5s forwards;
+}
+
+.fade-out-overlay {
+    animation: fadeOut 0.5s forwards;
+}
+
+.overlayTitle {
+    font-family: Inter;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: left;
+}
+
+.overlayContext {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.at-headline {
+    padding: 110px 0 32px 0;
+    height: 73px;
+    font-weight: 700;
+    font-size: 61px;
+}
+
+.main-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 328px;
+}
+
+.edit-main-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 625px;
+}
+
+.left-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+}
+
+.at-input-headlines {
+    display: flex;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+.left-input-container input {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 12px 21px 12px 21px !important;
+    gap: 10px;
+    font-family: "inter", sans-serif !important;
+    font-size: 20px;
+
+}
+
+.at-input-container {
+    position: relative;
+    display: inline-block;
+
+}
+
+.left-input-container input::placeholder {
+    font-weight: 400;
+    font-size: 20px;
+    color: #D1D1D1;
+    font-family: "inter", sans-serif !important;
+}
+
+.at-alert {
+    font-size: 16px;
+    margin-top: 4px;
+    color: #FF8190;
+}
+
+.at-alert-description {
+    display: flex;
+    font-size: 20px;
+}
+
+.left-input-container textarea {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 18px 16px 18px 16px !important;
+    gap: 10px;
+    font-family: "inter", sans-serif !important;
+    font-size: 20px;
+    max-width: 406px;
+    height: 102px;
+}
+
+.left-input-container textarea::placeholder {
+    font-weight: 400;
+    font-size: 20px;
+    color: #D1D1D1;
+    font-family: "inter", sans-serif !important;
+}
+
+.custom-select {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    position: relative;
+    display: inline-block;
+    background-color: white;
+}
+
+.select-hide {
+    display: none !important;
+}
+
+.select-arrow-active {
+    border-color: #aaa transparent transparent transparent;
+}
+
+.select-selected {
+    display: flex;  
+    align-items: center;  
+    justify-content: space-between;  
+    position: relative;  
+    width: 96%;  
+    background-color: white;  
+    border-radius: 10px;
+
+}
+
+.select-selected img {
+    height: 16px;
+    width: 16px;
+    margin-left: auto;  
+}
+
+.select-selected div {
+    color: #A8A8A8;
+}
+
+#original-placeholder {
+    color: #A8A8A8;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}

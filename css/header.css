@@ -161,3 +161,23 @@ header[w3-include-html*="header.html"] {
     left: 34px;
   }
 }
+.contact-avatar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.userIcon,
+.contactCard,
+.at-contact-shortcut-layout,
+.at-choosed-contact-shortcut {
+  overflow: hidden;
+}
+
+.at-contact-shortcut:has(> .contact-avatar-photo) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -7,7 +7,8 @@
     <link rel="icon" href="./assets/img/joinDark.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/landing.css" />
     <title>Join – Welcome</title>
-  </head>
+      <link rel="stylesheet" href="./css/interaction.css">
+</head>
   <body class="welcomePage">
     <div class="intro" aria-hidden="true">
       <img class="introLogo" src="./assets/img/joinWhite.png" alt="" />
@@ -45,5 +46,9 @@
       <a href="./legalNoticeNoLogin.html">Legal notice</a>
     </footer>
     <script src="./js/landing.js"></script>
-  </body>
+      <template id="renderStakeholderStateTemplate">
+        <strong>{{slot0}} of {{slot1}}</strong> requests used today
+    </template>
+    <script src="./js/htmlTemplates.js"></script>
+</body>
 </html>

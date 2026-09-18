@@ -1,0 +1,44 @@
+@media (max-width:1000px) {
+    #addTaskOverlay h2 {
+        font-size: 40px;
+    }
+
+    #addTaskOverlay .overlayContentAddTask {
+        padding: 10px 20px;
+    }
+
+    #addTaskOverlay .innerOverlay {
+        padding: 24px 0;
+    }
+
+    #addTaskOverlay .task-form-columns {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #addTaskOverlay #input-border-container {
+        display: none;
+    }
+}
+
+
+@media (max-width:760px) {
+    #addTaskOverlay .board-task-footer {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    #addTaskOverlay .board-task-footer-actions {
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+        gap: 12px;
+    }
+}
+
+
+@media (width < 350px) {
+    #addTaskOverlay .board-task-footer-actions {
+        flex-direction: column;
+    }
+}

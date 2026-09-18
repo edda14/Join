@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/landing.css" />
   <link rel="stylesheet" href="./css/request.css" />
   <title>Join – New request</title>
+    <link rel="stylesheet" href="./css/interaction.css">
 </head>
 
 <body class="stakeholderPage requestPage">
@@ -112,7 +113,11 @@
     <a href="./privacyPolicyNoLogin.html">Privacy Policy</a>
     <a href="./legalNoticeNoLogin.html">Legal notice</a>
   </footer>
-  <script src="./js/request.js"></script>
+    <script src="./js/request.js"></script>
+    <template id="renderRequestCounterTemplate">
+        <strong>{{slot0}} of {{slot1}}</strong> requests used today
+    </template>
+    <script src="./js/htmlTemplates.js"></script>
 </body>
 
 </html>

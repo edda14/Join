@@ -1,0 +1,181 @@
+@media (max-width: 980px) {
+  .animatedImageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f6f7f8;  
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .greetingContainer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .greetingText {
+    font-size: clamp(24px, 7vw, 36px);
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .userName {
+    font-size: 47px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .fadeOut {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .userName {
+    font-size: 47px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .appHeaderTitle {
+    font-size: 47px;
+  }
+
+  .subtitleText {
+    font-size: 20px;
+    margin: 16px 0 16px 0;
+  }
+
+  .horizontalBarBlue {
+    display: none;
+  }
+  .urgentCard {
+    height: 125px;
+    width: 278px;
+    padding: 0px;
+    gap: 6px;
+  }
+
+  .blueBorder {
+    display: block;
+    border: 2px solid rgba(41, 171, 226, 1);
+    width: 90px;
+    border-radius: 3px;
+  }
+
+  .appHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 0;
+    margin-bottom: 54px;
+  }
+
+  .appHeaderSubtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 0;
+  }
+}
+
+@media (max-width: 830px) {
+  .appHeader {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 452px) {
+  .metricValue {
+    font-size: 40px;
+  }
+
+  .urgentIconContainer,
+  .metricIconContainer {
+    width: 40px;
+    height: 40px;
+    border-radius: 22px;
+  }
+
+  .checkIcon {
+    width: 23px;
+    height: 18px;
+    background-size: cover;
+  }
+
+  .urgentCard {
+    gap: 6px;
+    justify-content: center;
+    height: 116px;
+    width: 240px;
+  }
+
+  .toDoIcon {
+    width: 23px;
+    height: 23px;
+    background-size: cover;
+  }
+
+  .urgentIcon {
+    width: 23px;
+    height: 10px;
+  }
+
+  .deadlineLabel,
+  .metricLabel {
+    font-size: 14px;
+  }
+
+  .deadlineDate {
+    font-size: 16px;
+  }
+
+  .taskContainer {
+    width: 116px;
+    height: 116px;
+  }
+
+  .metricsRow {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 387px) {
+  .metricCard {
+    padding: 16px 20px;
+  }
+
+  .urgentCard {
+    width: 188px;
+    height: 92px !important;
+  }
+
+  .taskContainer {
+    width: 50px;
+    height: 60px;
+  }
+}
+
+@media (max-height: 668px) {
+  .container {
+    top: 102px;
+    left: 16px;
+  }
+
+  .subtitleText {
+    margin: 8px 0 8px 0;
+  }
+
+  .appHeader {
+    margin-bottom: 16px;
+  }
+}

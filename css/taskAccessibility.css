@@ -1,0 +1,256 @@
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button.at-prio-item,
+button.at-create-btn,
+button.board-task-edit-btn {
+    border: 0;
+}
+
+button.at-prio-item {
+    background-color: white;
+}
+
+button.at-prio-item.at-bg-urgent {
+    background-color: #ff3d00;
+}
+
+button.at-prio-item.at-bg-medium {
+    background-color: #ffa800;
+}
+
+button.at-prio-item.at-bg-low {
+    background-color: #7ae229;
+}
+
+button.at-clear-btn {
+    background-color: transparent;
+}
+
+.task-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    min-width: 28px;
+    min-height: 28px;
+}
+
+.task-icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+button.deleteDiv {
+    border: 0;
+    background: transparent;
+    font-size: 16px;
+    color: inherit;
+}
+
+label.at-input-headlines {
+    display: flex;
+}
+
+h1.header-width,
+h2.at-headline,
+h2.overlayTitle {
+    margin: 0;
+}
+
+.task-edit-heading {
+    margin: 0;
+    font-size: 32px;
+}
+
+.edit-close-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+:where(button, input, textarea, select, a, [tabindex]):focus {
+    outline: none !important;
+}
+
+:root[data-keyboard-navigation] :where(button, input, textarea, select, a, [tabindex]):focus-visible {
+    outline: 2px solid #2a3647 !important;
+    outline-offset: 2px;
+}
+
+:root[data-keyboard-navigation] .at-contact-layout:focus-within {
+    outline: 2px solid #2a3647;
+    outline-offset: -2px;
+}
+
+.at-label-checkbox input {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.choosed-subcategorie-container:focus-within>.choosed-subcategorie-btn-container {
+    display: flex;
+}
+
+.choosed-subcategorie-btn-container {
+    display: flex;
+}
+
+.choosed-subcategorie-container .task-icon-button img {
+    width: 20px;
+    height: 20px;
+}
+
+#at-subcategory-open.d-none,
+.task-icon-button.d-none {
+    display: none;
+}
+
+#contact-toggle img {
+    width: 8px;
+    height: 5px;
+    margin: 0;
+}
+
+.at-alert,
+.at-alert-description,
+.at-alert-description-mobile {
+    font-size: 14px !important;
+}
+
+.at-contact-name,
+.at-create-btn,
+.at-clear-btn,
+.choosed-subcategory-input,
+.at-input-headlines,
+.at-contact-shortcut,
+.at-choosed-contact-shortcut,
+.board-task-edit-btn {
+    font-size: max(16px, 1rem);
+}
+
+@media (max-width: 600px) {
+
+    .main-input-container input,
+    .main-input-container textarea,
+    .edit-main-input-container input,
+    .edit-main-input-container textarea,
+    .at-contact-name {
+        font-size: 16px !important;
+    }
+}
+
+h1.header-width {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.choosed-subcategory-input:focus~.choosed-subcategorie-btn-container {
+    display: flex;
+}
+
+.choosed-subcategory-input {
+    padding-right: 76px !important;
+}
+
+.edit-task-overlay .edit-main-input-container {
+    height: auto;
+    align-items: stretch;
+}
+
+.edit-task-overlay .left-input-container,
+.edit-task-overlay .right-input-container {
+    width: 100%;
+}
+
+.edit-task-overlay .edit-btn-position-container {
+    margin-top: 24px;
+    padding-bottom: 16px;
+}
+
+button.board-task-edit-btn {
+    width: auto;
+    min-width: 84px;
+    margin-right: 0;
+}
+
+#overlay {
+    z-index: 1100;
+}
+
+.edit-task-overlay .left-input-container,
+.edit-task-overlay .right-input-container,
+.edit-task-overlay .right-left-container,
+.edit-task-overlay .at-input-container,
+.edit-task-overlay .at-prio-container,
+.edit-task-overlay .choosed-subcategorie-container {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0;
+}
+
+.edit-task-overlay input:not([type="checkbox"]),
+.edit-task-overlay textarea {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0;
+}
+
+@media (max-width: 400px) {
+    .edit-task-overlay .at-prio-container {
+        gap: 6px;
+    }
+
+    .edit-task-overlay .at-prio-item {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        padding: 8px 4px;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+
+#added-subcategories {
+    box-sizing: border-box;
+    height: auto !important;
+    max-height: none;
+    overflow: visible;
+    margin-left: 0;
+    padding: 4px;
+}
+
+#added-subcategories .choosed-subcategorie-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    width: 100% !important;
+    min-height: 40px;
+    box-sizing: border-box;
+}
+
+#added-subcategories .choosed-subcategory-input {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0;
+    padding: 6px 8px !important;
+}
+
+#added-subcategories .choosed-subcategorie-btn-container {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#added-subcategories .task-icon-button img {
+    margin: 0;
+}

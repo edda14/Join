@@ -24,15 +24,15 @@ let isDragging = false;
 let dragClone = null;
 
 const STATUS_CHANGE_WEBHOOK_URL =
-    'https://julsino.app.n8n.cloud/webhook/join-status-change';
+'https://julsino.app.n8n.cloud/webhook/join-status-change';
 
 /**
  * Sends a successful task status change to the n8n notification workflow.
  * URL-encoded data avoids a CORS preflight for this public demo webhook.
  * Notification failures are logged without reverting the Firebase update.
- * @param {Object} task - The task whose status changed.
- * @param {string} oldStatus - Status before the move.
- * @param {string} newStatus - Status after the move.
+ * @param {Task} task Task record.
+ * @param {string} oldStatus old Status.
+ * @param {string} newStatus new Status.
  * @returns {Promise<void>}
  */
 async function notifyTaskStatusChange(task, oldStatus, newStatus) {
@@ -44,7 +44,12 @@ async function notifyTaskStatusChange(task, oldStatus, newStatus) {
     }
 }
 
-/** Builds URL-encoded notification data for n8n. */
+/** Builds URL-encoded notification data for n8n.
+ * @param {Task} task Task record.
+ * @param {string} oldStatus old Status.
+ * @param {string} newStatus new Status.
+ * @returns {*} build status change payload result.
+ */
 function buildStatusChangePayload(task, oldStatus, newStatus) {
     const creator = task.creator || {};
     return new URLSearchParams({
@@ -58,81 +63,68 @@ function buildStatusChangePayload(task, oldStatus, newStatus) {
     });
 }
 
-/** Sends encoded status data to the public n8n webhook. */
+/** Sends encoded status data to the public n8n webhook.
+ * @param {Object} payload payload.
+ * @returns {*} send status change payload result.
+ */
 function sendStatusChangePayload(payload) {
     return fetch(STATUS_CHANGE_WEBHOOK_URL, {
-        method: 'POST', mode: 'no-cors', keepalive: true,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: payload.toString(),
-    });
+            method: 'POST', mode: 'no-cors', keepalive: true,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            body: payload.toString(),
+        });
 }
 
 /**
  * Persists a changed status and then triggers the creator notification.
- * @param {Object} task - Task to update.
- * @param {string} newStatus - Destination column ID.
+ * @param {Task} task Task record.
+ * @param {string} newStatus new Status.
  * @returns {Promise<void>}
  */
 async function updateTaskStatus(task, newStatus) {
     const oldStatus = task.status;
     if (oldStatus === newStatus) return;
-
     await changeTask(`/task/${task.id}/status`, newStatus);
     task.status = newStatus;
     await notifyTaskStatusChange(task, oldStatus, newStatus);
 }
 
-
-/**
- * Initializes event listeners for scrolling containers once the DOM is loaded.
- * Get the container's dimensions and position
- * Adjust these values to control the scrolling speed and sensitivity
- * Calculate mouse position relative to the container
- * Mouse is within the left margin, scroll left or right
+/** Installs hover scrolling on board task rows.
+ * @returns {void}
  */
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all .taskContent elements
-    const scrollContainers = document.querySelectorAll('.taskContent');
-
-
-    const scrollSpeed = 5;
-    const scrollMargin = 0.3;
-
-    scrollContainers.forEach(container => {
-        container.addEventListener('mousemove', (event) => {
-
-            const rect = container.getBoundingClientRect();
-            const containerWidth = rect.width;
-            const containerLeft = rect.left;
-
-
-            const mouseX = event.clientX - containerLeft;
-
-
-            const leftMargin = containerWidth * scrollMargin;
-            const rightMargin = containerWidth * (1 - scrollMargin);
-
-            if (mouseX < leftMargin) {
-
-                container.scrollLeft -= scrollSpeed * (leftMargin - mouseX) / leftMargin;
-            } else if (mouseX > rightMargin) {
-
-                container.scrollLeft += scrollSpeed * (mouseX - rightMargin) / (containerWidth - rightMargin);
-            }
+function initializeBoardScrolling() {
+    document.querySelectorAll('.taskContent').forEach(container => {
+            container.addEventListener('mousemove', scrollTaskRow);
         });
-    });
-});
+}
+
+/** Scrolls a task row while the pointer approaches either edge.
+ * @param {Event} event Interaction that triggered the handler.
+ * @returns {void}
+ */
+function scrollTaskRow(event) {
+    const container = event.currentTarget;
+    const { width, left } = container.getBoundingClientRect();
+    const mouseX = event.clientX - left;
+    const margin = width * 0.3;
+    if (mouseX < margin) container.scrollLeft -= 5 * (margin - mouseX) / margin;
+    else if (mouseX > width - margin) container.scrollLeft += 5 * (mouseX - width + margin) / margin;
+}
+
+document.addEventListener('DOMContentLoaded', initializeBoardScrolling);
 
 /**
  * Stops the propagation of the event to parent elements.
- * @param {Event} event - The event to stop propagation for.
+ * @param {Event} event Interaction that triggered the handler.
+ * @returns {void}
  */
 function stopPropagation(event) {
     event.stopPropagation();
 }
 /**
  * Sets the ID of the task that is currently being dragged.
- * @param {string} taskId - The ID of the task being dragged.
+ * @param {string} taskId task Id.
+ * @returns {void}
  */
 function startDragging(taskId) {
     const task = tasks.find(taskItem => taskItem.id === taskId);
@@ -141,7 +133,8 @@ function startDragging(taskId) {
 
 /**
  * Allows dropping by preventing the default behavior of the event.
- * @param {DragEvent} event - The drag event.
+ * @param {DragEvent} event Interaction that triggered the handler.
+ * @returns {void}
  */
 function allowDrop(event) {
     event.preventDefault();
@@ -150,9 +143,10 @@ function allowDrop(event) {
 /**
  * Handles the drop event by appending the dragged task to the drop zone and updating its status.
  * @async
- * @param {DragEvent} event - The drag event.
  * Append the task to the drop zone
  * Re-render tasks to reflect changes
+ * @param {DragEvent} event Interaction that triggered the handler.
+ * @returns {Promise<void>} Resolves when the operation is complete.
  */
 async function drop(event) {
     event.preventDefault();
@@ -163,10 +157,11 @@ async function drop(event) {
 /**
  * Handles the drop event on mobile devices by appending the dragged task to the drop zone and updating its status.
  * @async
- * @param {TouchEvent} event - The touch event.
  * Get touch coordinates
  * Update the task's status based on the drop zone ID
  * Re-render tasks to reflect changes
+ * @param {TouchEvent} event Interaction that triggered the handler.
+ * @returns {Promise<void>} Resolves when the operation is complete.
  */
 async function dropMobile(event) {
     const touch = event.changedTouches[0];
@@ -174,7 +169,10 @@ async function dropMobile(event) {
     await moveDraggedTask(target?.closest('.taskContent'));
 }
 
-/** Moves the currently dragged task into a board column. */
+/** Moves the currently dragged task into a board column.
+ * @param {*} dropZone drop Zone.
+ * @returns {Promise<*>} move dragged task result.
+ */
 async function moveDraggedTask(dropZone) {
     const task = tasks.find(item => item.id === currentDraggedElement);
     if (!canCurrentUserModifyTask(task) || !dropZone) return;
@@ -186,107 +184,90 @@ async function moveDraggedTask(dropZone) {
     renderTasks();
 }
 
-/**
- * Handles the start of a touch event by setting the dragged element and creating a visual clone.
- * @param {TouchEvent} event - The touch event.
+/** Prepares a task card for a possible touch drag.
+ * @param {Event} event Interaction that triggered the handler.
+ * @returns {void}
  */
-document.addEventListener('touchstart', (event) => {
+function startTouchDrag(event) {
     const card = event.target.closest('.card');
-    if (card) {
-        const task = tasks.find(taskItem => taskItem.id === card.dataset.id);
-        if (!canCurrentUserModifyTask(task)) return;
-        currentDraggedElement = card.dataset.id;
-        initialX = event.touches[0].clientX;
-        initialY = event.touches[0].clientY;
-        isDragging = false;
+    if (!card) return;
+    const task = tasks.find(taskItem => taskItem.id === card.dataset.id);
+    if (!canCurrentUserModifyTask(task)) return;
+    currentDraggedElement = card.dataset.id;
+    initialX = event.touches[0].clientX;
+    initialY = event.touches[0].clientY;
+    isDragging = false;
+    createDragClone(card);
+}
 
-
-        dragClone = card.cloneNode(true);
-        dragClone.style.position = 'absolute';
-        dragClone.style.pointerEvents = 'none';
-        document.body.appendChild(dragClone);
-    }
-}, { passive: true });
-
-/**
- * Handles the movement of a touch event by updating the visual clone's position and determining if dragging is in progress.
- * @param {TouchEvent} event - The touch event.
- *  Horizontal movement detected, let the user scroll 
- *  Vertical movement detected, start dragging Prevent scrolling
- *  Update the clone's position to follow the touch
- *  Prevent scrolling when dragging, only if the event is cancelable
+/** Creates the visual card that follows a touch gesture.
+ * @param {HTMLElement} card card.
+ * @returns {void}
  */
-document.addEventListener('touchmove', (event) => {
+function createDragClone(card) {
+    dragClone = card.cloneNode(true);
+    dragClone.style.position = 'absolute';
+    dragClone.style.pointerEvents = 'none';
+    document.body.appendChild(dragClone);
+}
+
+/** Keeps horizontal gestures available for scrolling and handles vertical dragging.
+ * @param {Event} event Interaction that triggered the handler.
+ * @returns {void}
+ */
+function moveTouchDrag(event) {
     if (initialX === null || initialY === null) return;
-
-    let currentX = event.touches[0].clientX;
-    let currentY = event.touches[0].clientY;
-
-    let diffX = currentX - initialX;
-    let diffY = currentY - initialY;
-
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-
+    const { clientX, clientY } = event.touches[0];
+    if (Math.abs(clientX - initialX) > Math.abs(clientY - initialY)) {
         isDragging = false;
-
-        if (dragClone) {
-            document.body.removeChild(dragClone);
-            dragClone = null;
-        }
-        
+        removeDragClone();
         currentDraggedElement = null;
-    } else {
-        
-        if (!event.cancelable) return;
-
-        event.preventDefault(); 
-
-        
-        if (!isDragging) {
-            isDragging = true;
-
-            
-            if (dragClone === null) {
-                const card = document.querySelector(`[data-id="${currentDraggedElement}"]`);
-                if (card) {
-                    dragClone = card.cloneNode(true);
-                    dragClone.style.position = 'absolute';
-                    dragClone.style.pointerEvents = 'none';
-                    document.body.appendChild(dragClone);
-                }
-            }
-        }
-
-        
-        if (dragClone) {
-            dragClone.style.left = `${currentX}px`;
-            dragClone.style.top = `${currentY}px`;
-        }
+        return;
     }
-}, { passive: false });
+    continueTouchDrag(event, clientX, clientY);
+}
 
-
-
-
-/**
- * Handles the end of a touch event by dropping the task if dragging was in progress and removing the visual clone.
- * @param {TouchEvent} event - The touch event.
- * Remove the clone
- * Reset initial positions
+/** Positions the clone during a cancelable vertical drag.
+ * @param {Event} event Interaction that triggered the handler.
+ * @param {number} currentX current X.
+ * @param {number} currentY current Y.
+ * @returns {void}
  */
-document.addEventListener('touchend', async (event) => {
-    if (isDragging) {
-        await dropMobile(event);
+function continueTouchDrag(event, currentX, currentY) {
+    if (!event.cancelable) return;
+    event.preventDefault();
+    if (!isDragging) {
+        isDragging = true;
+        const card = document.querySelector(`[data-id="${currentDraggedElement}"]`);
+        if (!dragClone && card) createDragClone(card);
     }
-
-    
     if (dragClone) {
-        document.body.removeChild(dragClone);
-        dragClone = null;
+        dragClone.style.left = `${currentX}px`;
+        dragClone.style.top = `${currentY}px`;
     }
+}
 
-    
+/** Removes the visual drag card.
+ * @returns {void}
+ */
+function removeDragClone() {
+    if (!dragClone) return;
+    document.body.removeChild(dragClone);
+    dragClone = null;
+}
+
+/** Drops a dragged card and resets the touch gesture.
+ * @param {Event} event Interaction that triggered the handler.
+ * @returns {Promise<void>} Resolves when the operation is complete.
+ */
+async function endTouchDrag(event) {
+    if (isDragging) await dropMobile(event);
+    removeDragClone();
     initialX = null;
     initialY = null;
     isDragging = false;
-}, { passive: true });
+}
+
+document.addEventListener('touchstart', startTouchDrag, { passive: true });
+document.addEventListener('touchmove', moveTouchDrag, { passive: false });
+document.addEventListener('touchend', endTouchDrag, { passive: true });

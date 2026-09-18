@@ -99,7 +99,7 @@ aside[w3-include-html*="nav.html"] {
   text-decoration: none;
   display: inline-block;
   width: 111px;
-  transition: color 0.1s, font-weight 0.1s;
+  transition: ease 0.1s all;
 }
 
 .policy a:hover {
@@ -198,6 +198,7 @@ aside[w3-include-html*="nav.html"] {
   }
   .menu p {
     margin: 0;
+    white-space: nowrap;
   }
   .menu img {
     height: 40px;
@@ -241,5 +242,5 @@ aside[w3-include-html*="nav.html"] {
 @media (max-width: 380px) {
   .menu p {
     font-size: 11px;
-}
+  }
 }

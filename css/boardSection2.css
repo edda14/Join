@@ -1,0 +1,234 @@
+.cardContext {
+    width: 220px;
+    height: 38px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    color: #A8A8A8;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+
+}
+
+.progressbar {
+    width: 220px;
+    height: 16px;
+    padding: 0px 8px 2px 0px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 24px;
+}
+
+.bar {
+    height: 100%;
+    background-color: #29ABE2;
+    border-radius: 8px;
+    width: 0%;
+    transition: width 0.3s ease;
+
+}
+
+.progressbarContainer {
+    width: 128px;
+    background-color: #E7E7E7;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 8px;
+    margin-top: 8px;
+    position: relative;
+}
+
+.subtasks {
+    width: 73px;
+    height: 14px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 14.4px;
+    text-align: left;
+}
+
+.contactContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 0px;
+    padding-top: 24px;
+    justify-content: space-between;
+}
+
+.contactCard {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #25344A;
+    border: 2px solid white;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 14.4px;
+    font-family: "Inter", sans-serif;
+    margin-left: -8px;
+}
+
+.contactCard:first-child {
+    margin-left: 0;
+}
+
+.contactCard:nth-child(1) {
+    left: 0;
+    z-index: 0;
+}
+
+.contactCard:nth-child(2) {
+    left: -4px;
+    z-index: 1;
+}
+
+.contactCard:nth-child(3) {
+    left: -8px;
+    z-index: 1;
+}
+
+.contactCard:nth-child(4) {
+    left: -16px;
+    z-index: 1;
+}
+
+.contactCard:nth-child(5) {
+    left: -32px;
+    z-index: 1;
+}
+
+.contactCard:nth-child(6) {
+    left: -64px;
+    z-index: 1;
+}
+
+.contactCard:nth-child(7) {
+    left: -128px;
+    z-index: 1;
+}
+
+.urgentSymbol {
+    width: 17px;
+    height: 12px;
+}
+
+.input-container-bordHTML {
+    margin-left: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.input-container-bordHTML-headline {
+    padding-top: 0 !important;
+
+    margin-left: 66px
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    cursor: pointer;
+
+}
+
+@media (max-width: 1750px) {
+    .allTasks {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .todo {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+    }
+
+    .tasksHeader {
+        width: 100%;
+    }
+
+    .taskContent {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: nowrap;
+        height: auto;
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-top: 10px;
+        white-space: normal;
+
+    }
+
+    .taskContent > .card,
+    .taskContent > .noTasks {
+        flex-shrink: 0;
+        max-width: 100%;
+        scroll-snap-align: start;
+    }
+
+    .taskContent::-webkit-scrollbar {
+        display: none;
+
+    }
+
+    .overlayContent {
+        width: 485px !important;
+        height: calc(100dvh - 120px);
+        max-height: calc(100dvh - 120px) !important;
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+}
+
+@media(max-width: 1307px) {
+    .input-container-bordHTML-headline {
+        padding-left: 48px !important;
+    }
+}
+
+@media (max-width:1300px){
+    .main-content-wrapper{
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    #done {
+        padding-bottom: 150px;
+    }
+
+}
+
+@media(max-width: 1200px) {
+    .input-container-bordHTML-headline{
+        padding-left: 0 !important;
+        margin-left: 0;
+    }
+
+    .input-container-bordHTML {
+        margin-bottom: 42px !important; 
+    }
+}

@@ -6,7 +6,8 @@
     <link rel="icon" href="./assets/img/joinWhite.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/signUp.css" />
     <title>Join – Sign up</title>
-  </head>
+      <link rel="stylesheet" href="./css/interaction.css">
+</head>
   <body>
     <img class="joinIcon" src="./assets/img/joinDark.png" alt="Join Icon" />
     <div class="justifySignUpContainer">
@@ -40,8 +41,8 @@
             />
             <div class="passwordContainer">
               <input
-                onblur="handlepaswordImg(this)"
-                onfocus="handlepaswordStyle(this)"
+                onblur="handlePasswordImage(this)"
+                onfocus="handlePasswordStyle(this)"
                 id="signUpPasswordInput"
                 class="passwordInput passwordInputImg"
                 type="password"
@@ -52,13 +53,13 @@
               />
               <span
                 class="paswordVisibilityBTN"
-                onclick="handlePaswordVisibility()"
+                onclick="handlePasswordVisibility()"
               ></span>
             </div>
             <div class="passwordContainer">
               <input
-                onblur="handleConfirmPaswordImg(this)"
-                onfocus="handleConfirmPaswordStyle(this)"
+                onblur="handleConfirmPasswordImage(this)"
+                onfocus="handleConfirmPasswordStyle(this)"
                 id="confirmPasswordInput"
                 class="confirmPasswordInput passwordInputImg"
                 type="password"
@@ -67,7 +68,7 @@
               />
               <span
                 class="confirmPaswordVisibilityBTN"
-                onclick="handleConfirmPaswordVisibility()"
+                onclick="handleConfirmPasswordVisibility()"
               ></span>
               <span class="passwordAlert dNone"
                 >Your passwords don't match. Please try again.</span
@@ -115,7 +116,10 @@
     <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
     <script src="./js/firebase.js"></script>
+    <script src="./js/database.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/taskPersistence.js"></script>
     <script src="./js/signUp.js"></script>
-  </body>
+    <script src="./js/htmlTemplates.js"></script>
+</body>
 </html>

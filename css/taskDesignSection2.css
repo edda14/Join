@@ -1,0 +1,348 @@
+.join-task-form .at-subcategory-btn-container svg {
+    fill: none;
+    stroke: #2a3647;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+
+.join-task-form #at-subcategory-border {
+    height: 22px;
+    border-color: #d1d1d1;
+    margin: 0;
+}
+
+
+.join-task-form .task-icon-button.d-none {
+    display: none;
+}
+
+
+.task-attachments-hint {
+    font-size: 16px;
+    line-height: 1.4;
+    color: #888;
+    margin: 0 0 8px;
+}
+
+
+.task-upload-placeholder {
+    box-sizing: border-box;
+    min-height: 48px;
+    border: 1px dashed #aaa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 16px;
+    color: #888;
+}
+
+
+.task-upload-placeholder {
+    cursor: pointer;
+}
+
+
+.task-upload-placeholder:hover {
+    background: #f1f1f1;
+    border-color: #2a3647;
+}
+
+
+.task-attachments-input {
+    position: absolute;
+    width: 1px !important;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.task-attachments-placeholder:has(.task-attachments-input:focus-visible) .task-upload-placeholder,
+.task-attachment-card img:focus-visible {
+    outline: 2px solid #29abe2;
+    outline-offset: 3px;
+}
+
+
+.task-placeholder-plus {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+
+.task-attachment-preview-space {
+    box-sizing: border-box;
+    height: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 0;
+    scrollbar-width: thin;
+}
+
+
+.task-attachment-preview-space.has-attachments {
+    height: auto;
+    padding-top: 8px;
+}
+
+
+.task-attachment-card {
+    position: relative;
+    width: 104px;
+    min-width: 104px;
+    height: 88px;
+    margin: 0;
+    border: 1px solid #777;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+
+.task-attachment-card img {
+    width: 100%;
+    height: 62px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: filter .15s ease;
+}
+
+
+.task-attachment-card:hover img {
+    filter: brightness(55%);
+}
+
+
+.task-attachment-card figcaption {
+    overflow: hidden;
+    padding: 3px 5px;
+    color: #777;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.task-attachment-card button {
+    position: absolute;
+    top: 31px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%, -50%);
+    border: 0;
+    border-radius: 50%;
+    background: url('../assets/img/delete-white.svg') center/22px no-repeat transparent;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    font-size: 0;
+}
+
+
+.task-attachment-card button:hover {
+    background-image: url('../assets/img/Property-1=Trash-white-hover.svg');
+}
+
+
+.task-attachment-card:hover button,
+.task-attachment-card button:focus-visible {
+    opacity: 1;
+}
+
+
+.join-task-form .custom-select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.join-task-form .select-selected {
+    width: 100%;
+    min-height: 48px;
+}
+
+
+.join-task-form #contact-search {
+    padding: 10px 16px !important;
+    flex: 1;
+}
+
+
+.join-task-form #contact-toggle {
+    margin-right: 12px;
+}
+
+
+.join-task-form #at-contact-container {
+    top: 46px;
+    z-index: 15;
+    max-height: 280px;
+}
+
+
+.join-task-form #at-btn-container {
+    z-index: 25;
+}
+
+
+.join-task-form .at-clear-btn,
+.join-task-form .at-create-btn {
+    box-sizing: border-box;
+    height: 56px;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+
+main>.join-task-form {
+    width: calc(100% - 380px);
+    max-width: 976px;
+    margin-right: 32px;
+}
+
+
+main>.join-task-form #at-btn-container {
+    position: static;
+    width: 100% !important;
+    margin: 48px 0 40px;
+    background: transparent;
+}
+
+
+@media (min-width: 1301px) {
+    main>.join-task-form {
+        margin-left: 348px;
+    }
+}
+
+
+@media (max-width: 1300px) {
+    .join-task-form .task-category-options {
+        position: static;
+    }
+
+    .join-task-form #at-contact-container {
+        position: static;
+    }
+
+    main>.join-task-form {
+        width: calc(100% - 64px);
+        margin: 0 auto 120px;
+    }
+
+    .join-task-form .task-form-columns {
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+        column-gap: 32px;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    main>.join-task-form {
+        width: calc(100% - 40px);
+    }
+
+    .join-task-form .task-form-columns {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .join-task-form #input-border-container {
+        display: none;
+    }
+
+    .join-task-form .task-fields-secondary {
+        margin-top: 24px;
+    }
+
+    .join-task-form .at-input-headlines,
+    .join-task-form #task-category,
+    .task-category-options button,
+    .join-task-form .at-clear-btn,
+    .join-task-form .at-create-btn {
+        font-size: 16px;
+    }
+
+    .join-task-form .at-prio-container {
+        gap: 8px;
+    }
+
+    .join-task-form .at-prio-item {
+        font-size: clamp(12px, 3vw, 16px);
+        padding: 8px 4px;
+        gap: 4px;
+    }
+
+    .join-task-form .at-prio-item img {
+        width: 16px;
+    }
+
+    .join-task-form .at-clear-btn {
+        display: flex;
+    }
+
+    main>.join-task-form #at-btn-container {
+        margin-top: 32px;
+        gap: 16px;
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    main>.join-task-form .btn-clear-add {
+        margin-left: auto;
+    }
+}
+
+
+.edit-task-overlay .join-task-form .task-form-columns {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.edit-task-overlay .join-task-form .task-fields-secondary {
+    margin-top: 16px;
+}
+
+
+.edit-task-overlay .join-task-form .at-input-headlines,
+.edit-task-overlay .join-task-form .at-prio-item {
+    font-size: 16px;
+}
+
+
+.edit-task-overlay .join-task-form .at-prio-container {
+    gap: 6px;
+}
+
+
+.edit-task-overlay .join-task-form .at-prio-item {
+    padding: 8px 4px;
+    gap: 4px;
+}
+
+
+.join-task-form input::placeholder,
+.join-task-form textarea::placeholder {
+    color: #888;
+}
+
+
+main>.join-task-form .at-headline {
+    padding-top: 140px;
+}
+
+
+@media (max-width: 760px) {
+    main>.join-task-form .at-headline {
+        padding-top: 110px;
+    }
+}

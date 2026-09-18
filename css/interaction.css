@@ -1,0 +1,21 @@
+:is(button, [role="button"], a[href], a[download], summary,
+    select, input[type="button"], input[type="submit"], input[type="reset"],
+    input[type="checkbox"], input[type="radio"], input[type="file"],
+    img[onclick], svg[onclick], .metricCard, .urgentCard,
+    .paswordVisibilityBTN, .confirmPaswordVisibilityBTN):not(:disabled):not([aria-disabled="true"]):not(.disabledButton) {
+    cursor: pointer !important;
+}
+
+:is(button, [role="button"], a[href], a[download]) * {
+    cursor: inherit !important;
+}
+
+:is(button, input, select):disabled,
+[aria-disabled="true"],
+.disabledButton {
+    cursor: not-allowed !important;
+}
+
+:is(button, [role="button"])[aria-busy="true"] {
+    cursor: wait !important;
+}

@@ -1,0 +1,225 @@
+.passwordAlert {
+  font-size: 12px;
+  color: #ff8190;
+}
+
+
+.dNone {
+  display: none;
+}
+
+
+.signUpPopupContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.signUpPopupContainer.show {
+  display: flex;
+}
+
+
+.signUpPopup {
+  background-color: #2a3647;
+  border-radius: 20px;
+  left: 50%;
+  transform: translate(-50%, 250%);
+  filter: drop-shadow(0 0 4 0 #0000);
+  transition: transform 0.5s ease-out 1s;
+  position: absolute;
+  z-index: 1000;
+  bottom: 0;
+}
+
+
+.moveToCenter {
+  transform: translate(-50%, -500%);
+}
+
+
+.signUpPopup p {
+  font-weight: 400;
+  font-size: 24px;
+  color: white;
+  padding: 0 25px;
+}
+
+.redLine {
+  border-bottom: 1px solid #ff8190;
+}
+
+
+.paswordVisibilityBTN,
+.confirmPaswordVisibilityBTN {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background-color: transparent;
+  cursor: default;
+  z-index: 999;
+}
+
+
+.paswordVisibilityBTN:hover,
+.confirmPaswordVisibilityBTN:hover {
+  cursor: pointer;
+  background-color: rgba(246, 247, 248, 0.208);
+}
+
+
+@media (max-height: 970px) {
+  .signUpInput input {
+    height: 28px;
+    font-size: 18px;
+  }
+}
+
+
+@media (max-width: 1921px) {
+  .joinIcon {
+    padding: 38px 38px;
+  }
+  .signUptText {
+    font-size: 50px;
+    margin: 0px 32px 16px 32px;
+  }
+  .signUpContainer {
+    padding: 0px 68px 16px 68px;
+    margin-top: 167px;
+    margin-bottom: 0; 
+  }
+  .signUpInput {
+    gap: 16px;
+  }
+  .nameInput,
+  .emailInput,
+  .passwordInput,
+  .confirmPasswordInput {
+    padding: 6px 21px;
+    background-size: 17px;
+  }
+  footer {
+    padding: 21px;
+  }
+  .checkmarkText {
+    margin: 0;
+  }
+}
+
+
+@media (max-width: 730px) {
+  .joinIcon {
+    width: 64px;
+  }
+  .vectorLeft {
+    right: 145px;
+  }
+  .signUpContainer {
+    padding: 0px 16px 16px 16px;
+  }
+}
+
+
+@media (max-width: 530px) {
+  .confirmPasswordInput,
+  .nameInput,
+  .passwordInput,
+  .emailInput {
+    width: 348px;
+  }
+}
+
+
+@media (max-width: 455px) {
+  .confirmPasswordInput,
+  .nameInput,
+  .passwordInput,
+  .emailInput {
+    width: 318px;
+  }
+
+  .signUpPopup {
+    transform: translate(-50%, 150%);
+  }
+  .moveToCenter {
+    transform: translate(-50%, -600%);
+  }
+  .signUpPopup p {
+    text-align: center;
+    font-size: 16px;
+    padding: 0 8px;
+  }
+}
+
+
+@media (max-width: 415px) {
+  .confirmPasswordInput,
+  .nameInput,
+  .passwordInput,
+  .emailInput {
+    width: 290px;
+  }
+
+  .signUpPopup {
+    transform: translate(-50%, 150%);
+  }
+  .moveToCenter {
+    transform: translate(-50%, -550%);
+  }
+}
+
+
+@media (max-width: 391px) {
+  .resposivSignup {
+    margin-top: 543px;
+  }
+  .marginTop {
+    margin-top: 626px;
+  }
+}
+
+
+@media (max-width: 376px) {
+  .confirmPasswordInput,
+  .nameInput,
+  .passwordInput,
+  .emailInput {
+    width: 250px;
+  }
+  .vectorLeft {
+    right: 122px;
+  }
+  .signUpContainer {
+    margin-top: 131px;
+  }
+  .signUpPopup {
+    transform: translate(-50%, 150%);
+  }
+  .moveToCenter {
+    transform: translate(-50%, -400%);
+  }
+  .signUpInput input {
+    height: 25px;
+  }
+}
+
+
+@media (max-width: 350px) {
+  .confirmPasswordInput,
+  .nameInput,
+  .passwordInput,
+  .emailInput {
+    width: 220px;
+  }
+}

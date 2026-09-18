@@ -11,7 +11,7 @@
           ".validate": "newData.val() === 'urgent' || newData.val() === 'medium' || newData.val() === 'low'"
         },
         "source": {
-          ".validate": "newData.val() === 'manual' || newData.val() === 'email'"
+          ".validate": "newData.val() === 'manual' || newData.val() === 'email' || newData.val() === 'form'"
         },
         "aiGenerated": {
           ".validate": "newData.isBoolean()"

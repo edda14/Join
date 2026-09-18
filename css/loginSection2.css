@@ -1,0 +1,333 @@
+.GuestLogIn:hover {
+  cursor: pointer;
+  color: rgba(41, 171, 226, 1);
+  border: 2px solid rgba(41, 171, 226, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.passwordAlert {
+  font-size: 12px;
+  color: #ff8190;
+}
+
+
+.dNone {
+  display: none;
+}
+
+
+.checkboxContainer {
+  position: relative;
+  margin-top: 5px;
+}
+
+
+.checkbox {
+  position: relative;
+  z-index: 1;
+}
+
+
+#checkmark {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  z-index: 0;
+}
+
+
+.resposivSignup {
+  display: none;
+}
+
+
+.paswordVisibilityBTN {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background-color: transparent;
+  cursor: default;
+  z-index: 999;
+}
+
+
+.paswordVisibilityBTN:hover {
+  cursor: pointer;
+  background-color: rgba(246, 247, 248, 0.208);
+}
+
+
+.animatedImageResposive {
+  position: absolute;
+  z-index: -999;
+  opacity: 0;
+}
+
+
+@media (max-width: 1537px) {
+  .moveToTopLeft {
+    left: 91px;
+    top: 100px;
+    width: 100px;
+  }
+  .justifyLogInContainer {
+    top: 54%;
+    margin: 0;
+  }
+  header {
+    margin: 38px;
+  }
+  .logInContainer {
+    padding: 24px 60px;
+    margin: 0;
+  }
+  .logInInput {
+    gap: 16px;
+  }
+  .rememberMe {
+    margin: 16px 42px;
+  }
+  .logIntText {
+    margin: 0 0 16px 0;
+  }
+  footer {
+    padding: 20px;
+  }
+}
+
+
+@media (max-width: 730px) {
+  .animatedImage {
+    width: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    opacity: 0;
+    transition: left 0.5s ease-in-out, top 0.5s ease-in-out,
+      opacity 0.5s ease-in-out;
+  }
+  .animatedImageResposive {
+    display: block;
+    width: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    opacity: 1;
+    transition: left 0.5s ease-in-out, top 0.5s ease-in-out,
+      opacity 0.5s ease-in-out 0.3s;
+  }
+  .animatedImage.move {
+    left: 70px;
+    top: 77px;
+    width: 64px;
+    opacity: 1;
+  }
+  .animatedImageResposive.move {
+    left: 70px;
+    top: 77px;
+    width: 64px;
+    opacity: 0;
+  }
+  .animatedImage {
+    width: 100px;
+  }
+  .animatedImageContainer {
+    background-color: #2a3647;
+    transition: opacity ease-in-out 0.9s;
+  }
+  .moveToTopLeft {
+    left: 70px;
+    top: 77px;
+    width: 64px;
+  }
+  .logInContainer {
+    padding: 24px 16px;
+  }
+  .justifyLogInContainer {
+    top: 50%;
+  }
+  .joinIcon {
+    width: 64px;
+  }
+  .signUPContainer {
+    display: none;
+  }
+  .resposivSignup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    position: relative;
+  }
+  .marginTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 522px;
+    position: relative;
+  }
+  .signUPContainerResposiv {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-right: 40px;
+  }
+  .singupTextResposiv {
+    font-size: 24px;
+    margin: 0;
+  }
+  .signUpResposiv {
+    font-size: 16px;
+    font-weight: bold;
+    margin: -10px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgb(42, 54, 71);
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .signUpResposiv:hover {
+    cursor: pointer;
+    background-color: rgb(41, 171, 226, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+@media (max-width: 530px) {
+  .logIntText {
+    margin: 0 0 32px 0;
+  }
+  .emailInput {
+    width: 348px;
+  }
+  .passwordInput {
+    width: 348px;
+  }
+  .logInInput {
+    align-items: center;
+    gap: 32px;
+  }
+  .rememberMe {
+    width: 250px;
+    margin: 32px 16px;
+  }
+  .logInButtons {
+    flex-direction: column;
+    margin: 0;
+    gap: 21px;
+  }
+  .resposivSignup {
+    margin-top: 36px;
+  }
+  .marginTop {
+    margin-top: 718px;
+  }
+  .signUPContainerResposiv {
+    margin: 0;
+    gap: 35px;
+  }
+  .logIn {
+    padding: 15px 48px;
+    font-size: 16px;
+  }
+  .GuestLogIn {
+    font-size: 16px;
+  }
+  .singupTextResposiv {
+    font-size: 20px;
+  }
+  .rememberMe {
+    margin: 16px 16px;
+  }
+  .logInContainer {
+    padding: 16px 16px;
+  }
+  .justifyLogInContainer {
+    top: 49%;
+  }
+}
+
+
+@media (max-width: 455px) {
+  .resposivSignup {
+    margin-top: 50px;
+  }
+  .emailInput {
+    width: 318px;
+  }
+  .passwordInput {
+    width: 318px;
+  }
+}
+
+
+@media (max-width: 426px) {
+  .justifyLogInContainer {
+    top: 54%;
+  }
+}
+
+
+@media (max-width: 415px) {
+  .emailInput {
+    width: 290px;
+  }
+  .passwordInput {
+    width: 290px;
+  }
+  .resposivSignup {
+    margin-top: 50px;
+  }
+  .justifyLogInContainer {
+    top: 51%;
+  }
+  .marginTop {
+    margin-top: 675px;
+  }
+}
+
+
+@media (max-width: 391px) {
+  .justifyLogInContainer {
+    top: 53%;
+  }
+  .marginTop {
+    margin-top: 626px;
+  }
+}
+
+
+@media (max-height: 668px) {
+  footer {
+    position: relative;
+    top: 680px;
+  }
+  .justifyLogInContainer {
+    top: 67%;
+  }
+}
+
+
+@media (max-width: 376px) {
+  .emailInput {
+    width: 250px;
+  }
+  .passwordInput {
+    width: 250px;
+  }
+  .resposivSignup {
+    margin-top: 50px;
+  }
+
+  .marginTop {
+    margin-top: 614px;
+  }
+}

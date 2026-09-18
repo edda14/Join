@@ -1,95 +1,99 @@
-<div class="right-left-container">
-    <div class="left-input-container left-input-container-mobile">
-        <div class="at-input-headlines">Title<div class="required-star">*</div>
+<div class="right-left-container task-form-columns">
+    <div class="left-input-container task-fields-primary">
+        <label class="at-input-headlines" for="task-title">Title<span class="required-star" aria-hidden="true">*</span></label>
+        <input oninput="checkIfTitleEmpty()" type="text" placeholder="Enter a title" id="task-title" required aria-describedby="at-alert-title">
+        <div class="at-alert d-none" id="at-alert-title" role="alert">This field is required</div>
+        <label class="at-input-headlines" for="at-description">Description</label>
+        <textarea placeholder="Enter a Description" id="at-description"></textarea>
+        <label class="at-input-headlines" for="task-due-date">Due Date<span class="required-star" aria-hidden="true">*</span></label>
+        <input class="at-input-date" required type="date" oninput="checkIfDateEmpty()" aria-describedby="at-alert-due-date" id="task-due-date" placeholder="JJJJ-MM-TT">
+        <div class="at-alert d-none" id="at-alert-due-date" role="alert">This field is required</div>
+        <div class="at-input-headlines" id="priority-label">Prio</div>
+        <div class="at-prio-container  at-prio-container-template" role="group" aria-labelledby="priority-label">
+            <button type="button" aria-pressed="false" onclick="setBackgroundColorPrio('urgent')" id="urgent" class="at-prio-item at-prio-item-template">
+                <span>Urgent</span>
+                <img id="urgent-img-deactive" src="./assets/img/urgent.png" alt="">
+                <img id="urgent-img-active" src="./assets/img/urgent-white.png" style="display: none;" alt="">
+            </button>
+            <button type="button" aria-pressed="false" onclick="setBackgroundColorPrio('medium')" id="medium" class="at-prio-item at-prio-item-template">
+                <span>Medium</span>
+                <img id="medium-img-deactive" src="./assets/img/medium.png" alt="">
+                <img id="medium-img-active" src="./assets/img/medium-white.png" style="display: none;" alt="">
+            </button>
+            <button type="button" aria-pressed="false" onclick="setBackgroundColorPrio('low')" id="low" class="at-prio-item at-prio-item-template">
+                <span>Low</span>
+                <img id="low-img-deactive" src="./assets/img/low.png" alt="">
+                <img id="low-img-active" src="./assets/img/low-white.png" style="display: none;" alt="">
+            </button>
         </div>
-        <input oninput="checkIfTitleEmpty()" type="text" placeholder="Enter a title" id="task-title">
-        <div class="at-alert d-none" id="at-alert-title">This field is required</div>
-        <div class="at-input-headlines">Description</div>
-        <textarea type="text" placeholder="Enter a Description" id="at-description"></textarea>
-        <div class="at-input-headlines">Assigned to</div>
+        <label id="category-headline" class="at-input-headlines" for="task-category">Category<span class="required-star" aria-hidden="true">*</span></label>
+        <div class="custom-category-select" id="category-input">
+            <button type="button" id="task-category" class="task-category-trigger" role="combobox"
+                aria-haspopup="listbox" aria-expanded="false" aria-controls="task-category-options"
+                aria-labelledby="category-headline task-category-value" aria-required="true"
+                aria-describedby="at-alert-category">
+                <span id="task-category-value">Select task category</span><span class="task-dropdown-arrow" aria-hidden="true"></span>
+            </button>
+            <div id="task-category-options" class="task-category-options" role="listbox" aria-labelledby="category-headline" hidden>
+                <button type="button" role="option" aria-selected="false" tabindex="-1" data-category="Technical Task">Technical Task</button>
+                <button type="button" role="option" aria-selected="false" tabindex="-1" data-category="User Story">User Story</button>
+            </div>
+        </div>
+        <div class="at-alert d-none" id="at-alert-category" role="alert">This field is required</div>
+    </div>
+    <div id="input-border-container" class="input-border-container" aria-hidden="true"></div>
+    <div class="right-input-container task-fields-secondary">
+        <div class="task-attachments-placeholder" aria-labelledby="attachments-heading">
+            <div class="task-attachments-heading"><div id="attachments-heading" class="at-input-headlines">Attachments</div><button type="button" id="delete-all-attachments" class="delete-all-attachments" aria-label="Delete all attachments"><img src="./assets/img/delete-white.svg" alt=""> <span>Delete all</span></button></div>
+            <p class="task-attachments-hint">Allowed file types are JPEG and PNG</p>
+            <label class="task-upload-placeholder" for="task-attachments" aria-label="Upload JPEG or PNG images">
+                <span>Drag a file or browse</span><span class="task-placeholder-plus" aria-hidden="true">+</span>
+            </label>
+            <input id="task-attachments" class="task-attachments-input" type="file" accept="image/jpeg,image/png" multiple aria-label="Upload JPEG or PNG images">
+            <div id="task-attachment-error" class="at-alert d-none" role="alert"></div>
+            <div id="task-attachment-preview" class="task-attachment-preview-space" aria-live="polite"></div>
+        </div>
+        <label class="at-input-headlines" for="add-subcategory">Subtasks</label>
+        <div class="at-input-container">
+            <input onfocus="activateSubcategory()" class="at-input-date at-input-subcategory at-input-subcategory-template" type="text" id="add-subcategory"
+                placeholder="Add new subtask">
+            <div class="at-subcategory-btn-container">
+                <button type="button" id="at-subcategory-clear" class="task-icon-button d-none" aria-label="Clear subtask input" onclick="clearInputSubcategory(event)"><img src="./assets/img/clear.png" alt=""></button>
+                <div class="small-border-container d-none" id="at-subcategory-border"></div>
+                <button type="button" id="at-subcategory-confirm" class="task-icon-button d-none" aria-label="Add subtask" onclick="renderSubcategory()"><img src="./assets/img/checkOkDarrk.png" alt=""></button>
+                <button type="button" id="at-subcategory-open" class="task-icon-button" aria-label="Enter a subtask"><img src="./assets/img/add-black.png" alt=""></button>
+            </div>
+        </div>
+        <div id="added-subcategories" class="added-subcategories-template"></div>
+        <label class="at-input-headlines" for="contact-search">Assigned to</label>
         <div class="custom-select fs16">
             <div class="select-selected">
                 <div id="original-placeholder">Select contacts to assign</div>
                 <input type="text" class="inputClass" id="contact-search" placeholder="" oninput="filterContacts()">
-                <img id="open-contact-list" src="./assets/img/arrow_drop_down_open.png">
-                <img id="close-contact-list" class="d-none" src="./assets/img/arrow_drop_down_close.png">
+                <button type="button" class="task-icon-button" id="contact-toggle" aria-label="Choose contacts" aria-expanded="false" aria-controls="at-contact-container"><img id="open-contact-list" src="./assets/img/arrow_drop_down_open.png" alt="">
+                <img id="close-contact-list" class="d-none" src="./assets/img/arrow_drop_down_close.png" alt=""></button>
             </div>
             <div id="at-contact-container" class="select-items select-hide"></div>
         </div>
-        
+
         <div id="at-selected-contacts"></div>
     </div>
-    <div id="input-border-container" class="input-border-container"></div>
-    <div class="right-input-container right-input-container-mobile fs16">
-        <div oninput="checkIfDateEmpty()" class="at-input-headlines">Due Date<div class="required-star">*</div>
-        </div>
-        <input class="at-input-date" required type="date" id="task-due-date" placeholder="JJJJ-MM-TT">
-        <div class="at-alert d-none" id="at-alert-due-date">This field is required</div>
-        <div class="at-input-headlines">Prio</div>
-        <div class="at-prio-container  at-prio-container-template">
-            <div onclick="setBackgroundColorPrio('urgent')" id="urgent" class="at-prio-item at-prio-item-template">
-                <div>Urgent</div>
-                <img id="urgent-img-deactive" src="./assets/img/urgent.png">
-                <img id="urgent-img-active" src="./assets/img/urgent-white.png" style="display: none;">
-            </div>
-            <div onclick="setBackgroundColorPrio('medium')" id="medium" class="at-prio-item at-prio-item-template">
-                <div>Medium</div>
-                <img id="medium-img-deactive" src="./assets/img/medium.png">
-                <img id="medium-img-active" src="./assets/img/medium-white.png" style="display: none;">
-            </div>
-            <div onclick="setBackgroundColorPrio('low')" id="low" class="at-prio-item at-prio-item-template">
-                <div>Low</div>
-                <img id="low-img-deactive" src="./assets/img/low.png">
-                <img id="low-img-active" src="./assets/img/low-white.png" style="display: none;">
-            </div>
-        </div>
-        <div id="category-headline" class="at-input-headlines">Category<div class="required-star">*</div>
-        </div>
-        <div class="custom-category-select fs16" id="category-input">
-            <div class="select-category-selected">
-                <div>Select task category</div>
-                <img id="open-category-list" src="./assets/img/arrow_drop_down_open.png">
-                <img id="close-category-list" class="d-none" src="./assets/img/arrow_drop_down_close.png">
-            </div>
-            <div id="at-category-container" class="select-category-items">
-                <div class="at-contact-layout">
-                    <div class="at-contact-name">Technical Task</div>
-                </div>
-                <div class="at-contact-layout">
-                    <div class="at-contact-name">User Story</div>
-                </div>
-            </div>
-        </div>
-        <div class="at-alert d-none" id="at-alert-category">This field is required</div>
-        <div class="at-input-headlines">Subcategory</div>
-        <div class="at-input-container">
-            <input onclick="activateSubcategory()" class="at-input-date at-input-subcategory at-input-subcategory-template" type="text" id="add-subcategory"
-                placeholder="Add new subtask">
-            <div class="at-subcategory-btn-container">
-                <img onclick="clearInputSubcategory(event)" class="d-none" src="./assets/img/clear.png" id="at-subcategory-clear">
-                <div class="small-border-container d-none" id="at-subcategory-border"></div>
-                <img onclick="renderSubcategory()" class="d-none" src="./assets/img/checkOkDarrk.png"
-                    id="at-subcategory-confirm">
-                <img src="./assets/img/add-black.png" id="at-subcategory-open">
-            </div>
-        </div>
-        <div id="added-subcategories" class="added-subcategories-template"></div>
-    </div>
 </div>
+<p class="task-save-error at-alert d-none" role="alert"></p>
 <div id="at-btn-container" class="at-btn-container at-btn-container-mobile">
     <div id="at-alert-description" class="at-alert-description at-alert-description-mobile">
         <div class="required-star">*</div>This field is required
     </div>
     <div class="btn-clear-add">
-        <div onclick="clearTask()" class="at-clear-btn">
-            <div>Clear</div>
+        <button type="button" onclick="clearTask()" class="at-clear-btn">
+            <span>Clear</span>
             <svg width="14" height="14" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 2L23 22" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M23 2L2 22" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-        </div>
-        <div onclick="addTask()" class="at-create-btn  at-create-btn-mobile">
-            <div>Create Task</div><img src="./assets/img/check(ok).png">
-        </div>
+        </button>
+        <button type="button" onclick="addTask()" class="at-create-btn  at-create-btn-mobile">
+            <span>Create Task</span><img src="./assets/img/check(ok).png" alt="">
+        </button>
     </div>
 </div>
