@@ -72,7 +72,7 @@ header[w3-include-html*="header.html"] {
 .subMenu {
   position: absolute;
   top: 118px;
-  right: -50%;
+  right: -79%;
   transform: translate(-1%, -11%);
   background-color: #2a3647;
   border-radius: 20px 0 20px 20px;

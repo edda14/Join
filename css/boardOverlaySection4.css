@@ -4,7 +4,7 @@
     }
 
     #addTaskOverlay .overlayContentAddTask {
-        padding: 10px 20px;
+        padding: 10px 10px;
     }
 
     #addTaskOverlay .innerOverlay {
@@ -41,4 +41,14 @@
     #addTaskOverlay .board-task-footer-actions {
         flex-direction: column;
     }
+
+    #addTaskOverlay {
+        padding: 0px 0px !important;
+    }
+
+    .edit-task-overlay{
+        padding: 20px 10px;
+    }
+
+
 }

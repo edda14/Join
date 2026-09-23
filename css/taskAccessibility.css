@@ -141,7 +141,7 @@ h2.overlayTitle {
 }
 
 h1.header-width {
-    font-size: inherit;
+    font-size: 52px;
     line-height: inherit;
 }
 
@@ -208,6 +208,10 @@ button.board-task-edit-btn {
         padding: 8px 4px;
         flex-direction: column;
         gap: 4px;
+    }
+
+    .edit-task-overlay .join-task-form .at-input-headlines, .edit-task-overlay .join-task-form .at-prio-item {
+        font-size: 13px !important;
     }
 }
 

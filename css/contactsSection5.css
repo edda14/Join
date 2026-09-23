@@ -62,11 +62,19 @@
         box-sizing: border-box;
         width: 100% !important;
         height: auto !important;
-        padding: 34px 18px 18px 18px !important;
+        padding: 18px 18px 18px 18px !important;
     }
 
     #inputDiv {
         width: 100% !important;
+    }
+
+    .inputBox {
+        padding: 6px 13px;
+    }
+
+    #inputDiv {
+        gap: 12px;
     }
 
     .inputBox input {

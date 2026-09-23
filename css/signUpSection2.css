@@ -97,9 +97,7 @@
     margin-top: 167px;
     margin-bottom: 0; 
   }
-  .signUpInput {
-    gap: 16px;
-  }
+  
   .nameInput,
   .emailInput,
   .passwordInput,
@@ -130,6 +128,17 @@
   .signUpContainer {
     padding: 0px 16px 16px 16px;
   }
+
+  .signUptText {
+    font-size: 28px;
+  }
+
+  .signUp  {
+    padding: 12px;
+    height: auto;
+    font-size: 16px;
+    min-width: 96px;
+  }
 }
 
 
@@ -139,6 +148,14 @@
   .passwordInput,
   .emailInput {
     width: 348px;
+  }
+
+  .acceptCheckbox {
+    margin-top: 0px;
+  }
+
+  .signUpInput {
+    gap: 16px;
   }
 }
 
@@ -203,7 +220,7 @@
     right: 122px;
   }
   .signUpContainer {
-    margin-top: 131px;
+    margin-top: 110px;
   }
   .signUpPopup {
     transform: translate(-50%, 150%);
