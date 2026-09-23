@@ -14,7 +14,55 @@ function setupAttachmentPicker() {
     if (!picker || picker.dataset.bound) return;
     picker.dataset.bound = 'true';
     picker.addEventListener('change', handleAttachmentSelection);
+    setupAttachmentDropZone(picker);
     document.getElementById('delete-all-attachments')?.addEventListener('click', clearAllAttachments);
+}
+
+/** Binds drag-and-drop events to the visible attachment upload area.
+ * @param {HTMLInputElement} picker File input associated with the drop zone.
+ * @returns {void}
+ */
+function setupAttachmentDropZone(picker) {
+    const zone = picker.closest('.task-attachments-placeholder')?.querySelector('.task-upload-placeholder');
+    if (!zone || zone.dataset.dropBound) return;
+    zone.dataset.dropBound = 'true';
+    zone.addEventListener('dragenter', showAttachmentDropState);
+    zone.addEventListener('dragover', showAttachmentDropState);
+    zone.addEventListener('dragleave', hideAttachmentDropState);
+    zone.addEventListener('drop', handleAttachmentDrop);
+}
+
+/** Shows the active drop state and permits image files to be dropped.
+ * @param {DragEvent} event Browser drag event.
+ * @returns {void}
+ */
+function showAttachmentDropState(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.classList.add('is-dragover');
+    if (event.dataTransfer) event.dataTransfer.dropEffect = 'copy';
+}
+
+/** Removes the drop state after the pointer leaves the complete upload area.
+ * @param {DragEvent} event Browser drag event.
+ * @returns {void}
+ */
+function hideAttachmentDropState(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.currentTarget.contains(event.relatedTarget)) return;
+    event.currentTarget.classList.remove('is-dragover');
+}
+
+/** Processes files dropped on the attachment upload area.
+ * @param {DragEvent} event Browser drop event.
+ * @returns {Promise<void>} Resolves after the dropped files are processed.
+ */
+async function handleAttachmentDrop(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.classList.remove('is-dragover');
+    await queueAttachmentFiles([...event.dataTransfer.files]);
 }
 
 /** Restores selected images saved locally before a page reload.
@@ -61,14 +109,24 @@ function clearAllAttachments() {
  * @returns {Promise<*>} handle attachment selection result.
  */
 async function handleAttachmentSelection(event) {
-    if (taskSaveInProgress) return;
-    const files = [...event.target.files];
+    try { await queueAttachmentFiles([...event.target.files]); }
+    finally { event.target.value = ''; }
+}
+
+/** Adds selected or dropped files to the shared processing queue.
+ * @param {File[]} files Image files supplied by the user.
+ * @returns {Promise<boolean>} Whether the files were accepted and processed.
+ */
+async function queueAttachmentFiles(files) {
+    if (taskSaveInProgress || !files.length) return false;
     const invalid = files.find(file => !['image/jpeg', 'image/png'].includes(file.type));
-    if (invalid) return showAttachmentError('Only JPEG and PNG images are allowed.');
+    if (invalid) {
+        showAttachmentError('Only JPEG and PNG images are allowed.');
+        return false;
+    }
     const version = attachmentSelectionVersion;
     attachmentProcessing = attachmentProcessing.then(() => processAttachmentFiles(files, version));
-    try { await attachmentProcessing; }
-    finally { event.target.value = ''; }
+    return attachmentProcessing;
 }
 
 /** Processes one selection and reports failures inline without losing older images.

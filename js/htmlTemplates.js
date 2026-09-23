@@ -15,12 +15,12 @@ function renderHtmlTemplate(name, values = []) {
  * @returns {void}
  */
 function togglePasswordField(element, prefix) {
-    const states = ['passwordInputImg', 'lockInputImg', prefix + 'Focus', prefix + 'Visible'];
-    const index = states.findIndex(state => element.classList.contains(state));
-    if (index < 0) return;
-    const next = index === 3 ? 2 : index + 1;
-    element.classList.replace(states[index], states[next]);
-    if (index >= 2) element.type = next === 3 ? 'text' : 'password';
+    const isVisible = element.type === 'text';
+    const toggle = element.parentElement.querySelector('[class*="VisibilityBTN"]');
+    element.type = isVisible ? 'password' : 'text';
+    element.classList.remove('passwordInputImg', 'lockInputImg', prefix + 'Focus', prefix + 'Visible');
+    element.classList.add(isVisible ? prefix + 'Focus' : prefix + 'Visible');
+    toggle?.classList.toggle('passwordVisibilityVisible', !isVisible);
 }
 
 /** Restores a password input's idle icon after focus leaves.

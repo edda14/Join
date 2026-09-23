@@ -25,6 +25,7 @@ aside {
     flex-direction: column;
     margin-left: 232px;
     width: calc(100% - 232px);
+    max-width: 1600px;
     height: 100%;
 }
 

@@ -104,6 +104,7 @@ async function findUser(event) {
     const emailInput = document.getElementById("logInEmailInput");
     const passwordInput = document.getElementById("logInPasswordInput");
     resetInputBorders(emailInput, passwordInput);
+    if (!validateLoginForm(emailInput, passwordInput)) return;
     try {
         const firebaseUser = await authenticateLogin(emailInput.value, passwordInput.value);
         await completeLogin(firebaseUser, emailInput.value);
@@ -111,6 +112,32 @@ async function findUser(event) {
         handleInvalidUser(emailInput, passwordInput);
         console.error("Firebase login failed:", error.code);
     }
+}
+
+/** Validates login fields and displays inline feedback.
+ * @param {HTMLInputElement} emailInput Email field to validate.
+ * @param {HTMLInputElement} passwordInput Password field to validate.
+ * @returns {boolean} Whether the login fields are valid.
+ */
+function validateLoginForm(emailInput, passwordInput) {
+    const emailMessage = !emailInput.value.trim() ? 'Please enter your email address.' : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()) ? 'Please enter a valid email address.' : '';
+    const passwordMessage = !passwordInput.value ? 'Please enter your password.' : '';
+    showLoginFeedback(emailInput, emailMessage);
+    showLoginFeedback(passwordInput, passwordMessage);
+    return !emailMessage && !passwordMessage;
+}
+
+/** Shows or clears one login field's feedback message.
+ * @param {HTMLInputElement} input Field to update.
+ * @param {string} message Feedback text.
+ * @returns {void}
+ */
+function showLoginFeedback(input, message) {
+    const feedback = document.getElementById(input.dataset.errorId || 'loginPasswordError');
+    feedback.textContent = message;
+    feedback.classList.toggle('dNone', !message);
+    input.classList.toggle('inputInvalid', Boolean(message));
+    input.setAttribute('aria-invalid', String(Boolean(message)));
 }
 
 /** Authenticates the current login form values with Firebase.
@@ -172,6 +199,9 @@ function normalizeEmail(email = '') {
 function resetInputBorders(emailInput, passwordInput) {
     emailInput.style.borderColor = "";
     passwordInput.style.borderColor = "";
+    showLoginFeedback(emailInput, '');
+    showLoginFeedback(passwordInput, '');
+    document.querySelector('.passwordAlert').classList.add('dNone');
 }
 
 /** Opens the summary page and enables the responsive greeting animation.

@@ -21,13 +21,15 @@
     <main class="justifyLogInContainer">
       <div class="logInContainer">
         <h1 class="logIntText">Log in</h1>
-        <form onsubmit="findUser(event)">
+        <form novalidate onsubmit="findUser(event)">
           <div class="logInInput">
-            <input id="logInEmailInput" class="emailInput" name="email" type="email" placeholder="Email" autocomplete="username" required />
+            <input id="logInEmailInput" data-error-id="loginEmailError" aria-describedby="loginEmailError" maxlength="254" class="emailInput" name="email" type="email" placeholder="Email" autocomplete="username" required />
+            <span id="loginEmailError" class="loginFeedback dNone" aria-live="polite"></span>
             <div class="logInPasswordContainer">
               <input onblur="handlePasswordImage(this)" onfocus="handlePasswordStyle(this)" id="logInPasswordInput" class="passwordInput passwordInputImg" name="password" type="password" placeholder="Password" autocomplete="current-password" required />
               <span class="paswordVisibilityBTN" onclick="handlePasswordVisibility()"></span>
               <span class="passwordAlert dNone">Check your email and password. Please try again.</span>
+              <span id="loginPasswordError" class="loginFeedback dNone" aria-live="polite"></span>
             </div>
           </div>
           <div class="rememberMe">

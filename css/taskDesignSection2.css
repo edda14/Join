@@ -51,6 +51,14 @@
 }
 
 
+.task-upload-placeholder.is-dragover {
+    background: #e7f5fc;
+    border-color: #29abe2;
+    box-shadow: 0 0 0 2px rgb(41 171 226 / 20%);
+    color: #2a3647;
+}
+
+
 .task-attachments-input {
     position: absolute;
     width: 1px !important;

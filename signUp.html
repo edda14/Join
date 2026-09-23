@@ -22,11 +22,13 @@
         <div class="signUptTextContainer">
           <h2 class="signUptText">Sign up</h2>
         </div>
-        <form action="" onsubmit="return addUser(event)">
+        <form action="" novalidate onsubmit="return addUser(event)">
           <div class="signUpInput">
             <input
               onblur="toUpperCase(this)"
               id="signUpNameInput"
+              aria-describedby="signUpFeedback"
+              maxlength="80"
               class="nameInput"
               type="text"
               placeholder="Name"
@@ -34,6 +36,8 @@
             />
             <input
               id="signUpEmailInput"
+              aria-describedby="signUpFeedback"
+              maxlength="254"
               class="emailInput"
               type="email"
               placeholder="Email"
@@ -44,11 +48,11 @@
                 onblur="handlePasswordImage(this)"
                 onfocus="handlePasswordStyle(this)"
                 id="signUpPasswordInput"
+                aria-describedby="signUpFeedback"
+                maxlength="128"
                 class="passwordInput passwordInputImg"
                 type="password"
                 placeholder="Password"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,}$"
-                title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character (for example _, !, ?, or #)."
                 required
               />
               <span
@@ -61,6 +65,8 @@
                 onblur="handleConfirmPasswordImage(this)"
                 onfocus="handleConfirmPasswordStyle(this)"
                 id="confirmPasswordInput"
+                aria-describedby="signUpFeedback"
+                maxlength="128"
                 class="confirmPasswordInput passwordInputImg"
                 type="password"
                 placeholder="Confirm Password"
@@ -70,10 +76,8 @@
                 class="confirmPaswordVisibilityBTN"
                 onclick="handleConfirmPasswordVisibility()"
               ></span>
-              <span class="passwordAlert dNone"
-                >Your passwords don't match. Please try again.</span
-              >
             </div>
+            <span id="signUpFeedback" class="signUpFeedback" aria-live="polite"></span>
             <div class="acceptCheckbox">
               <div class="checkboxContainer">
                 <img

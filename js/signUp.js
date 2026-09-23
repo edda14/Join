@@ -22,15 +22,12 @@ function getSignUpPopup() {
  */
 async function addUser(event) {
     event.preventDefault();
-    const { name, email, password, confirmPassword } = getSignUpInputs();
-    resetInputBorders(name, email, password, confirmPassword);
-    if (!isValidInput(name, email, password, confirmPassword)) {
-        handleInvalidInput(name, email, password, confirmPassword);
-        return false;
-    }
-    if (!isChecked) return rejectMissingPrivacyConsent();
-    try { await registerUserInputs(name, email, password); }
-    catch (error) { showRegistrationError(error, email, password, confirmPassword); }
+    const inputs = getSignUpInputs();
+    resetSignUpValidation(inputs);
+    const error = getSignUpValidationError(inputs);
+    if (error) return showSignUpValidationError(error);
+    try { await registerUserInputs(inputs.name, inputs.email, inputs.password); }
+    catch (registrationError) { showRegistrationError(registrationError, inputs); }
     return false;
 }
 
@@ -47,12 +44,6 @@ function getSignUpInputs() {
 /** Displays missing privacy-consent feedback and cancels submission.
  * @returns {boolean} reject missing privacy consent result.
  */
-function rejectMissingPrivacyConsent() {
-    document.querySelector('.acceptCheckbox').classList.add('redLine');
-    document.querySelector('.signUp').style.marginTop = '0px';
-    return false;
-}
-
 /** Registers the user, stores their profile, and shows confirmation.
  * @param {string} name Display name.
  * @param {*} email email.
@@ -69,57 +60,62 @@ async function registerUserInputs(name, email, password) {
 }
 
 /** Clears previous sign-up validation feedback.
- * @param {string} name Display name.
- * @param {*} email email.
- * @param {*} password password.
- * @param {HTMLElement} confirmPassword confirm Password.
+ * @param {Object} inputs Sign-up form controls.
  * @returns {void}
  */
-function resetInputBorders(name, email, password, confirmPassword) {
-    name.style.borderColor = "";
-    email.style.borderColor = "";
-    password.style.borderColor = "";
-    confirmPassword.style.borderColor = "";
-    document.querySelector(".passwordAlert").classList.add("dNone");
-    document.querySelector(".acceptCheckbox").style.marginTop = "14px";
+function resetSignUpValidation(inputs) {
+    Object.values(inputs).forEach(input => {
+        input.classList.remove('signUpInputInvalid');
+        input.setAttribute('aria-invalid', 'false');
+    });
+    document.getElementById('signUpFeedback').textContent = '';
 }
 
-/** Checks all required sign-up values and password rules.
- * @param {string} name Display name.
- * @param {*} email email.
- * @param {*} password password.
- * @param {HTMLElement} confirmPassword confirm Password.
- * @returns {boolean} is valid input result.
+/** Returns the first sign-up validation error.
+ * @param {Object} inputs Sign-up form controls.
+ * @returns {Object|null} Validation message and affected fields.
  */
-function isValidInput(name, email, password, confirmPassword) {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,}$/;
-    return (
-    name.value !== "" &&
-    email.value !== "" &&
-    passwordRegex.test(password.value) &&
-    password.value === confirmPassword.value
-    );
+function getSignUpValidationError(inputs) {
+    const namePattern = /^[A-Za-zÄÖÜäöüß]+(?:[ '-][A-Za-zÄÖÜäöüß]+)*$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,}$/;
+    if (!inputs.name.value.trim()) return validationError('Please enter your name.', inputs.name);
+    if (!namePattern.test(inputs.name.value.trim())) return validationError('Please use only letters, spaces, hyphens or apostrophes for your name.', inputs.name);
+    if (!inputs.email.value.trim()) return validationError('Please enter your email address.', inputs.email);
+    if (!emailPattern.test(inputs.email.value.trim())) return validationError('Please enter a valid email address.', inputs.email);
+    if (!inputs.password.value) return validationError('Please enter a password.', inputs.password);
+    if (!passwordPattern.test(inputs.password.value)) return validationError('Use 8+ characters with upper/lowercase, a number and a special character.', inputs.password);
+    if (!inputs.confirmPassword.value) return validationError('Please confirm your password.', inputs.confirmPassword);
+    if (inputs.password.value !== inputs.confirmPassword.value) return validationError('Passwords must match.', inputs.password, inputs.confirmPassword);
+    return isChecked ? null : validationError('Please accept the Privacy Policy to continue.');
 }
 
-/** Marks invalid sign-up inputs.
- * @param {string} name Display name.
- * @param {*} email email.
- * @param {*} password password.
- * @param {HTMLElement} confirmPassword confirm Password.
+/** Creates a validation result.
+ * @param {string} message Feedback shown to the user.
+ * @param {...HTMLElement} fields Invalid fields.
+ * @returns {Object} Validation result.
+ */
+function validationError(message, ...fields) {
+    return { message, fields };
+}
+
+/** Displays one sign-up validation error.
+ * @param {Object} error Validation result.
+ * @returns {boolean} Always false to cancel submission.
+ */
+function showSignUpValidationError(error) {
+    document.getElementById('signUpFeedback').textContent = error.message;
+    error.fields.forEach(markSignUpFieldInvalid);
+    return false;
+}
+
+/** Marks one field as invalid.
+ * @param {HTMLElement} field Invalid form control.
  * @returns {void}
  */
-function handleInvalidInput(name, email, password, confirmPassword) {
-    if (name.value === "") name.style.borderColor = "#FF8190";
-    if (email.value === "") email.style.borderColor = "#FF8190";
-    if (password.value === "") password.style.borderColor = "#FF8190";
-    if (confirmPassword.value === "")
-    confirmPassword.style.borderColor = "#FF8190";
-    if (password.value !== confirmPassword.value) {
-        password.style.borderColor = "#FF8190";
-        confirmPassword.style.borderColor = "#FF8190";
-        document.querySelector(".passwordAlert").classList.remove("dNone");
-        document.querySelector(".acceptCheckbox").style.marginTop = "0px";
-    }
+function markSignUpFieldInvalid(field) {
+    field.classList.add('signUpInputInvalid');
+    field.setAttribute('aria-invalid', 'true');
 }
 
 /** Stores a member profile under its Firebase UID.
@@ -134,23 +130,17 @@ async function saveUserProfile(uid, name, email) {
 
 /** Displays a readable Firebase registration error.
  * @param {Error} error Failure to display or propagate.
- * @param {*} email email.
- * @param {*} password password.
- * @param {HTMLElement} confirmPassword confirm Password.
+ * @param {Object} inputs Sign-up form controls.
  * @returns {void}
  */
-function showRegistrationError(error, email, password, confirmPassword) {
-    const alert = document.querySelector(".passwordAlert");
+function showRegistrationError(error, inputs) {
     const messages = {
         "auth/email-already-in-use": "This email address is already registered.",
         "auth/invalid-email": "Please enter a valid email address.",
         "auth/weak-password": "Please choose a stronger password.",
     };
-    alert.textContent = messages[error.code] || "Sign up failed. Please try again.";
-    alert.classList.remove("dNone");
-    email.style.borderColor = "#FF8190";
-    password.style.borderColor = "#FF8190";
-    confirmPassword.style.borderColor = "#FF8190";
+    const message = messages[error.code] || "Sign up failed. Please try again.";
+    showSignUpValidationError(validationError(message, inputs.email));
     console.error("Firebase sign-up failed:", error.code);
 }
 
@@ -203,7 +193,16 @@ function toggleCheckbox(img) {
     if (isChecked) {
         document.querySelector('.acceptCheckbox').classList.remove('redLine');
         signUpButton.style.marginTop = '1px';
+        clearPrivacyValidationFeedback();
     }
+}
+
+/** Clears the privacy message after consent is granted.
+ * @returns {void}
+ */
+function clearPrivacyValidationFeedback() {
+    const feedback = document.getElementById('signUpFeedback');
+    if (feedback.textContent.includes('Privacy Policy')) feedback.textContent = '';
 }
 
 /** Capitalizes the first character of a name field.

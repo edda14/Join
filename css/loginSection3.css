@@ -129,7 +129,18 @@
 
   .passwordAlert {
     margin-top: 3px;
-    font-size: 9px;
+    min-height: 18px;
+    font-size: 14px;
+  }
+
+  .loginFeedback {
+    min-height: 18px;
+    padding-top: 4px;
+    font-size: 14px;
+  }
+
+  .logInInput > .loginFeedback {
+    top: -16px;
   }
 
   .rememberMe {

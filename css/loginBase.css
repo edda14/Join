@@ -250,6 +250,36 @@ footer a:hover {
   background-size: 19px;
 }
 
+.loginFeedback {
+  display: block;
+  min-height: 20px;
+  padding-top: 6px;
+  color: #ff8190;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.passwordAlert {
+  min-height: 20px;
+  margin-top: 6px;
+  color: #ff8190;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.loginFeedback:not(.dNone) {
+  visibility: visible;
+}
+
+.logInInput > .loginFeedback {
+  position: relative;
+  top: -32px;
+}
+
+.inputInvalid {
+  border-color: #ff8190 !important;
+}
+
 
 .lockInputImg {
   background-image: url("/assets/img/lock.png");

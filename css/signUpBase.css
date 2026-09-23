@@ -15,6 +15,22 @@ body {
 }
 
 
+@media (min-width: 731px) {
+  html {
+    min-height: 100%;
+    background-color: rgb(246, 247, 248);
+  }
+
+  body {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    min-height: 100vh;
+    margin-inline: auto;
+  }
+}
+
+
 .joinIcon {
   padding: 80px 80px;
   width: 100px;
