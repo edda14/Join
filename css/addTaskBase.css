@@ -185,7 +185,6 @@ body {
     font-weight: 400;
     font-size: 20px;
     margin-bottom: 8px;
-    margin-top: 16px;
 }
 
 .left-input-container input {
@@ -215,6 +214,39 @@ body {
     font-size: 16px;
     margin-top: 4px;
     color: #FF8190;
+}
+
+#at-alert-title,
+#at-alert-category {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+}
+
+#at-alert-due-date,
+#task-attachment-error,
+.task-save-error {
+    display: block;
+    height: 40px;
+    line-height: 20px;
+    overflow-wrap: anywhere;
+}
+
+#at-alert-title.d-none,
+#at-alert-due-date.d-none,
+#at-alert-category.d-none,
+#task-attachment-error.d-none,
+.task-save-error.d-none {
+    display: block !important;
+    visibility: hidden;
+}
+
+@media (max-width: 650px) {
+    #task-attachment-error,
+    .task-save-error {
+        height: 54px;
+        line-height: 18px;
+    }
 }
 
 .at-alert-description {

@@ -132,15 +132,11 @@ function containTaskDialogFocus(event) {
  * @returns {void}
  */
 function animateTaskDialogClose(overlay, content) {
-    overlay.onanimationend = event => {
-        if (event.target !== overlay) return;
+    content.style.transform = 'translateX(120vw)';
+    setTimeout(() => {
         overlay.style.display = 'none';
-        overlay.classList.remove('fade-out-overlay');
-        content.classList.remove('slide-out-content');
-        overlay.onanimationend = null;
-    };
-    content.classList.add('slide-out-content');
-    overlay.classList.add('fade-out-overlay');
+        content.style.transform = 'translateX(120vw)';
+    }, 500);
 }
 
 /** mark Keyboard Navigation.

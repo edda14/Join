@@ -75,9 +75,10 @@ function getOverlayAssigneeHTML(assignee) {
  * @returns {void}
  */
 function revealTaskOverlay(overlay, content) {
+    content.style.transform = 'translateX(120vw)';
     overlay.style.display = 'flex';
-    content.style.transform = 'translateX(0)';
     content.style.opacity = '1';
+    setTimeout(() => content.style.transform = 'translateX(0)', 10);
 }
 
 /**
@@ -142,9 +143,7 @@ function on() {
     const tasks = document.querySelectorAll(".card");
     tasks.forEach(task => {
             task.addEventListener("click", () => {
-                    overlay.style.display = "flex";
-                    overlayContent.style.transform = "translateX(0)";
-                    overlayContent.style.opacity = "1";
+                    revealTaskOverlay(overlay, overlayContent);
                 });
         });
 }

@@ -41,6 +41,7 @@
     z-index: 200000;
     background-color: white;
     height: 100%;
+    max-height: 100%;
     width: 97%;
     box-sizing: border-box;
     padding: 20px;
@@ -170,11 +171,15 @@
     display: flex;
     flex-direction: column;
     width: min(1072px, calc(100vw - 32px));
-    max-height: calc(100dvh - 32px);
+    height: min(950px, calc(100dvh - 32px));
+    max-height: 950px;
     padding: 0 40px;
     overflow: hidden;
     border-radius: 30px;
     background: #fff;
+    transform: translateX(120vw);
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
 }
 
 #addTaskOverlay .board-task-header {

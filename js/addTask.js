@@ -167,7 +167,9 @@ function resetTaskInputs() {
  */
 function goToBoard() {
     let bgAddedNote = document.getElementById('bg-task-added-note');
-    bgAddedNote.style.zIndex = 100;
+    bgAddedNote.hidden = false;
+    bgAddedNote.style.zIndex = 999999;
+    bgAddedNote.style.visibility = 'visible';
     let addedNote = document.getElementById('task-added-note');
     addedNote.classList.add('confirmation-task-creation-shown');
     setTimeout(function () {

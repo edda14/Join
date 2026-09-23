@@ -23,7 +23,7 @@
 }
 
 #overlay .overlayContent:not(.slide-out-content) {
-    animation: slideIn 0.5s ease-out;
+    transform: translateX(120vw);
 }
 
 .overlayContent {
@@ -32,8 +32,8 @@
     margin: auto;
     box-sizing: border-box;
     width: 525px;
-    height: calc(100dvh - 120px);
-    max-height: calc(100dvh - 120px);
+    height: min(950px, calc(100dvh - 120px));
+    max-height: 950px;
     padding: 48px clamp(16px, 3vw, 40px);
     gap: 0;
     border-radius: 30px;
@@ -43,9 +43,11 @@
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    position: relative;
-    margin-top: 100px;
-    animation: slideIn 0.5s ease-out;
+    position: fixed;
+    inset: 0;
+    transform: translateX(120vw);
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
     z-index: 100000;
 
 }
@@ -82,10 +84,6 @@
         transform: translateX(-100%);
         opacity: 0;
     }
-}
-
-.overlayContent.slide-out {
-    animation: slideOutLeft 0.5s ease-out forwards;
 }
 
 .overlayUserTitle {

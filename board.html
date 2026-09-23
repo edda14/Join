@@ -124,7 +124,7 @@
                         <h2 id="add-task-heading">Add Task</h2>
                         <button type="button" class="closeButtonDiv" aria-label="Close add task" onclick="offAddTask(event, true)">×</button>
                     </div>
-                    <form id="board-edit-task-main-input" class="main-input-container join-task-form" w3-include-html="./template/addTaskTemplate.html?v=20260916-2"></form>
+                    <form id="board-edit-task-main-input" class="main-input-container join-task-form" novalidate onsubmit="event.preventDefault(); addTaskBoard()" w3-include-html="./template/addTaskTemplate.html?v=20260916-2"></form>
                 </div>
             </div>
         </div>
@@ -134,7 +134,7 @@
             <figure class="image-viewer-stage" onclick="event.stopPropagation()"><img id="image-viewer-image" alt=""><figcaption id="image-viewer-name" aria-live="polite"></figcaption><a id="image-viewer-download" class="image-viewer-download" aria-label="Download image" download><img src="./assets/img/Property-1=Download-white.svg" alt=""></a></figure>
             <button type="button" class="image-viewer-next" aria-label="Next image" onclick="changeViewerImage(1)">›</button>
         </div>
-        <div class="bg-confirmation-task-creation" id="bg-task-added-note">
+        <div class="bg-confirmation-task-creation" id="bg-task-added-note" hidden>
             <div class="confirmation-task-creation-hidden" id="task-added-note">
                 <div>Task added to Board</div><img src="./assets/img/boardIcon.png" alt="">
             </div>

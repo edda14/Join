@@ -19,13 +19,33 @@ async function showOverlay(status = 'triage') {
     const form = document.getElementById('board-edit-task-main-input');
     form.innerHTML = '';
     form.setAttribute('w3-include-html', './template/addTaskTemplate.html?v=20260916-2');
-    overlay.hidden = false;
-    overlay.style.display = 'flex';
+    prepareBoardTaskOverlay(overlay);
     overlay.dataset.status = status;
     await addTaskInit();
     configureBoardTaskFooter(form);
     clearTask();
+    revealBoardTaskOverlay(overlay);
     activateTaskDialog(overlay.querySelector('[role="dialog"]'));
+}
+
+/** Prepares the Board Add Task overlay outside the viewport.
+ * @param {HTMLElement} overlay overlay.
+ * @returns {void}
+ */
+function prepareBoardTaskOverlay(overlay) {
+    overlay.querySelector('.overlayContentAddTask').style.transform = 'translateX(120vw)';
+    overlay.hidden = false;
+    overlay.style.display = 'flex';
+}
+
+/** Slides the Board Add Task dialog into view.
+ * @param {HTMLElement} overlay overlay.
+ * @returns {void}
+ */
+function revealBoardTaskOverlay(overlay) {
+    setTimeout(() => {
+            overlay.querySelector('.overlayContentAddTask').style.transform = 'translateX(0)';
+        }, 10);
 }
 
 /** Uses the shared form buttons with a scrollable Board-specific footer layout.
@@ -46,9 +66,20 @@ function configureBoardTaskFooter(form) {
 function offAddTask(event, forceClose = false) {
     const overlay = document.getElementById('addTaskOverlay');
     if (!forceClose && event && event.target !== overlay) return;
-    overlay.hidden = true;
-    overlay.style.display = 'none';
+    hideBoardTaskOverlay(overlay);
     restoreTaskDialogFocus();
+}
+
+/** Slides out and then hides the Board Add Task overlay.
+ * @param {HTMLElement} overlay overlay.
+ * @returns {void}
+ */
+function hideBoardTaskOverlay(overlay) {
+    overlay.querySelector('.overlayContentAddTask').style.transform = 'translateX(120vw)';
+    setTimeout(() => {
+            overlay.hidden = true;
+            overlay.style.display = 'none';
+        }, 500);
 }
 
 /**

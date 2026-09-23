@@ -217,7 +217,7 @@
 
 
 .bg-confirmation-task-creation {
-    height: 75vh;
+    height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -225,14 +225,21 @@
     position: fixed;
     left: 0;
     margin-left: 0;
-    z-index: -10;
+    z-index: 999999;
     overflow-y: hidden;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.bg-confirmation-task-creation[hidden] {
+    display: none;
 }
 
 
 .confirmation-task-creation-shown {
     transform: translateY(0) !important;
-    transition: transform 800ms ease-in-out;
+    opacity: 1 !important;
+    transition: transform 800ms ease-in-out, opacity 200ms ease-in-out;
 }
 
 
@@ -247,8 +254,9 @@
     height: 70px;
     width: 300px;
     border-radius: 10px;
-    transform: translateY(1000px);
-    transition: transform 800ms ease-in-out;
+    transform: translateY(100dvh);
+    opacity: 0;
+    transition: transform 800ms ease-in-out, opacity 200ms ease-in-out;
 }
 
 
