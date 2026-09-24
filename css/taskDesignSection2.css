@@ -225,15 +225,36 @@ main>.join-task-form #at-btn-container {
 }
 
 
-@media (min-width: 1301px) {
+@media (min-width: 1001px) {
     main>.join-task-form {
         margin-left: 348px;
         margin-bottom: 50px;
     }
 }
 
+@media (min-width: 1001px) and (max-width: 1200px) {
+    main>.join-task-form {
+        margin-left: 252px;
+    }
 
-@media (max-width: 1300px) {
+    main>.join-task-form .at-prio-container {
+        gap: 8px;
+    }
+
+    main>.join-task-form .at-prio-item {
+        padding: 10px 6px;
+        gap: 4px;
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    main>.join-task-form .at-prio-item img {
+        width: 18px;
+    }
+}
+
+
+@media (max-width: 1000px) {
     .join-task-form .task-category-options {
         position: static;
     }

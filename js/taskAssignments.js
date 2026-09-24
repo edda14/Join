@@ -102,8 +102,8 @@ function addContactToTask(initials, id, color) {
  */
 function removeContactFromTask(id) {
     selectedContacts = selectedContacts.filter(contact => contact.id !== id);
-    renderSelectedContacts(); // Zeige die ausgewählten Kontakte an
-    updateCheckboxState(id); // Aktualisiere den Zustand der Checkboxen
+    renderSelectedContacts();
+    updateCheckboxState(id);
 }
 
 /** Synchronizes all checkboxes for one contact.
@@ -210,7 +210,7 @@ function updateContactSelection(isSelected, contact, layout) {
  */
 function showContactList(selectSelected, selectItems, customSelects) {
     selectSelected.addEventListener('click', function (event) {
-            event.stopPropagation(); // Prevents closing the dropdown on this click
+            event.stopPropagation();
             const shouldOpen = selectItems.classList.contains('select-hide');
             customSelects.forEach(select => closeContactDropdown(select.querySelector('.select-items')));
             if (shouldOpen) openContactDropdown(selectItems);

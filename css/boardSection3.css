@@ -163,7 +163,7 @@ main.content { padding-bottom: 64px; }
     .allTasks { gap: 48px; }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
     main.content { padding-bottom: 144px; }
     #done { padding-bottom: 0; }
 }

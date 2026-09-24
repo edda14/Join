@@ -1,4 +1,20 @@
-@media (max-width: 1300px) {
+@media (max-width: 1250px) {
+    #contactHeadline {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    #contactContent {
+        padding: 50px 0px 50px 50px;
+    }
+    #headlineLine {
+        display: none;
+    }
+    .profileName {
+        flex-direction: column;
+    }
+}
+@media (max-width: 1000px) {
     body {
         --contacts-navigation-height: 110px;
     }
@@ -14,11 +30,26 @@
     #contactContent {
         left: 400px;
     }
+     #contactHeadline {
+        flex-direction: row;
+        gap: 18px;
+    }
+
+    #contactContent {
+        padding: 50px 0px 0px 50px;
+    }
+    #headlineLine {
+        display: contents;
+    }
+
+    .profileName {
+        flex-direction: row;
+    }
 
 }
 
 
-@media (max-width: 1150px) {
+@media (max-width: 1000px) {
     .d-noneResp {
         display: none !important;
 
@@ -156,7 +187,7 @@
         left: 0;
         visibility: visible;
         left: 0px !important;
-        padding: 32px 0px 32px 32px !important;
+        padding: 32px 0px 32px 32px;
         align-items: start !important;
         overflow-y: auto;
 
@@ -261,7 +292,7 @@
     }
 
     #deleteContactResp:is(:hover, :focus-visible, :active) img {
-        content: url(/assets/img/delete_contact_blue.png);
+        filter: brightness(0) saturate(100%) invert(61%) sepia(91%) saturate(1647%) hue-rotate(165deg) brightness(92%) contrast(92%);
     }
 
 

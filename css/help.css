@@ -91,7 +91,13 @@ p {
   background-color: rgb(239, 239, 239);
 }
 
-@media (max-width: 1300px) {
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .content {
+    margin-left: 252px;
+  }
+}
+
+@media (max-width: 1000px) {
   .content {
     position: absolute;
     top: 80px;

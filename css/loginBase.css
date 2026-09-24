@@ -207,10 +207,7 @@ footer a:hover {
 
 
 .emailInput {
-  background-image: url("/assets/img/mail.png");
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 16px;
+  background-image: url("/assets/img/mail.svg");
   padding: 12px 21px;
   width: 422px;
   border-radius: 8px;
@@ -244,10 +241,7 @@ footer a:hover {
 
 
 .passwordInputImg {
-  background-image: url("/assets/img/lock.png");
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 19px;
+  background-image: url("/assets/img/lock.svg");
 }
 
 .loginFeedback {
@@ -282,10 +276,17 @@ footer a:hover {
 
 
 .lockInputImg {
-  background-image: url("/assets/img/lock.png");
+  background-image: url("/assets/img/lock.svg");
+}
+
+.emailInput,
+.passwordInputImg,
+.lockInputImg,
+.passwordInputFocus,
+.passwordInputVisible {
   background-repeat: no-repeat;
   background-position: right 21px center;
-  background-size: 19px;
+  background-size: 24px 24px;
 }
 
 
@@ -302,18 +303,12 @@ footer a:hover {
 
 
 .passwordInputFocus {
-  background-image: url("/assets/img/visibilityOff.png");
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 19px;
+  background-image: url("/assets/img/visibility_off.svg");
 }
 
 
 .passwordInputVisible {
-  background-image: url("/assets/img/visibility.png");
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 19px;
+  background-image: url("/assets/img/visibility.svg");
 }
 
 

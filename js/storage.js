@@ -13,7 +13,7 @@ async function loadDataTask(path = "/task") {
     let responseToJson = await response.json();
     tasks = [];
     if (!responseToJson) {
-        console.warn("Keine Tasks gefunden oder Firebase gibt null zurück.");
+        console.warn("No tasks found, or Firebase returned null.");
         return;
     }
     tasks = Object.entries(responseToJson).map(([id, data]) => normalizeTask(id, data));

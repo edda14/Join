@@ -28,23 +28,23 @@
         <div class="navbarContent">
           <nav class="menu" aria-label="Main navigation">
             <a id="summaryMenu" href="./summary.html" class="summery">
-              <img src="./assets/img/summeryIcon.png" alt="Summary" />
+              <img src="./assets/img/summary.svg" alt="Summary" />
               <p>Summary</p>
             </a>
             <a id="boardMenuResposive" href="./board.html" class="boardResposive currentPage">
-              <img src="./assets/img/boardIcon.png" alt="Board" />
+              <img src="./assets/img/board.svg" alt="Board" />
               <p>Board</p>
             </a>
             <a id="addTaskMenu" href="./addTask.html" class="addTask">
-              <img src="./assets/img/addTask.png" alt="Add Task" />
+              <img src="./assets/img/addTask.svg" alt="Add Task" />
               <p>Add Task</p>
             </a>
             <a id="boardMenu" href="./board.html" class="board currentPage">
-              <img src="./assets/img/boardIcon.png" alt="Board" />
+              <img src="./assets/img/board.svg" alt="Board" />
               <p>Board</p>
             </a>
             <a id="contactsMenu" href="./contacts.html" class="conntacts">
-              <img src="./assets/img/contacktsIcon.png" alt="Contacts" />
+              <img src="./assets/img/contact.svg" alt="Contacts" />
               <p>Contacts</p>
             </a>
           </nav>
@@ -195,14 +195,14 @@
         </div></div>
     </template>
     <template id="taskAssigneeTemplate">
-        <div class="contactCard" style="background-color: '{{slot0}}';">{{slot1}}</div>
+        <div class="contactCard" style="background-color: {{slot0}};">{{slot1}}</div>
     </template>
     <template id="taskAssigneeTemplate2">
         <div class="contactCard otherContacts" style="background-color: #5DE2E7;">{{slot0}}+</div>
     </template>
     <template id="overlayAssigneeHTMLTemplate">
         <div class="contactDiv"><span class="contactCard"
-        style="background-color: '{{slot0}}';">{{slot1}}</span>
+        style="background-color: {{slot0}};">{{slot1}}</span>
         <span class="contactName">{{slot2}}</span></div>
     </template>
     <template id="subtaskCheckboxHTMLTemplate">
@@ -225,7 +225,7 @@
     </template>
     <template id="taskTemplate">
         <div class="card" draggable="{{slot0}}" ondragstart="startDragging('{{slot1}}')" data-id="{{slot2}}">
-        <div class="cardContent"><span class="labelUser" style="background-color: '{{slot3}}';">{{slot4}}</span>
+        <div class="cardContent"><span class="labelUser" style="background-color: {{slot3}};">{{slot4}}</span>
         <div class="contextContent"><span class="cardTitle">{{slot5}}</span>
         <div><span class="cardContext">{{slot6}}</span></div>
         {{slot7}}
@@ -258,7 +258,7 @@
     </template>
     <template id="contactProfileHTMLTemplate">
         <div class="profileName">
-        <div class="profilePictureContact" id="pictureViewContact" style="background-color: '{{slot0}}'">{{slot1}}</div>
+        <div class="profilePictureContact" id="pictureViewContact" style="background-color: {{slot0}}">{{slot1}}</div>
         <div class="nameEditBox"><div class="nameBox"><h2>{{slot2}}</h2></div>
         <div class="editDivContact">
         <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact('{{slot3}}')"><img src="assets/img/edit.svg" alt="edit"><p>Edit</p></div>
@@ -312,7 +312,7 @@
     </template>
     <template id="taskOverlayHeaderHTMLTemplate">
         <section class="overlayUserTitle"><div class="overlayMeta">
-        <span style="background-color: '{{slot0}}'s;" class="overlayUser">{{slot1}}</span>{{slot2}}
+        <span style="background-color: {{slot0}};" class="overlayUser">{{slot1}}</span>{{slot2}}
         </div><button type="button" class="task-icon-button" aria-label="Close task details" onclick="off()"><img class="closeButton" src="./assets/img/Close.png" alt=""></button></section>
         <section><h2 class="overlayTitle">{{slot3}}</h2></section>
     </template>

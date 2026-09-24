@@ -7,9 +7,6 @@
     overflow-wrap: anywhere;
 }
 
-/* Keep a feedback line reserved for every contact field. This prevents the
-   surrounding form — and therefore the profile image next to it — from
-   moving when validation feedback becomes visible. */
 .contact-field {
     display: grid;
     grid-template-rows: auto 26px;
@@ -19,7 +16,6 @@
     min-height: 20px;
 }
 
-/* The reserved feedback row supplies the space between fields. */
 #inputDiv {
     gap: 0;
 }

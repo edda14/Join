@@ -72,7 +72,7 @@ aside {
   font-weight: bold;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   aside {
     display: none;
   }

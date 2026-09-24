@@ -1,3 +1,92 @@
 .join-task-form .task-fields-secondary { position: relative; }
 
 .join-task-form #at-btn-container { z-index: 1; }
+
+/* Consistent field rhythm for the standalone Add Task form. */
+main > .join-task-form .task-fields-primary,
+main > .join-task-form .task-fields-secondary {
+    gap: 0;
+}
+
+main > .join-task-form .task-fields-primary {
+    display: grid;
+    grid-template-rows:
+        auto auto 20px 0
+        auto auto 20px
+        auto auto 20px 0
+        auto auto 20px
+        auto auto 20px;
+    align-content: start;
+}
+
+main > .join-task-form .task-fields-primary > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+main > .join-task-form .task-fields-primary > .at-input-headlines {
+    align-self: end;
+    padding-bottom: 8px;
+}
+
+main > .join-task-form #task-title { grid-row: 2; }
+main > .join-task-form #at-alert-title { grid-row: 3; }
+main > .join-task-form label[for="at-description"] { grid-row: 5; }
+main > .join-task-form #at-description { grid-row: 6; }
+main > .join-task-form label[for="task-due-date"] { grid-row: 8; }
+main > .join-task-form #task-due-date { grid-row: 9; }
+main > .join-task-form #at-alert-due-date { grid-row: 10; }
+main > .join-task-form #priority-label { grid-row: 12; }
+main > .join-task-form .at-prio-container { grid-row: 13; }
+main > .join-task-form #category-headline { grid-row: 15; }
+main > .join-task-form #category-input { grid-row: 16; }
+main > .join-task-form #at-alert-category { grid-row: 17; }
+
+main > .join-task-form .at-alert {
+    box-sizing: border-box;
+    height: 20px;
+    min-height: 20px;
+    margin: 0 !important;
+    padding-top: 4px;
+    line-height: 16px;
+}
+
+main > .join-task-form #at-alert-title,
+main > .join-task-form #at-alert-due-date,
+main > .join-task-form #at-alert-category,
+main > .join-task-form #task-attachment-error {
+    height: 20px !important;
+    min-height: 20px;
+    line-height: 16px;
+}
+
+main > .join-task-form .task-fields-secondary {
+    display: grid;
+    grid-template-rows: auto 0 auto auto minmax(20px, auto) 0 auto auto auto;
+    align-content: start;
+}
+
+main > .join-task-form .task-fields-secondary:has(.task-attachment-preview-space.has-attachments) {
+    grid-template-rows: auto 20px auto auto minmax(20px, auto) 0 auto auto auto;
+}
+
+main > .join-task-form .task-fields-secondary > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+main > .join-task-form .task-attachments-placeholder { grid-row: 1; }
+main > .join-task-form label[for="add-subcategory"] { grid-row: 3; padding-bottom: 8px; }
+main > .join-task-form .at-input-container { grid-row: 4; }
+main > .join-task-form #added-subcategories {
+    grid-row: 5;
+    box-sizing: border-box;
+    height: 20px !important;
+    min-height: 20px;
+}
+main > .join-task-form #added-subcategories:not(:empty) {
+    height: 120px !important;
+}
+main > .join-task-form label[for="contact-search"] { grid-row: 7; padding-bottom: 8px; }
+main > .join-task-form .custom-select { grid-row: 8; }
+main > .join-task-form #at-selected-contacts { grid-row: 9; }

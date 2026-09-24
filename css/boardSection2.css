@@ -211,7 +211,14 @@
     }
 }
 
-@media (max-width:1300px){
+@media (min-width: 1001px) and (max-width: 1200px) {
+    .main-content-wrapper {
+        margin-left: 252px;
+        width: calc(100% - 252px);
+    }
+}
+
+@media (max-width:1000px){
     .main-content-wrapper{
         margin-left: 0px;
         width: 100%;

@@ -140,7 +140,7 @@ aside[w3-include-html*="nav.html"] {
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   aside[w3-include-html*="nav.html"] {
     width: 100%;
     height: 110px;

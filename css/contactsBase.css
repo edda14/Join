@@ -93,7 +93,7 @@ body {
     left: 670px;
     width: auto;
     height: auto;
-    padding: 110px 0 0 55px !important;
+    padding: 110px 0 0 55px;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -199,7 +199,7 @@ body {
 
 
 #deleteDiv:hover img {
-    content: url(/assets/img/delete_contact_blue.png);
+    filter: brightness(0) saturate(100%) invert(61%) sepia(91%) saturate(1647%) hue-rotate(165deg) brightness(92%) contrast(92%);
 }
 
 

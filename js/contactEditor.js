@@ -95,7 +95,6 @@ function buildEditedContact(contact) {
     };
 }
 
-// Öffnet die Box 'Add new Contact'
 /** Opens the add-contact panel.
  * @returns {void}
  */

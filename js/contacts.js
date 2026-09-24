@@ -1,16 +1,16 @@
 let profileColors = [
-    '#B9A7EA', // pastel lilac
-    '#F3A6C8', // pastel pink
-    '#9BCBF4', // baby blue
-    '#F4DB72', // butter lemon
-    '#A8C8A0', // sage green
-    '#F4B69D', // soft peach
-    '#91D4CC', // pastel turquoise
-    '#C7A6E8', // soft violet
-    '#F3A7A7', // pastel coral
-    '#AAB8EB', // periwinkle
-    '#A8DDB5', // pastel mint
-    '#E7B58A', // warm apricot
+    '#B9A7EA',
+    '#F3A6C8',
+    '#9BCBF4',
+    '#F4DB72',
+    '#A8C8A0',
+    '#F4B69D',
+    '#91D4CC',
+    '#C7A6E8',
+    '#F3A7A7',
+    '#AAB8EB',
+    '#A8DDB5',
+    '#E7B58A',
 ];
 
 /**
@@ -64,10 +64,9 @@ async function contactInit() {
     await loadDataContacts();
     renderContacts();
     openContactFromUrl();
-    window.matchMedia('(max-width: 1150px)').addEventListener('change', refreshContactLayout);
+    window.matchMedia('(max-width: 1000px)').addEventListener('change', refreshContactLayout);
 }
 
-// Hilfsfunktion zum Extrahieren des ersten Buchstabens des Vornamens und Nachnamens
 /** Extracts uppercase initials from a full name.
  * @param {string} name Display name.
  * @returns {string} Rendered markup or text.
@@ -146,14 +145,13 @@ function clearContactInputs(inputs) {
     Object.values(inputs).forEach(input => { input.value = ''; });
 }
 
-// Funktion, die beim Klicken auf den Kontakt oder Kontaktinformationen aufgerufen wird
 /** Opens a selected contact in the appropriate layout.
  * @param {number} i Zero-based list index.
  * @returns {void}
  */
 function contactClickHandler(i) {
     let contact = contacts[i];
-    if (window.innerWidth <= 1150) {
+    if (window.innerWidth <= 1000) {
         editContactResponsive(contact, i);
     } else {
         document.getElementById('contactListContent').classList.remove('d-none');

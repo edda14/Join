@@ -50,6 +50,10 @@
     .at-input-subcategory {
         width: 458px;
     }
+
+    .join-task-form .task-form-columns {
+        column-gap: 12px !important;
+    }
 }
 
 @media (max-width:830px) {
@@ -116,12 +120,13 @@
 @media (max-width:650px) {
 
     .confirmation-task-creation-hidden {
-       width: 250px;
+        width: 250px;
     }
 
-    .fs16{
-        font-size: 16px !important; 
+    .fs16 {
+        font-size: 16px !important;
     }
+
     .right-input-container-mobile {
         width: 250px !important;
     }
@@ -147,7 +152,7 @@
         font-size: 16px;
     }
 
-    .at-btn-container{
+    .at-btn-container {
         width: 350px;
     }
 
@@ -176,11 +181,11 @@
         font-size: 16px !important;
     }
 
-    input::-webkit-input-placeholder{
+    input::-webkit-input-placeholder {
         font-size: 16px !important;
     }
 
-    textarea::-webkit-input-placeholder{
+    textarea::-webkit-input-placeholder {
         font-size: 16px !important;
     }
 
@@ -250,7 +255,7 @@
         font-size: 18px;
     }
 
-    .at-input-date{
+    .at-input-date {
         width: 85% !important;
     }
 

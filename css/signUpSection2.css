@@ -102,7 +102,6 @@
   .passwordInput,
   .confirmPasswordInput {
     padding: 6px 21px;
-    background-size: 17px;
   }
   footer {
     padding: 21px;
@@ -247,17 +246,7 @@
   width: 40px;
   height: 100%;
   right: 10px;
-  background: transparent url("/assets/img/visibilityOff.png") no-repeat center;
-  background-size: 19px;
-}
-
-.paswordVisibilityBTN.passwordVisibilityVisible,
-.confirmPaswordVisibilityBTN.passwordVisibilityVisible {
-  background-image: url("/assets/img/visibility.png");
-}
-
-.passwordContainer input {
-  background-image: none !important;
+  background: transparent;
 }
 
 .signUpFeedback {

@@ -23,23 +23,23 @@
         <div class="navbarContent">
           <div class="menu">
             <a id="summaryMenu" href="./summary.html" class="summery">
-              <img src="./assets/img/summeryIcon.png" alt="Summary" />
+              <img src="./assets/img/summary.svg" alt="Summary" />
               <p>Summary</p>
             </a>
             <a id="boardMenuResposive" href="./board.html" class="boardResposive">
-              <img src="./assets/img/boardIcon.png" alt="Board" />
+              <img src="./assets/img/board.svg" alt="Board" />
               <p>Board</p>
             </a>
             <a id="addTaskMenu" href="./addTask.html" class="addTask">
-              <img src="./assets/img/addTask.png" alt="Add Task" />
+              <img src="./assets/img/addTask.svg" alt="Add Task" />
               <p>Add Task</p>
             </a>
             <a id="boardMenu" href="./board.html" class="board">
-              <img src="./assets/img/boardIcon.png" alt="Board" />
+              <img src="./assets/img/board.svg" alt="Board" />
               <p>Board</p>
             </a>
             <a id="contactsMenu" href="./contacts.html" class="conntacts currentPage">
-              <img src="./assets/img/contacktsIcon.png" alt="Contacts" />
+              <img src="./assets/img/contact.svg" alt="Contacts" />
               <p>Contacts</p>
             </a>
           </div>
@@ -236,7 +236,7 @@
         <div class="nameEditBox"><div class="nameBox"><h2>{{slot2}}</h2></div>
         <div class="editDivContact">
         <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact('{{slot3}}')"><img src="assets/img/edit.svg" alt="edit"><p>Edit</p></div>
-        <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteDiv" onclick="deleteContact('/contacts/{{slot4}}')"><img src="assets/img/delete_contact.png" alt=""><p>Delete</p></div>
+        <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteDiv" onclick="deleteContact('/contacts/{{slot4}}')"><img src="assets/img/delete.svg" alt=""><p>Delete</p></div>
         </div>
         </div>
         </div>
@@ -257,7 +257,7 @@
         <div onclick="event.stopPropagation(), showEditDiv('{{slot0}}')" role="button" tabindex="0" aria-label="Contact actions" onkeydown="activateContactControl(event)" id="editContactThirdSection"><img src="./assets/img/points_white.png" alt=""></div>
         <div id="editDivResp" onclick="event.stopPropagation()">
         <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editContactResp" onclick="event.stopPropagation(event), showEditContact('{{slot1}}')"><img src="./assets/img/edit.svg" alt=""><p>Edit</p></div>
-        <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteContactResp" onclick="event.stopPropagation(event), deleteContact('/contacts/{{slot2}}'), closeEditResponsive()"><img src="./assets/img/delete_contact.png" alt=""><p>Delete</p></div>
+        <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteContactResp" onclick="event.stopPropagation(event), deleteContact('/contacts/{{slot2}}'), closeEditResponsive()"><img src="./assets/img/delete.svg" alt=""><p>Delete</p></div>
         </div>
     </template>
     <template id="editContactTemplate">
@@ -321,7 +321,7 @@
     </template>
     <template id="taskActionsHTMLTemplate">
         <section class="taskActions"><div id="editDiv" class="editDiv">
-        <button type="button" class="deleteDiv" onclick="deleteTask('{{slot0}}'); off();"><img class="deletePng" src="./assets/img/delete (1).png" alt=""><span>Delete</span></button>
+        <button type="button" class="deleteDiv" onclick="deleteTask('{{slot0}}'); off();"><img class="deletePng" src="./assets/img/delete.svg" alt=""><span>Delete</span></button>
         <div class="vector"></div><button type="button" class="deleteDiv" onclick="showEditOverlay('{{slot1}}')">
         <img class="deletePng" src="./assets/img/edit (1).png" alt=""><span>Edit</span></button>
         </div></section>

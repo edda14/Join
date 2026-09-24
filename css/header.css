@@ -123,7 +123,7 @@ header[w3-include-html*="header.html"] {
 .joinIconResposive {
   display: none;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .kanbanText {
     display: none;
   }
