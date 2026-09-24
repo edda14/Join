@@ -20,7 +20,7 @@
     <header w3-include-html="./template/header.html"></header>
     <aside>
       <div class="navbar">
-        <img class="joinIcon" src="./assets/img/joinWhite.png" alt="Join Icon" />
+        <img class="joinIcon" src="./assets/img/Join-white.svg" alt="Join Icon" />
         <div class="navbarContent">
           <nav class="menu" aria-label="Main navigation">
             <a id="summaryMenu" href="./summary.html" class="summery">
@@ -120,7 +120,7 @@
             <input onfocus="activateSubcategory()" class="at-input-date at-input-subcategory at-input-subcategory-template" type="text" id="add-subcategory"
                 placeholder="Add new subtask">
             <div class="at-subcategory-btn-container">
-                <button type="button" id="at-subcategory-clear" class="task-icon-button d-none" aria-label="Clear subtask input" onclick="clearInputSubcategory(event)"><img src="./assets/img/clear.png" alt=""></button>
+                <button type="button" id="at-subcategory-clear" class="task-icon-button d-none" aria-label="Clear subtask input" onclick="clearInputSubcategory(event)"><img src="./assets/img/cancel.svg" alt=""></button>
                 <div class="small-border-container d-none" id="at-subcategory-border"></div>
                 <button type="button" id="at-subcategory-confirm" class="task-icon-button d-none" aria-label="Add subtask" onclick="renderSubcategory()"><img src="./assets/img/checkOkDarrk.png" alt=""></button>
                 <button type="button" id="at-subcategory-open" class="task-icon-button" aria-label="Enter a subtask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
@@ -133,7 +133,7 @@
                 <div id="original-placeholder">Select contacts to assign</div>
                 <input type="text" class="inputClass" id="contact-search" placeholder="" oninput="filterContacts()">
                 <button type="button" class="task-icon-button" id="contact-toggle" aria-label="Choose contacts" aria-expanded="false" aria-controls="at-contact-container"><img id="open-contact-list" src="./assets/img/arrow_drop_down_open.png" alt="">
-                <img id="close-contact-list" class="d-none" src="./assets/img/arrow_drop_down_close.png" alt=""></button>
+                <img id="close-contact-list" class="d-none" src="./assets/img/arrow_drop_down_cancel.svg" alt=""></button>
             </div>
             <div id="at-contact-container" class="select-items select-hide"></div>
         </div>
@@ -141,7 +141,6 @@
         <div id="at-selected-contacts"></div>
     </div>
 </div>
-<p class="task-save-error at-alert d-none" role="alert"></p>
 <div id="at-btn-container" class="at-btn-container at-btn-container-mobile">
     <div id="at-alert-description" class="at-alert-description at-alert-description-mobile">
         <div class="required-star">*</div>This field is required
@@ -180,7 +179,7 @@
     <script src="./js/contactTemplates.js"></script>
 
     <template id="renderAttachmentPreviewsTemplate">
-        <figure class="task-attachment-card"><img src="{{slot0}}" alt="{{slot1}}" data-attachment-index="{{slot2}}"><figcaption>{{slot3}}</figcaption><button type="button" aria-label="Remove {{slot4}}" onclick="removeAttachment({{slot5}})">×</button></figure>
+        <figure class="task-attachment-card"><img src="{{slot0}}" alt="{{slot1}}" data-attachment-index="{{slot2}}"><figcaption>{{slot3}}</figcaption><button type="button" aria-label="Remove {{slot4}}" onclick="removeAttachment('{{slot5}}')">×</button></figure>
     </template>
     <template id="pendingGalleryMarkupTemplate">
         <button type="button" class="pending-gallery-close" aria-label="Close gallery">×</button>
@@ -196,22 +195,19 @@
     <template id="subcategoryEditorHTMLTemplate">
         <div class="choosed-subcategorie-container" ondblclick="focusInput('choosed-subcategory-{{slot0}}')">
         <input class="choosed-subcategory-input" aria-label="Subtask {{slot1}}"
-        oninput="selectedSubtasks[{{slot2}}] = this.value"
-        onblur="removeEmptySubtask({{slot3}})"
+        oninput="selectedSubtasks['{{slot2}}'] = this.value"
+        onblur="removeEmptySubtask('{{slot3}}')"
         value="{{slot4}}" id="choosed-subcategory-{{slot5}}">
         <div class="choosed-subcategorie-btn-container">
         <button type="button" class="task-icon-button" aria-label="Edit subtask {{slot6}}"
         onclick="focusInput('choosed-subcategory-{{slot7}}')"><img src="assets/img/editDark.png" alt=""></button>
         <button type="button" class="task-icon-button" aria-label="Delete subtask {{slot8}}"
-        onclick="removeSubcategory({{slot9}})"><img src="assets/img/delete.png" alt=""></button>
+        onclick="removeSubcategory('{{slot9}}')"><img src="assets/img/delete.png" alt=""></button>
         </div></div>
-    </template>
-    <template id="contactAvatarHTMLTemplate">
-        <img class="contact-avatar-photo" src="{{slot0}}" alt="">
     </template>
     <template id="taskTemplate">
         <div class="card" draggable="{{slot0}}" ondragstart="startDragging('{{slot1}}')" data-id="{{slot2}}">
-        <div class="cardContent"><span class="labelUser" style="background-color: {{slot3}};">{{slot4}}</span>
+        <div class="cardContent"><span class="labelUser" style="background-color: '{{slot3}}';">{{slot4}}</span>
         <div class="contextContent"><span class="cardTitle">{{slot5}}</span>
         <div><span class="cardContext">{{slot6}}</span></div>
         {{slot7}}
@@ -244,10 +240,10 @@
     </template>
     <template id="contactProfileHTMLTemplate">
         <div class="profileName">
-        <div class="profilePictureContact" id="pictureViewContact" style="background-color: {{slot0}}">{{slot1}}</div>
+        <div class="profilePictureContact" id="pictureViewContact" style="background-color: '{{slot0}}'">{{slot1}}</div>
         <div class="nameEditBox"><div class="nameBox"><h2>{{slot2}}</h2></div>
         <div class="editDivContact">
-        <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact({{slot3}})"><img src="assets/img/edit_contact.png" alt="edit"><p>Edit</p></div>
+        <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact('{{slot3}}')"><img src="assets/img/edit.svg" alt="edit"><p>Edit</p></div>
         <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteDiv" onclick="deleteContact('/contacts/{{slot4}}')"><img src="assets/img/delete_contact.png" alt=""><p>Delete</p></div>
         </div>
         </div>
@@ -266,9 +262,9 @@
         {{slot2}}</div>
     </template>
     <template id="responsiveContactActionsHTMLTemplate">
-        <div onclick="event.stopPropagation(), showEditDiv({{slot0}})" role="button" tabindex="0" aria-label="Contact actions" onkeydown="activateContactControl(event)" id="editContactThirdSection"><img src="./assets/img/points_white.png" alt=""></div>
+        <div onclick="event.stopPropagation(), showEditDiv('{{slot0}}')" role="button" tabindex="0" aria-label="Contact actions" onkeydown="activateContactControl(event)" id="editContactThirdSection"><img src="./assets/img/points_white.png" alt=""></div>
         <div id="editDivResp" onclick="event.stopPropagation()">
-        <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editContactResp" onclick="event.stopPropagation(event), showEditContact({{slot1}})"><img src="./assets/img/edit_contact.png" alt=""><p>Edit</p></div>
+        <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editContactResp" onclick="event.stopPropagation(event), showEditContact('{{slot1}}')"><img src="./assets/img/edit.svg" alt=""><p>Edit</p></div>
         <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteContactResp" onclick="event.stopPropagation(event), deleteContact('/contacts/{{slot2}}'), closeEditResponsive()"><img src="./assets/img/delete_contact.png" alt=""><p>Delete</p></div>
         </div>
     </template>
@@ -277,8 +273,8 @@
         <div class="profileDivContact"><div id="editProfilePicture"><div id="whiteCircle"><div id="initialsEditContact"><div id="edit-contact-photo-preview"></div></div></div>{{slot0}}</div>
         <div id="contactInput">{{slot1}}
         <div id="addNewContactAlert" class="contact-save-error" role="alert" hidden></div><div id="btnDiv">
-        <button onclick="cancelEditContact(); deleteDataContact('/contacts/{{slot2}}')" id="cancelButtonContact">Delete<img id="cancelIcon" src="./assets/img/cancel(x).png" alt=""></button>
-        <button onclick="editContactToArray({{slot3}})" id="editContactButton">Save<img src="./assets/img/check.png" alt=""></button>
+        <button onclick="cancelEditContact(); deleteDataContact('/contacts/{{slot2}}')" id="cancelButtonContact">Delete<img id="cancelIcon" src="./assets/img/cancel.svg" alt=""></button>
+        <button onclick="editContactToArray('{{slot3}}')" id="editContactButton">Save<img src="./assets/img/check.png" alt=""></button>
         </div>
         </div>
         </div>
@@ -298,7 +294,7 @@
     </template>
     <template id="taskOverlayHeaderHTMLTemplate">
         <section class="overlayUserTitle"><div class="overlayMeta">
-        <span style="background-color: {{slot0}};" class="overlayUser">{{slot1}}</span>{{slot2}}
+        <span style="background-color: '{{slot0}}';" class="overlayUser">{{slot1}}</span>{{slot2}}
         </div><button type="button" class="task-icon-button" aria-label="Close task details" onclick="off()"><img class="closeButton" src="./assets/img/Close.png" alt=""></button></section>
         <section><h2 class="overlayTitle">{{slot3}}</h2></section>
     </template>
@@ -342,7 +338,7 @@
         <div class="subtasksOverlay"><span>Subtasks</span></div>{{slot0}}
     </template>
     <template id="TaskAttachmentsHTMLItemTemplate">
-        <div class="task-overlay-attachment"><button type="button" class="attachment-open" onclick="openImageViewer({{slot0}})" aria-label="Open {{slot1}}"><img src="{{slot2}}" alt=""><span>{{slot3}}</span></button><button type="button" class="attachment-download-icon" onclick="downloadAttachment({{slot4}}, event)" aria-label="Download {{slot5}}"></button></div>
+        <div class="task-overlay-attachment"><button type="button" class="attachment-open" onclick="openImageViewer('{{slot0}}')" aria-label="Open {{slot1}}"><img src="{{slot2}}" alt=""><span>{{slot3}}</span></button><button type="button" class="attachment-download-icon" onclick="downloadAttachment('{{slot4}}', event)" aria-label="Download {{slot5}}"></button></div>
     </template>
     <script src="./js/htmlTemplates.js"></script>
 </body>

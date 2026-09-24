@@ -8,10 +8,10 @@ body {
   margin: 0;
   background-color: rgb(246, 247, 248);
   font-family: "inter", sans-serif;
-  overflow-y: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 

@@ -19,7 +19,7 @@
     <header w3-include-html="./template/header.html"></header>
     <aside>
       <div class="navbar">
-        <img class="joinIcon" src="./assets/img/joinWhite.png" alt="Join Icon" />
+        <img class="joinIcon" src="./assets/img/Join-white.svg" alt="Join Icon" />
         <div class="navbarContent">
           <div class="menu">
             <a id="summaryMenu" href="./summary.html" class="summery">
@@ -59,7 +59,7 @@
 
     <div id="contactContent" class="d-noneResp" onclick="closeEditDiv()">
         <div id="contactHeadline">
-            <div id="contactsHeadlineResp"><h1>Contacts</h1> <img onclick="closeEditResponsive()" src="./assets/img/vectorLeft.png" alt=""></div>
+            <div id="contactsHeadlineResp"><h1>Contacts</h1> <img onclick="closeEditResponsive()" src="./assets/img/arrow-left-line.svg" alt=""></div>
             <div id="headlineLine"></div>
             <p>Better with a team</p>
             <div id="headlineResp"></div>
@@ -73,7 +73,7 @@
                 <div id="closeAddContactDivResp"><img onclick="cancelAddContact()" id="addNewContactCloseButton"
                     src="./assets/img/close_white.png" alt="close"></div>
                 <div id="addNewContactSlogan">
-                    <img src="./assets/img/joinWhite.png" alt="logo">
+                    <img src="./assets/img/Join-white.svg" alt="logo">
                     <h1>Add contact</h1>
                     <h3>Tasks are better with a team!</h3>
                     <div class="blueLineAddContact"></div>
@@ -103,7 +103,7 @@
                         <div id="addNewContactAlert" class="contact-save-error" role="alert" hidden></div>
                         <div id="btnDiv">
                             <button onclick="cancelAddContact()" id="cancelButtonContact">Cancel <img id="cancelIcon"
-                                    src="./assets/img/cancel(x).png" alt=""> </button>
+                                    src="./assets/img/cancel.svg" alt=""> </button>
                             <button onclick="getNewContact()" id="createContactButton">Create contact <img
                                     src="./assets/img/check.png" alt=""></button>
                         </div>
@@ -119,7 +119,7 @@
                 <div id="closeAddContactDivResp"><img onclick="cancelEditContact()" id="addNewContactCloseButton"
                     src="./assets/img/close_white.png" alt="close"></div>
                 <div>
-                    <img id="editContactLogo" src="./assets/img/joinWhite.png" alt="logo">
+                    <img id="editContactLogo" src="./assets/img/Join-white.svg" alt="logo">
                     <h1>Edit contact</h1>
                     <div class="blueLineAddContact"></div>
                 </div>
@@ -151,8 +151,8 @@
                         </div>
                         <div id="addNewContactAlert" class="contact-save-error" role="alert" hidden></div>
                         <div id="btnDiv">
-                            <button onclick="cancelEditContact(); deleteContact()" id="cancelButtonContact">Delete<img id="cancelIcon"
-                                    src="./assets/img/cancel(x).png" alt=""></button>
+                            <button onclick="deleteEditedContact()" id="cancelButtonContact">Delete<img id="cancelIcon"
+                                    src="./assets/img/cancel.svg" alt=""></button>
                             <button onclick="editContactToArray()"  id="editContactButton">Save<img
                                     src="./assets/img/check.png" alt=""></button>
                         </div>
@@ -197,12 +197,9 @@
     <template id="showAddContactTemplate">
         <div id="add-contact-photo-preview"><img class="addContactProfilePicture" src="./assets/img/profile_picture.png" alt=""></div>{{slot0}}
     </template>
-    <template id="contactAvatarHTMLTemplate">
-        <img class="contact-avatar-photo" src="{{slot0}}" alt="">
-    </template>
     <template id="taskTemplate">
         <div class="card" draggable="{{slot0}}" ondragstart="startDragging('{{slot1}}')" data-id="{{slot2}}">
-        <div class="cardContent"><span class="labelUser" style="background-color: {{slot3}};">{{slot4}}</span>
+        <div class="cardContent"><span class="labelUser" style="background-color: '{{slot3}}';">{{slot4}}</span>
         <div class="contextContent"><span class="cardTitle">{{slot5}}</span>
         <div><span class="cardContext">{{slot6}}</span></div>
         {{slot7}}
@@ -224,7 +221,7 @@
     <template id="assignedContactsHTMLTemplate">
         <label class="at-contact-layout">
         <span class="at-contact-name-container">
-        <span class="at-contact-shortcut-layout" style="background-color: {{slot0}};">
+        <span class="at-contact-shortcut-layout" style="background-color: '{{slot0}}';">
         <span class="at-contact-shortcut">{{slot1}}</span></span>
         <span class="at-contact-name">{{slot2}}</span></span>
         <span class="at-label-checkbox"><input type="checkbox" data-contact-id="{{slot3}}"
@@ -235,10 +232,10 @@
     </template>
     <template id="contactProfileHTMLTemplate">
         <div class="profileName">
-        <div class="profilePictureContact" id="pictureViewContact" style="background-color: {{slot0}}">{{slot1}}</div>
+        <div class="profilePictureContact" id="pictureViewContact" style="background-color: '{{slot0}}'">{{slot1}}</div>
         <div class="nameEditBox"><div class="nameBox"><h2>{{slot2}}</h2></div>
         <div class="editDivContact">
-        <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact({{slot3}})"><img src="assets/img/edit_contact.png" alt="edit"><p>Edit</p></div>
+        <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact('{{slot3}}')"><img src="assets/img/edit.svg" alt="edit"><p>Edit</p></div>
         <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteDiv" onclick="deleteContact('/contacts/{{slot4}}')"><img src="assets/img/delete_contact.png" alt=""><p>Delete</p></div>
         </div>
         </div>
@@ -257,9 +254,9 @@
         {{slot2}}</div>
     </template>
     <template id="responsiveContactActionsHTMLTemplate">
-        <div onclick="event.stopPropagation(), showEditDiv({{slot0}})" role="button" tabindex="0" aria-label="Contact actions" onkeydown="activateContactControl(event)" id="editContactThirdSection"><img src="./assets/img/points_white.png" alt=""></div>
+        <div onclick="event.stopPropagation(), showEditDiv('{{slot0}}')" role="button" tabindex="0" aria-label="Contact actions" onkeydown="activateContactControl(event)" id="editContactThirdSection"><img src="./assets/img/points_white.png" alt=""></div>
         <div id="editDivResp" onclick="event.stopPropagation()">
-        <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editContactResp" onclick="event.stopPropagation(event), showEditContact({{slot1}})"><img src="./assets/img/edit_contact.png" alt=""><p>Edit</p></div>
+        <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editContactResp" onclick="event.stopPropagation(event), showEditContact('{{slot1}}')"><img src="./assets/img/edit.svg" alt=""><p>Edit</p></div>
         <div role="button" tabindex="0" onkeydown="activateContactControl(event)" id="deleteContactResp" onclick="event.stopPropagation(event), deleteContact('/contacts/{{slot2}}'), closeEditResponsive()"><img src="./assets/img/delete_contact.png" alt=""><p>Delete</p></div>
         </div>
     </template>
@@ -268,8 +265,8 @@
         <div class="profileDivContact"><div id="editProfilePicture"><div id="whiteCircle"><div id="initialsEditContact"><div id="edit-contact-photo-preview"></div></div></div>{{slot0}}</div>
         <div id="contactInput">{{slot1}}
         <div id="addNewContactAlert" class="contact-save-error" role="alert" hidden></div><div id="btnDiv">
-        <button onclick="cancelEditContact(); deleteDataContact('/contacts/{{slot2}}')" id="cancelButtonContact">Delete<img id="cancelIcon" src="./assets/img/cancel(x).png" alt=""></button>
-        <button onclick="editContactToArray({{slot3}})" id="editContactButton">Save<img src="./assets/img/check.png" alt=""></button>
+        <button onclick="deleteEditedContact('/contacts/{{slot2}}')" id="cancelButtonContact">Delete<img id="cancelIcon" src="./assets/img/cancel.svg" alt=""></button>
+        <button onclick="editContactToArray('{{slot3}}')" id="editContactButton">Save<img src="./assets/img/check.png" alt=""></button>
         </div>
         </div>
         </div>
@@ -289,7 +286,7 @@
     </template>
     <template id="taskOverlayHeaderHTMLTemplate">
         <section class="overlayUserTitle"><div class="overlayMeta">
-        <span style="background-color: {{slot0}};" class="overlayUser">{{slot1}}</span>{{slot2}}
+        <span style="background-color: '{{slot0}}';" class="overlayUser">{{slot1}}</span>{{slot2}}
         </div><button type="button" class="task-icon-button" aria-label="Close task details" onclick="off()"><img class="closeButton" src="./assets/img/Close.png" alt=""></button></section>
         <section><h2 class="overlayTitle">{{slot3}}</h2></section>
     </template>
@@ -333,7 +330,7 @@
         <div class="subtasksOverlay"><span>Subtasks</span></div>{{slot0}}
     </template>
     <template id="TaskAttachmentsHTMLItemTemplate">
-        <div class="task-overlay-attachment"><button type="button" class="attachment-open" onclick="openImageViewer({{slot0}})" aria-label="Open {{slot1}}"><img src="{{slot2}}" alt=""><span>{{slot3}}</span></button><button type="button" class="attachment-download-icon" onclick="downloadAttachment({{slot4}}, event)" aria-label="Download {{slot5}}"></button></div>
+        <div class="task-overlay-attachment"><button type="button" class="attachment-open" onclick="openImageViewer('{{slot0}}')" aria-label="Open {{slot1}}"><img src="{{slot2}}" alt=""><span>{{slot3}}</span></button><button type="button" class="attachment-download-icon" onclick="downloadAttachment('{{slot4}}', event)" aria-label="Download {{slot5}}"></button></div>
     </template>
     <script src="./js/htmlTemplates.js"></script>
 </body>

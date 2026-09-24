@@ -131,9 +131,14 @@ function markCurrentNavigationItem(id) {
  */
 function getContactAvatarHTML(contact) {
     const photo = contact?.photo || '';
-    return /^data:image\/(jpeg|png);base64,[A-Za-z0-9+/=]+$/.test(photo)
-    ? renderHtmlTemplate('contactAvatarHTMLTemplate', [photo])
-    : escapeTaskText(contact?.initials || contact?.initial || '');
+    if (!/^data:image\/(jpeg|png);base64,[A-Za-z0-9+/=]+$/.test(photo)) {
+        return escapeTaskText(contact?.initials || contact?.initial || '');
+    }
+    const avatar = document.createElement('img');
+    avatar.className = 'contact-avatar-photo';
+    avatar.src = photo;
+    avatar.alt = '';
+    return avatar.outerHTML;
 }
 
 /** Resolves a task assignment to the current contact instead of its old snapshot.

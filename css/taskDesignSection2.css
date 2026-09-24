@@ -228,6 +228,7 @@ main>.join-task-form #at-btn-container {
 @media (min-width: 1301px) {
     main>.join-task-form {
         margin-left: 348px;
+        margin-bottom: 50px;
     }
 }
 
@@ -243,7 +244,7 @@ main>.join-task-form #at-btn-container {
 
     main>.join-task-form {
         width: calc(100% - 64px);
-        margin: 0 auto 120px;
+        margin: 0 auto 150px;
     }
 
     .join-task-form .task-form-columns {
@@ -351,6 +352,6 @@ main>.join-task-form .at-headline {
 
 @media (max-width: 760px) {
     main>.join-task-form .at-headline {
-        padding-top: 120px;
+        padding-top: 110px;
     }
 }

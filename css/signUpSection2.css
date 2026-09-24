@@ -79,7 +79,6 @@
   }
 }
 
-
 @media (max-width: 1537px) {
   .joinIcon {
     padding: 38px 38px;
@@ -293,4 +292,52 @@
 .passwordAlert {
   margin-top: 8px;
   color: red;
+}
+
+@media (min-width: 731px) and (max-height: 800px) {
+  body {
+    min-height: 100dvh;
+    height: auto;
+  }
+
+  .signUpContainer {
+    margin-top: 88px;
+    margin-bottom: 24px;
+  }
+
+  footer {
+    position: static;
+    transform: none;
+    margin-top: auto;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 730px) {
+  footer {
+    position: static;
+    transform: none;
+    margin-top: 24px;
+    padding: 12px 0 10px;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+
+  footer a {
+    width: auto;
+  }
+}
+
+/* The confirmation is a viewport toast, never part of the page layout. */
+.signUpPopup {
+  position: fixed;
+  left: 50%;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  transform: translate(-50%, calc(100% + 24px));
+  transition: transform 0.5s ease-out;
+  z-index: 1000;
+}
+
+.signUpPopup.moveToCenter {
+  transform: translate(-50%, 0);
 }

@@ -233,14 +233,15 @@ aside[w3-include-html*="nav.html"] {
   .summery,
   .addTask,
   .conntacts {
-    padding: 14px 14px 18px 14px;
+    padding: 18px 8px 18px 8px;
+    border-radius: 0px;
   }
   .boardResposive {
-    padding: 14px 25px 18px 25px;
+    padding: 18px 8px 18px 8px;
+    border-radius: 0px;
   }
-}
-@media (max-width: 380px) {
+
   .menu p {
-    font-size: 11px;
+    font-size: 14px;
   }
 }

@@ -214,6 +214,7 @@ body {
     font-size: 16px;
     margin-top: 4px;
     color: #FF8190;
+    transition: opacity 150ms ease-in-out;
 }
 
 #at-alert-title,
@@ -239,6 +240,18 @@ body {
 .task-save-error.d-none {
     display: block !important;
     visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#at-alert-title:not(.d-none),
+#at-alert-due-date:not(.d-none),
+#at-alert-category:not(.d-none),
+#task-attachment-error:not(.d-none),
+.task-save-error:not(.d-none) {
+    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 @media (max-width: 650px) {

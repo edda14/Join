@@ -5,8 +5,20 @@
 async function showEditContact(i) {
     let contact = contacts[i];
     isItYou = isCurrentUserContact(contact);
+    document.getElementById('editContact').dataset.contactPath = `/contacts/${contact.id}`;
     openEditContactPanel();
     populateEditContactPanel(contact, i);
+}
+
+/** Deletes the contact currently open in the edit panel.
+ * @param {string} path Firebase contact path.
+ * @returns {Promise<void>} Resolves when the contact is deleted.
+ */
+async function deleteEditedContact(path = '') {
+    const contactPath = path || document.getElementById('editContact').dataset.contactPath;
+    if (!contactPath) return;
+    await deleteContact(contactPath);
+    cancelEditContact();
 }
 
 /** Makes the edit-contact panel visible.

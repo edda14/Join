@@ -139,6 +139,12 @@
     }
 }
 
+@media (max-width: 1150px) {
+    #contactInput #inputDiv {
+        gap: 0;
+    }
+}
+
 #contactListContent::-webkit-scrollbar {
     display: none;
 }
