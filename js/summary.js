@@ -51,6 +51,21 @@ function userName() {
     userNameContainer.innerHTML = /*html*/`
     ${currentUser}
     `
+    requestAnimationFrame(fitGreetingName);
+}
+
+/** Fits the user name into the available greeting width.
+ * @returns {void}
+ */
+function fitGreetingName() {
+    let name = document.getElementById('userName');
+    if (!name || !name.clientWidth) return;
+    name.style.fontSize = '';
+    let availableWidth = name.clientWidth;
+    let requiredWidth = name.scrollWidth;
+    if (requiredWidth <= availableWidth) return;
+    let currentSize = parseFloat(getComputedStyle(name).fontSize);
+    name.style.fontSize = `${Math.max(24, Math.floor(currentSize * availableWidth / requiredWidth))}px`;
 }
 
 /** Calculates and renders all summary metrics.
@@ -119,14 +134,11 @@ function formatDate(dateString) {
  * @returns {void}
  */
 function checkResponsive() {
-    let mediaQuery = window.matchMedia("(max-width: 980px)");
     let overlay = document.querySelector(".animatedImageContainer");
     if (!overlay) return;
-    if (mediaQuery.matches) {
-        handleMobileGreeting(overlay);
-    } else {
-        resetDesktopView(overlay);
-    }
+    if (window.matchMedia("(max-width: 1125px)").matches) return handleMobileGreeting(overlay);
+    resetDesktopView(overlay);
+    requestAnimationFrame(fitGreetingName);
 }
 
 /** Triggers mobile animation only if login flag is set.
@@ -137,8 +149,10 @@ function handleMobileGreeting(overlay) {
     let shouldShow = sessionStorage.getItem('showGreeting');
     if (shouldShow === 'true') {
         sessionStorage.removeItem('showGreeting');
+        overlay.classList.add('greetingOverlay');
         playGreetingAnimation(overlay);
     } else if (!overlay.classList.contains('fadeOut')) {
+        overlay.classList.remove('greetingOverlay');
         overlay.style.display = 'none';
     }
 }
@@ -153,6 +167,7 @@ function playGreetingAnimation(overlay) {
     setTimeout(() => {
             overlay.style.display = 'none';
             overlay.classList.remove("fadeOut");
+            overlay.classList.remove('greetingOverlay');
         }, 1500);
 }
 
@@ -200,6 +215,7 @@ function hideElements(background, animatedImage) {
 function resetDesktopView(overlay) {
     overlay.style.display = 'flex';
     overlay.classList.remove("fadeOut");
+    overlay.classList.remove('greetingOverlay');
 }
 
 /** Rejects missing and malformed imported deadlines before sorting them.

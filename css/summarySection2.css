@@ -1,3 +1,103 @@
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .container {
+    left: 252px;
+  }
+
+  .metricsContainer {
+    width: calc(100vw - 268px);
+  }
+
+  .greetingText,
+  .userName {
+    font-size: clamp(30px, 3.75vw, 42px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    top: 131px;
+    left: 16px;
+    right: 16px;
+    padding-bottom: 150px;
+  }
+
+  .metricsContainer {
+    width: 100%;
+  }
+}
+
+@media (max-height: 821px) {
+  .container {
+    top: 106px;
+  }
+
+  .appHeader {
+    margin-bottom: 16px;
+  }
+}
+
+@media (min-width: 981px) and (max-width: 1125px) {
+  .metricsContainer {
+    gap: 16px;
+  }
+
+  .metricsColumn,
+  .metricsRow {
+    gap: 20px;
+  }
+
+  .metricCard,
+  .urgentCard,
+  .taskContainer {
+    height: 144px;
+    padding: 20px;
+  }
+
+  .metricIconContainer,
+  .urgentIconContainer {
+    flex-basis: 52px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .toDoIcon,
+  .checkIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .urgentIcon {
+    width: 26px;
+    height: 10px;
+  }
+
+  .metricValue {
+    font-size: 50px;
+  }
+
+  .metricLabel {
+    font-size: 18px;
+  }
+
+  .deadlineDate {
+    font-size: 18px;
+  }
+
+  .deadlineLabel {
+    font-size: 14px;
+  }
+
+  .horizontalBar {
+    height: 84px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .userName {
+    font-size: 42px;
+  }
+}
+
 @media (max-width: 980px) {
   .animatedImageContainer {
     position: fixed;
@@ -40,12 +140,6 @@
     opacity: 0;
     pointer-events: none;
   }
-  .userName {
-    font-size: 47px;
-    font-weight: 700;
-    text-align: center;
-  }
-
   .appHeaderTitle {
     font-size: 47px;
   }
@@ -60,9 +154,15 @@
   }
   .urgentCard {
     height: 125px;
-    width: 278px;
-    padding: 0px;
-    gap: 6px;
+  }
+
+  .metricsColumn {
+    width: min(560px, calc(100vw - 32px));
+  }
+
+  .metricCard,
+  .taskContainer {
+    height: 125px;
   }
 
   .blueBorder {
@@ -94,13 +194,31 @@
   }
 }
 
-@media (max-width: 452px) {
+@media (max-width: 600px) {
+  .deadlineContainer {
+    flex: 0 0 72px;
+    max-width: 72px;
+  }
+
+  .deadlineDate {
+    font-size: 14px;
+    line-height: 1.15;
+  }
+
+  .deadlineLabel {
+    font-size: 12px;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 500px) {
   .metricValue {
     font-size: 40px;
   }
 
   .urgentIconContainer,
   .metricIconContainer {
+    flex-basis: 40px;
     width: 40px;
     height: 40px;
     border-radius: 22px;
@@ -108,21 +226,20 @@
 
   .checkIcon {
     width: 23px;
-    height: 18px;
-    background-size: cover;
+    height: 23px;
+    background-size: contain;
   }
 
   .urgentCard {
-    gap: 6px;
-    justify-content: center;
     height: 116px;
-    width: 240px;
+    gap: 8px;
+    padding: 12px;
   }
 
   .toDoIcon {
     width: 23px;
     height: 23px;
-    background-size: cover;
+    background-size: contain;
   }
 
   .urgentIcon {
@@ -130,45 +247,100 @@
     height: 10px;
   }
 
-  .deadlineLabel,
   .metricLabel {
     font-size: 14px;
   }
 
   .deadlineDate {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .taskContainer {
-    width: 116px;
     height: 116px;
+    padding: 12px;
   }
 
   .metricsRow {
+    gap: 12px;
+  }
+
+  .metricsColumn {
+    gap: 12px;
+  }
+
+  .metricCard {
+    height: 116px;
     gap: 8px;
+    padding: 12px;
+  }
+
+  .urgentContent {
+    gap: 8px;
+  }
+
+  .horizontalBar {
+    height: 72px;
   }
 }
 
 @media (max-width: 387px) {
-  .metricCard {
-    padding: 16px 20px;
+  .metricsRow,
+  .metricsColumn {
+    gap: 8px;
+  }
+
+  .metricCard,
+  .urgentCard,
+  .taskContainer {
+    padding: 8px;
+  }
+
+  .urgentIconContainer,
+  .metricIconContainer {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .toDoIcon,
+  .checkIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .urgentIcon {
+    width: 20px;
+    height: 8px;
   }
 
   .urgentCard {
-    width: 188px;
-    height: 92px !important;
+    overflow: hidden;
   }
 
-  .taskContainer {
-    width: 50px;
-    height: 60px;
+  .deadlineContainer {
+    flex-basis: 56px;
+    max-width: 56px;
+  }
+
+  .deadlineDate {
+    font-size: 12px;
+    line-height: 1.1;
+  }
+
+  .deadlineLabel {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+
+  .urgentCard,
+  .urgentContent {
+    gap: 4px;
   }
 }
 
 @media (max-height: 668px) {
   .container {
     top: 102px;
-    left: 16px;
   }
 
   .subtitleText {
