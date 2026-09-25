@@ -92,10 +92,12 @@ async function getNewContact() {
  */
 async function createValidatedContact() {
     const inputs = getNewContactInputs();
-    await saveNewContact(inputs);
+    const newContactIndex = await saveNewContact(inputs);
     clearContactInputs(inputs);
     cancelAddContact();
     slideSuccessfullyContact();
+    const openDelay = window.innerWidth <= 1000 ? 500 : 0;
+    window.setTimeout(() => contactClickHandler(newContactIndex), openDelay);
 }
 
 /** Returns the add-contact input elements.
@@ -111,15 +113,16 @@ function getNewContactInputs() {
 
 /** Saves a new contact and refreshes the selected contact view.
  * @param {*} inputs inputs.
- * @returns {Promise<void>} Resolves when the operation is complete.
+ * @returns {Promise<number>} Index of the newly created contact.
  */
 async function saveNewContact(inputs) {
     const contact = buildNewContact(inputs);
-    await postContact('/contacts', contact);
+    const result = await postContact('/contacts', contact);
     await loadDataContacts();
-    const index = contacts.length - 1;
+    const index = contacts.findIndex(contactItem => contactItem.id === result?.name);
+    if (index < 0) throw new Error('The new contact could not be loaded.');
     createContactList(index);
-    contactClickHandler(index);
+    return index;
 }
 
 /** Builds the storage object for a new contact.

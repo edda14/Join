@@ -4,12 +4,11 @@
     color: rgba(230, 0, 38, 1);
     font-size: 14px;
     line-height: 1.4;
-    overflow-wrap: anywhere;
 }
 
 .contact-field {
     display: grid;
-    grid-template-rows: auto 26px;
+    grid-template-rows: auto 34px;
 }
 
 .contact-field-error {
@@ -29,7 +28,7 @@
 #createContactButton:disabled,
 #editContactButton:disabled {
     opacity: .6;
-    cursor: wait;
+    cursor: not-allowed;
 }
 
 
@@ -199,6 +198,14 @@
     display: none;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 500px) {
+    #successfully {
+        width: min(280px, calc(100vw - 40px));
+        height: 64px;
+        font-size: 16px;
+    }
 }
 
 

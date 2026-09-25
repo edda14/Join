@@ -95,10 +95,10 @@ function resetSignUpValidation(inputs) {
  * @returns {Object|null} Validation message and affected fields.
  */
 function getSignUpValidationError(inputs) {
-    const namePattern = /^[A-Za-zÄÖÜäöüß]+(?:[ '-][A-Za-zÄÖÜäöüß]+)*$/;
+    const namePattern = /^(?=.*[\p{L}\p{M}])[\p{L}\p{M}/ -]+$/u;
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,}$/;
     if (!inputs.name.value.trim()) return validationError('Please enter your name.', inputs.name);
-    if (!namePattern.test(inputs.name.value.trim())) return validationError('Please use only letters for your name.', inputs.name);
+    if (!namePattern.test(inputs.name.value.trim())) return validationError('Use letters, spaces, hyphens and slashes only.', inputs.name);
     if (!inputs.email.value.trim()) return validationError('Please enter your email address.', inputs.email);
     if (!isValidEmailAddress(inputs.email.value)) return validationError('Please enter a valid email address.', inputs.email);
     if (!inputs.password.value) return validationError('Please enter a password.', inputs.password);

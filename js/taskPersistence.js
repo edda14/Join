@@ -21,25 +21,42 @@ async function addTaskBoard(event) {
  */
 async function createManualTask(form) {
     if (taskSaveInProgress) return;
+    beginTaskSave(form);
+    if (!checkRequiredInput()) {
+        releaseTaskSubmit();
+        return;
+    }
+    showTaskSaveError('');
+    if (!await saveManualTaskWithFeedback()) releaseTaskSubmit();
+}
+
+/** Locks the active task form while its save request is being prepared.
+ * @param {HTMLFormElement} form Task form containing submit controls.
+ * @returns {void}
+ */
+function beginTaskSave(form) {
     taskSaveInProgress = true;
     taskSubmitButtons = [...(form?.querySelectorAll('button[type="submit"]') || [])];
     taskSubmitButtons.forEach(button => {
         button.disabled = true;
         button.setAttribute('aria-busy', 'true');
     });
-    if (!checkRequiredInput()) {
-        releaseTaskSubmit();
-        return;
-    }
-    showTaskSaveError('');
-    let saved = false;
-    try { saved = await saveManualTaskAndReset(); }
-    catch (error) { reportTaskSaveError(error); }
-    finally {
-        if (!saved) releaseTaskSubmit();
+}
+
+/** Saves the task and reports any failure while retaining the current form inputs.
+ * @returns {Promise<boolean>} Whether the task was saved successfully.
+ */
+async function saveManualTaskWithFeedback() {
+    try { return await saveManualTaskAndReset(); }
+    catch (error) {
+        reportTaskSaveError(error);
+        return false;
     }
 }
 
+/** Restores the task form controls after a failed or cancelled save.
+ * @returns {void}
+ */
 function releaseTaskSubmit() {
     taskSaveInProgress = false;
     taskSubmitButtons.forEach(button => {
@@ -49,6 +66,10 @@ function releaseTaskSubmit() {
     taskSubmitButtons = [];
 }
 
+/** Updates task submit buttons according to the current required-field state.
+ * @param {HTMLFormElement} form Task form containing the submit controls.
+ * @returns {void}
+ */
 function updateTaskSubmitState(form) {
     if (!form || taskSaveInProgress) return;
     const title = document.getElementById('task-title')?.value.trim();

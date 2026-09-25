@@ -33,6 +33,9 @@ function initializeTaskFormControls() {
     setBackgroundColorPrio('medium');
 }
 
+/** Binds live required-field validation to the active task form once.
+ * @returns {void}
+ */
 function setupTaskSubmitValidation() {
     const form = document.querySelector('.join-task-form');
     if (!form || form.dataset.submitValidationBound) return;

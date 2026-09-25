@@ -6,7 +6,7 @@ const NAME_MAX = 20;
 const SUBJECT_MIN = 5;
 const SUBJECT_MAX = 30;
 const MESSAGE_LIMIT = 550;
-const NAME_PATTERN = /^[\p{L}\p{M}][\p{L}\p{M} '\u2019-]*[\p{L}\p{M}]$/u;
+const NAME_PATTERN = /^(?=.*[\p{L}\p{M}])[\p{L}\p{M}/ -]+$/u;
 const SUBJECT_PATTERN = /^[\p{L}\p{M}\p{N} .,!?:;()&+\/#'\u2019-]+$/u;
 let selectedPriority = "medium";
 
@@ -30,31 +30,28 @@ function setFieldError(id, message) {
     field.setAttribute("aria-invalid", String(Boolean(message)));
 }
 
-/** Checks the name length and requires a first and last name.
+/** Checks the name length and allowed characters.
  * @returns {boolean} validate name result.
  */
 function validateName() {
     const value = getField("requestName").value.trim();
-    const hasFullName = value.split(/\s+/).filter(Boolean).length >= 2;
     const validLength = value.length >= NAME_MIN && value.length <= NAME_MAX;
     const validChars = NAME_PATTERN.test(value);
-    const valid = hasFullName && validLength && validChars;
-    const message = getNameError(value.length, hasFullName, validChars);
+    const valid = validLength && validChars;
+    const message = getNameError(value.length, validChars);
     setFieldError("Name", valid ? "" : message);
     return valid;
 }
 
 /** Returns the matching validation message for the name field.
  * @param {*} length length.
- * @param {boolean} hasFullName has Full Name.
  * @param {*} validChars valid Chars.
  * @returns {*} get name error result.
  */
-function getNameError(length, hasFullName, validChars) {
+function getNameError(length, validChars) {
     if (length < NAME_MIN) return "Please enter at least 5 characters.";
     if (length > NAME_MAX) return "Please use no more than 20 characters.";
-    if (!validChars) return "Please use letters, spaces, hyphens or apostrophes only.";
-    return hasFullName ? "" : "Please enter your first and last name.";
+    return validChars ? "" : "Use letters, spaces, hyphens and slashes only.";
 }
 
 /** Checks that the email value has a valid email format.

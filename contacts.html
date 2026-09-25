@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="./css/contacts.css?v=20260925-contact-toast-mobile">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -96,8 +96,8 @@
                                     placeholder="Email">
                                 <img src="./assets/img/mail.png">
                             </div><p id="emailAdress-error" class="contact-field-error" role="alert" hidden></p></div>
-                            <div class="contact-field"><div class="inputBox"><input class="inputBlueBorder" id="phoneNumber" type="tel" inputmode="tel"
-                                    required placeholder="Phone"> <img src="./assets/img/call.png">
+                            <div class="contact-field"><div class="inputBox"><input class="inputBlueBorder" id="phoneNumber" type="tel" inputmode="tel" pattern="\+?[0-9]+"
+                                    placeholder="Phone"> <img src="./assets/img/call.png">
                             </div><p id="phoneNumber-error" class="contact-field-error" role="alert" hidden></p></div>
                         </div>
                         <div id="addNewContactAlert" class="contact-save-error" role="alert" hidden></div>
@@ -145,8 +145,8 @@
                                     placeholder="Email">
                                 <img src="./assets/img/mail.png">
                             </div><p id="editEmail-error" class="contact-field-error" role="alert" hidden></p></div>
-                            <div class="contact-field"><div class="inputBox"><input id="editPhone" type="tel" inputmode="tel"
-                                    required placeholder="Phone"> <img src="./assets/img/call.png">
+                            <div class="contact-field"><div class="inputBox"><input id="editPhone" type="tel" inputmode="tel" pattern="\+?[0-9]+"
+                                    placeholder="Phone"> <img src="./assets/img/call.png">
                             </div><p id="editPhone-error" class="contact-field-error" role="alert" hidden></p></div>
                         </div>
                         <div id="addNewContactAlert" class="contact-save-error" role="alert" hidden></div>
@@ -176,8 +176,8 @@
     <script src="./js/template.js"></script>
     <script src="./js/taskTemplates.js"></script>
     <script src="./js/contactTemplates.js"></script>
-    <script src="./js/contactValidation.js?v=20260925-strict-email-validation"></script>
-    <script src="./js/contacts.js"></script>
+    <script src="./js/contactValidation.js?v=20260925-name-spaces"></script>
+    <script src="./js/contacts.js?v=20260925-open-new-contact"></script>
     <script src="./js/contactPhotos.js"></script>
     <script src="./js/contactList.js"></script>
     <script src="./js/contactEditor.js"></script>
@@ -275,7 +275,7 @@
         <div id="inputDiv"><div class="contact-field"><div id="inputBox" class="inputBox">
         <input class="inputBlueBorder" id="editName" required type="text" placeholder="Name"><img src="/assets/img/person.png"></div><p id="editName-error" class="contact-field-error" role="alert" hidden></p></div>
         <div class="contact-field"><div class="inputBox"><input id="editEmail" type="email" required placeholder="Email"><img src="/assets/img/mail.png"></div><p id="editEmail-error" class="contact-field-error" role="alert" hidden></p></div>
-        <div class="contact-field"><div class="inputBox"><input id="editPhone" type="tel" inputmode="tel" required placeholder="Phone"><img src="/assets/img/call.png"></div><p id="editPhone-error" class="contact-field-error" role="alert" hidden></p></div></div>
+        <div class="contact-field"><div class="inputBox"><input id="editPhone" type="tel" inputmode="tel" pattern="\+?[0-9]+" placeholder="Phone"><img src="/assets/img/call.png"></div><p id="editPhone-error" class="contact-field-error" role="alert" hidden></p></div></div>
     </template>
     <template id="editTaskShellHTMLTemplate">
         <section id="edit-task-overlay{{slot0}}" class="edit-task-overlay d-none">

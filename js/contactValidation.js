@@ -34,12 +34,13 @@ function getContactFormFields(mode) {
  * @returns {string} Error message, or an empty string for valid input.
  */
 function getContactFieldError(field, value) {
-    if (!value.trim()) return 'This field is required.';
+    if (field === 'phone' && !value.trim()) return '';
+    if (!value.trim()) return 'Required.';
     const rules = {
-        name: [/^[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*(?:\s+[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*)+$/u, 'Enter a first and last name without numbers.'],
-        phone: [/^\+?[0-9]+$/, 'Use digits only, optionally starting with +.'],
+        name: [/^(?=.*[\p{L}\p{M}])[\p{L}\p{M}/ -]+$/u, 'Letters, spaces, - / only.'],
+        phone: [/^\+?[0-9]+$/, 'Digits and + only.'],
     };
-    if (field === 'email') return isValidEmailAddress(value) ? '' : 'Enter a valid email address.';
+    if (field === 'email') return isValidEmailAddress(value) ? '' : 'Invalid email.';
     return rules[field][0].test(value.trim()) ? '' : rules[field][1];
 }
 
@@ -56,6 +57,19 @@ function showContactFieldError(input, message) {
     input.closest('.inputBox').classList.toggle('contact-input-invalid', Boolean(message));
 }
 
+/** Enables contact saving only after every contact input is valid.
+ * @param {string} mode Contact editor mode: add or edit.
+ * @returns {void}
+ */
+function updateContactSubmitState(mode) {
+    const buttonId = mode === 'add' ? 'createContactButton' : 'editContactButton';
+    const button = document.getElementById(buttonId);
+    if (!button || contactSaveState[mode]) return;
+    const hasInvalidField = Object.entries(getContactFormFields(mode))
+        .some(([field, input]) => Boolean(getContactFieldError(field, input.value)));
+    button.disabled = hasInvalidField;
+}
+
 /** Validates every contact field and focuses the first invalid input.
  * @param {string} mode Add or edit contact mode.
  * @returns {boolean} Whether all fields are valid.
@@ -67,6 +81,7 @@ function validateContactForm(mode) {
         showContactFieldError(input, message);
         if (message && !firstInvalid) firstInvalid = input;
     }
+    updateContactSubmitState(mode);
     firstInvalid?.focus();
     firstInvalid?.scrollIntoView({ block: 'nearest' });
     return !firstInvalid;
@@ -79,14 +94,37 @@ function validateContactForm(mode) {
 function setupContactValidation(mode) {
     for (const [field, input] of Object.entries(getContactFormFields(mode))) {
         input.setAttribute('aria-describedby', `${input.id}-error`);
-        input.setAttribute('aria-label', {name: 'First and last name', email: 'Email', phone: 'Phone'}[field]);
+        input.setAttribute('aria-label', {name: 'Name', email: 'Email', phone: 'Phone'}[field]);
+        if (field === 'phone') sanitizePhoneInput(input);
         showContactFieldError(input, '');
-        input.onblur = () => showContactFieldError(input, getContactFieldError(field, input.value));
+        input.onblur = () => showContactFormFieldError(field, input);
         input.oninput = () => {
-            if (input.getAttribute('aria-invalid') === 'true') showContactFieldError(input, getContactFieldError(field, input.value));
+            if (field === 'phone') sanitizePhoneInput(input);
+            if (input.getAttribute('aria-invalid') === 'true') showContactFormFieldError(field, input);
+            updateContactSubmitState(mode);
         };
     }
     showContactSaveError(mode, '');
+    updateContactSubmitState(mode);
+}
+
+/** Updates one contact field's validation feedback.
+ * @param {string} field Field name.
+ * @param {HTMLInputElement} input Input to validate.
+ * @returns {void}
+ */
+function showContactFormFieldError(field, input) {
+    const message = getContactFieldError(field, input.value);
+    showContactFieldError(input, message);
+}
+
+/** Removes unsupported characters and allows one optional leading plus sign.
+ * @param {HTMLInputElement} input Phone input to normalize.
+ * @returns {void}
+ */
+function sanitizePhoneInput(input) {
+    const sanitizedValue = input.value.replace(/[^0-9+]/g, '').replace(/(?!^)\+/g, '');
+    if (input.value !== sanitizedValue) input.value = sanitizedValue;
 }
 
 /** set Contact Form Busy.
@@ -99,6 +137,7 @@ function setContactFormBusy(mode, busy) {
     const panel = document.getElementById(mode === 'add' ? 'addNewContactSecondSection' : 'editContactSecondSection');
     panel.setAttribute('aria-busy', String(busy));
     panel.querySelectorAll('button, input').forEach(control => { control.disabled = busy; });
+    if (!busy) updateContactSubmitState(mode);
 }
 
 /** show Contact Save Error.
