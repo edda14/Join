@@ -28,7 +28,13 @@
 
 
 #added-subcategories {
-    height: 150px;
+    height: auto;
+    overflow-y: visible;
+    overflow-x: visible;
+}
+
+#added-subcategories:has(> :nth-child(4)) {
+    height: 120px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -212,7 +218,7 @@
 
 
 .required-star {
-    color: #FF8190;
+    color: rgba(230, 0, 38, 1);
 }
 
 
@@ -226,7 +232,6 @@
     left: 0;
     margin-left: 0;
     z-index: 999999;
-    overflow-y: hidden;
     visibility: hidden;
     pointer-events: none;
 }
@@ -239,7 +244,11 @@
 .confirmation-task-creation-shown {
     transform: translateY(0) !important;
     opacity: 1 !important;
-    transition: transform 800ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+.confirmation-task-creation-hiding {
+    transform: translateY(-24px) !important;
+    opacity: 0 !important;
 }
 
 
@@ -256,7 +265,9 @@
     border-radius: 10px;
     transform: translateY(100dvh);
     opacity: 0;
-    transition: transform 800ms ease-in-out, opacity 200ms ease-in-out;
+    transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 350ms ease;
+    will-change: transform, opacity;
 }
 
 

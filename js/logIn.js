@@ -78,11 +78,31 @@ function checkInputs() {
     let logInButton = document.getElementById("logIn");
     let emailInput = document.getElementById("logInEmailInput");
     let passwordInput = document.getElementById("logInPasswordInput");
-    if (emailInput.value.trim() !== "" && passwordInput.value.trim() !== "") {
-        logInButton.classList.add("logInValid");
-    } else {
-        logInButton.classList.remove("logInValid");
-    }
+    const emailIsValid = isValidEmail(emailInput.value);
+    const hasFeedback = !document.getElementById('loginPasswordError').classList.contains('dNone')
+        || !document.querySelector('.passwordAlert').classList.contains('dNone');
+    const canLogIn = emailIsValid && passwordInput.value.trim() !== '' && !hasFeedback;
+    logInButton.disabled = !canLogIn;
+    logInButton.classList.toggle("logInValid", canLogIn);
+}
+
+/** Validates a standard email address before a Firebase authentication request.
+ * @param {string} email Email address to validate.
+ * @returns {boolean} Whether the address has a valid local part and domain.
+ */
+function isValidEmail(email) {
+    const normalizedEmail = email.trim();
+    if (normalizedEmail.length > 254 || normalizedEmail.split('@').length !== 2) return false;
+    const [localPart, domain] = normalizedEmail.split('@');
+    if (!localPart || !domain || localPart.length > 64) return false;
+    if (!/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(localPart)
+        || localPart.startsWith('.') || localPart.endsWith('.') || localPart.includes('..')) return false;
+
+    const domainLabels = domain.split('.');
+    const validDomainLabel = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/;
+    return domainLabels.length >= 2
+        && domainLabels.every(label => validDomainLabel.test(label))
+        && /^[A-Za-z]{2,63}$/.test(domainLabels.at(-1));
 }
 
 /** Connects login inputs to button-state validation.
@@ -91,8 +111,32 @@ function checkInputs() {
 function addHoverForLogin() {
     let emailInput = document.getElementById("logInEmailInput");
     let passwordInput = document.getElementById("logInPasswordInput");
-    emailInput.addEventListener("input", checkInputs);
-    passwordInput.addEventListener("input", checkInputs);
+    [emailInput, passwordInput].forEach(input => input.addEventListener("input", () => {
+        input.style.borderColor = '';
+        setLoginInputValidity(input, false);
+        clearLoginFeedbackAfterInput();
+        showLiveEmailFeedback(emailInput);
+        checkInputs();
+    }));
+}
+
+/** Clears earlier login feedback once the user changes a credential.
+ * @returns {void}
+ */
+function clearLoginFeedbackAfterInput() {
+    document.querySelector('.passwordAlert').classList.add('dNone');
+    showLoginFeedback('');
+}
+
+/** Shows the email-format hint below the password field while typing.
+ * @param {HTMLInputElement} emailInput Email input to validate.
+ * @returns {void}
+ */
+function showLiveEmailFeedback(emailInput) {
+    const email = emailInput.value.trim();
+    const emailIsInvalid = email !== '' && !isValidEmail(email);
+    setLoginInputValidity(emailInput, emailIsInvalid);
+    showLoginFeedback(emailIsInvalid ? 'Please enter a valid email address.' : '');
 }
 
 /** Authenticates the submitted member login.
@@ -120,24 +164,33 @@ async function findUser(event) {
  * @returns {boolean} Whether the login fields are valid.
  */
 function validateLoginForm(emailInput, passwordInput) {
-    const emailMessage = !emailInput.value.trim() ? 'Please enter your email address.' : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()) ? 'Please enter a valid email address.' : '';
+    const emailMessage = !emailInput.value.trim() ? 'Please enter your email address.' : !isValidEmail(emailInput.value) ? 'Please enter a valid email address.' : '';
     const passwordMessage = !passwordInput.value ? 'Please enter your password.' : '';
-    showLoginFeedback(emailInput, emailMessage);
-    showLoginFeedback(passwordInput, passwordMessage);
+    setLoginInputValidity(emailInput, Boolean(emailMessage));
+    setLoginInputValidity(passwordInput, Boolean(passwordMessage));
+    showLoginFeedback(emailMessage || passwordMessage);
+    checkInputs();
     return !emailMessage && !passwordMessage;
 }
 
-/** Shows or clears one login field's feedback message.
+/** Applies the visible error state to a login input.
  * @param {HTMLInputElement} input Field to update.
+ * @param {boolean} invalid Whether the field is invalid.
+ * @returns {void}
+ */
+function setLoginInputValidity(input, invalid) {
+    input.classList.toggle('inputInvalid', invalid);
+    input.setAttribute('aria-invalid', String(invalid));
+}
+
+/** Shows or clears the shared login feedback below the password field.
  * @param {string} message Feedback text.
  * @returns {void}
  */
-function showLoginFeedback(input, message) {
-    const feedback = document.getElementById(input.dataset.errorId || 'loginPasswordError');
+function showLoginFeedback(message) {
+    const feedback = document.getElementById('loginPasswordError');
     feedback.textContent = message;
     feedback.classList.toggle('dNone', !message);
-    input.classList.toggle('inputInvalid', Boolean(message));
-    input.setAttribute('aria-invalid', String(Boolean(message)));
 }
 
 /** Authenticates the current login form values with Firebase.
@@ -199,8 +252,9 @@ function normalizeEmail(email = '') {
 function resetInputBorders(emailInput, passwordInput) {
     emailInput.style.borderColor = "";
     passwordInput.style.borderColor = "";
-    showLoginFeedback(emailInput, '');
-    showLoginFeedback(passwordInput, '');
+    setLoginInputValidity(emailInput, false);
+    setLoginInputValidity(passwordInput, false);
+    showLoginFeedback('');
     document.querySelector('.passwordAlert').classList.add('dNone');
 }
 
@@ -234,10 +288,11 @@ async function guestLogin() {
  * @returns {boolean} handle invalid user result.
  */
 function handleInvalidUser(emailInput, passwordInput) {
-    emailInput.style.borderColor = '#FF8190';
-    passwordInput.style.borderColor = '#FF8190';
+    emailInput.style.borderColor = 'rgba(230, 0, 38, 1)';
+    passwordInput.style.borderColor = 'rgba(230, 0, 38, 1)';
     document.querySelector('.passwordAlert').classList.remove('dNone');
     document.querySelector('.rememberMe').style.margin = '1px 42px 16px 42px';
+    checkInputs();
     return false;
 }
 

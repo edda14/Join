@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="./css/gallery.css?v=20260916-1">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/board.css">
-    <link rel="stylesheet" href="./css/addTask.css?v=20260826-2">
-    <link rel="stylesheet" href="./css/boardOverlay.css?v=20260916-scroll">
+    <link rel="stylesheet" href="./css/board.css?v=20260925-scrollbar-8px">
+    <link rel="stylesheet" href="./css/addTask.css?v=20260925-toast-motion">
+    <link rel="stylesheet" href="./css/boardOverlay.css?v=20260925-creator-wrap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/img/joinDark.png" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/taskAccessibility.css?v=20260915-6">
-    <link rel="stylesheet" href="./css/taskDesign.css?v=20260915-6">
+    <link rel="stylesheet" href="./css/taskAccessibility.css?v=20260925-mobile-font-16">
+    <link rel="stylesheet" href="./css/taskDesign.css?v=20260925-mobile-font-16">
     <link rel="stylesheet" href="./css/interaction.css">
 </head>
 
@@ -124,7 +124,7 @@
                         <h2 id="add-task-heading">Add Task</h2>
                         <button type="button" class="closeButtonDiv" aria-label="Close add task" onclick="offAddTask(event, true)">×</button>
                     </div>
-                    <form id="board-edit-task-main-input" class="main-input-container join-task-form" novalidate onsubmit="event.preventDefault(); addTaskBoard()" w3-include-html="./template/addTaskTemplate.html?v=20260916-2"></form>
+                    <form id="board-edit-task-main-input" class="main-input-container join-task-form" novalidate onsubmit="event.preventDefault(); addTaskBoard(event)" w3-include-html="./template/addTaskTemplate.html?v=20260916-2"></form>
                 </div>
             </div>
         </div>
@@ -143,8 +143,8 @@
     <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
     <script src="./js/firebase.js"></script>
     <script src="./js/pageAccess.js"></script>
-    <script src="./js/board.js" defer></script>
-    <script src="./js/taskDetails.js" defer></script>
+    <script src="./js/board.js?v=20260925-manual-todo" defer></script>
+    <script src="./js/taskDetails.js?v=20260925-contact-scroll" defer></script>
     <script src="./js/taskEditor.js" defer></script>
     <script src="./js/boardSearch.js" defer></script>
     <script src="./js/imageViewer.js" defer></script>
@@ -160,7 +160,7 @@
     <script src="./js/taskPersistence.js"></script>
     <script src="./js/taskCategory.js"></script>
     <script src="./js/taskAccessibility.js"></script>
-    <script src="./js/addTask.js"></script>
+    <script src="./js/addTask.js?v=20260925-toast-motion"></script>
     <script src="./js/taskAttachments.js"></script>
     <script src="./js/taskAttachmentGallery.js"></script>
     <script src="./js/taskFormValidation.js"></script>
@@ -178,7 +178,7 @@
     </template>
     <template id="showChoosedContactsTemplate">
         <div class="at-choosed-contact-shortcut"
-        style="background-color: '{{slot0}}'">
+        style="background-color: {{slot0}}">
         <div class="at-contact-shortcut">{{slot1}}</div></div>
     </template>
     <template id="subcategoryEditorHTMLTemplate">
@@ -195,14 +195,14 @@
         </div></div>
     </template>
     <template id="taskAssigneeTemplate">
-        <div class="contactCard" style="background-color: '{{slot0}}';">{{slot1}}</div>
+        <div class="contactCard" style="background-color: {{slot0}};">{{slot1}}</div>
     </template>
     <template id="taskAssigneeTemplate2">
         <div class="contactCard otherContacts" style="background-color: #5DE2E7;">{{slot0}}+</div>
     </template>
     <template id="overlayAssigneeHTMLTemplate">
         <div class="contactDiv"><span class="contactCard"
-        style="background-color: '{{slot0}}';">{{slot1}}</span>
+        style="background-color: {{slot0}};">{{slot1}}</span>
         <span class="contactName">{{slot2}}</span></div>
     </template>
     <template id="subtaskCheckboxHTMLTemplate">
@@ -225,7 +225,7 @@
     </template>
     <template id="taskTemplate">
         <div class="card" draggable="{{slot0}}" ondragstart="startDragging('{{slot1}}')" data-id="{{slot2}}">
-        <div class="cardContent"><span class="labelUser" style="background-color: '{{slot3}}';">{{slot4}}</span>
+        <div class="cardContent"><span class="labelUser" style="background-color: {{slot3}};">{{slot4}}</span>
         <div class="contextContent"><span class="cardTitle">{{slot5}}</span>
         <div><span class="cardContext">{{slot6}}</span></div>
         {{slot7}}
@@ -247,7 +247,7 @@
     <template id="assignedContactsHTMLTemplate">
         <label class="at-contact-layout">
         <span class="at-contact-name-container">
-        <span class="at-contact-shortcut-layout" style="background-color: '{{slot0}}';">
+        <span class="at-contact-shortcut-layout" style="background-color: {{slot0}};">
         <span class="at-contact-shortcut">{{slot1}}</span></span>
         <span class="at-contact-name">{{slot2}}</span></span>
         <span class="at-label-checkbox"><input type="checkbox" data-contact-id="{{slot3}}"
@@ -258,7 +258,7 @@
     </template>
     <template id="contactProfileHTMLTemplate">
         <div class="profileName">
-        <div class="profilePictureContact" id="pictureViewContact" style="background-color: '{{slot0}}'">{{slot1}}</div>
+        <div class="profilePictureContact" id="pictureViewContact" style="background-color: {{slot0}}">{{slot1}}</div>
         <div class="nameEditBox"><div class="nameBox"><h2>{{slot2}}</h2></div>
         <div class="editDivContact">
         <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact('{{slot3}}')"><img src="assets/img/edit.svg" alt="edit"><p>Edit</p></div>
@@ -312,7 +312,7 @@
     </template>
     <template id="taskOverlayHeaderHTMLTemplate">
         <section class="overlayUserTitle"><div class="overlayMeta">
-        <span style="background-color: '{{slot0}}';" class="overlayUser">{{slot1}}</span>{{slot2}}
+        <span style="background-color: {{slot0}};" class="overlayUser">{{slot1}}</span>{{slot2}}
         </div><button type="button" class="task-icon-button" aria-label="Close task details" onclick="off()"><img class="closeButton" src="./assets/img/Close.png" alt=""></button></section>
         <section><h2 class="overlayTitle">{{slot3}}</h2></section>
     </template>
@@ -353,7 +353,7 @@
         </div></section>
     </template>
     <template id="TaskOverlayDetailsHTMLItemTemplate">
-        <div class="subtasksOverlay"><span>Subtasks</span></div>{{slot0}}
+        <div class="subtasksOverlay"><span>Subtasks</span></div><div class="task-overlay-subtasks {{slot1}}">{{slot0}}</div>
     </template>
     <template id="TaskAttachmentsHTMLItemTemplate">
         <div class="task-overlay-attachment"><button type="button" class="attachment-open" onclick="openImageViewer('{{slot0}}')" aria-label="Open {{slot1}}"><img src="{{slot2}}" alt=""><span>{{slot3}}</span></button><button type="button" class="attachment-download-icon" onclick="downloadAttachment('{{slot4}}', event)" aria-label="Download {{slot5}}"></button></div>

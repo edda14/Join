@@ -306,7 +306,7 @@ main>.join-task-form #at-btn-container {
     }
 
     .join-task-form .at-prio-item {
-        font-size: clamp(12px, 3vw, 16px);
+        font-size: 16px;
         padding: 8px 4px;
         gap: 4px;
     }
@@ -328,6 +328,24 @@ main>.join-task-form #at-btn-container {
 
     main>.join-task-form .btn-clear-add {
         margin-left: auto;
+    }
+}
+
+@media (max-width: 400px) {
+    .join-task-form .at-prio-container {
+        gap: 4px;
+    }
+
+    .join-task-form .at-prio-item {
+        flex-direction: column;
+        gap: 2px;
+        padding: 6px 2px;
+        font-size: 16px;
+        line-height: 1.1;
+    }
+
+    .join-task-form .at-prio-item img {
+        width: 16px;
     }
 }
 

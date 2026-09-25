@@ -23,6 +23,10 @@
 
 
 @media (max-width:760px) {
+    .edit-task-overlay:has(#at-contact-container:not(.select-hide)) .edit-btn-position-container {
+        margin-top: 24px;
+    }
+
     #addTaskOverlay .board-task-footer {
         flex-wrap: wrap;
         gap: 16px;

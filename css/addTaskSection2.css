@@ -183,12 +183,18 @@
     justify-content: flex-start;
     align-items: center;
     height: 45px;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
 }
 
 
 .at-choosed-contact-shortcut {
     width: 30px;
     height: 30px;
+    flex: 0 0 30px;
     display: flex;
     align-items: center;
     justify-content: center;

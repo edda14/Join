@@ -41,6 +41,25 @@ function getSignUpInputs() {
         confirmPassword: document.getElementById('confirmPasswordInput') };
 }
 
+/** Validates a standard email address before a Firebase registration request.
+ * @param {string} email Email address to validate.
+ * @returns {boolean} Whether the address has a valid local part and domain.
+ */
+function isValidEmailAddress(email) {
+    const normalizedEmail = email.trim();
+    if (normalizedEmail.length > 254 || normalizedEmail.split('@').length !== 2) return false;
+    const [localPart, domain] = normalizedEmail.split('@');
+    if (!localPart || !domain || localPart.length > 64) return false;
+    if (!/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(localPart)
+        || localPart.startsWith('.') || localPart.endsWith('.') || localPart.includes('..')) return false;
+
+    const domainLabels = domain.split('.');
+    const validDomainLabel = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/;
+    return domainLabels.length >= 2
+        && domainLabels.every(label => validDomainLabel.test(label))
+        && /^[A-Za-z]{2,63}$/.test(domainLabels.at(-1));
+}
+
 /** Displays missing privacy-consent feedback and cancels submission.
  * @returns {boolean} reject missing privacy consent result.
  */
@@ -77,12 +96,11 @@ function resetSignUpValidation(inputs) {
  */
 function getSignUpValidationError(inputs) {
     const namePattern = /^[A-Za-zÄÖÜäöüß]+(?:[ '-][A-Za-zÄÖÜäöüß]+)*$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,}$/;
     if (!inputs.name.value.trim()) return validationError('Please enter your name.', inputs.name);
-    if (!namePattern.test(inputs.name.value.trim())) return validationError('Please use only letters, spaces, hyphens or apostrophes for your name.', inputs.name);
+    if (!namePattern.test(inputs.name.value.trim())) return validationError('Please use only letters for your name.', inputs.name);
     if (!inputs.email.value.trim()) return validationError('Please enter your email address.', inputs.email);
-    if (!emailPattern.test(inputs.email.value.trim())) return validationError('Please enter a valid email address.', inputs.email);
+    if (!isValidEmailAddress(inputs.email.value)) return validationError('Please enter a valid email address.', inputs.email);
     if (!inputs.password.value) return validationError('Please enter a password.', inputs.password);
     if (!passwordPattern.test(inputs.password.value)) return validationError('Use 8+ characters with upper/lowercase, a number and a special character.', inputs.password);
     if (!inputs.confirmPassword.value) return validationError('Please confirm your password.', inputs.confirmPassword);

@@ -29,7 +29,18 @@ function initializeTaskFormControls() {
     [showAvailableContacts, showCategoryList, showInitials, setupContactSearchPlaceholder,
         setupSubcategoryControls, setupAttachmentPicker, setupTaskDraftPersistence,
         setupTaskAccessibility].forEach(initialize => initialize());
+    setupTaskSubmitValidation();
     setBackgroundColorPrio('medium');
+}
+
+function setupTaskSubmitValidation() {
+    const form = document.querySelector('.join-task-form');
+    if (!form || form.dataset.submitValidationBound) return;
+    form.dataset.submitValidationBound = 'true';
+    const refresh = () => updateTaskSubmitState(form);
+    form.addEventListener('input', refresh);
+    form.addEventListener('change', refresh);
+    refresh();
 }
 
 /** Binds automatic draft saving and restores the previous form state.
@@ -171,10 +182,18 @@ function goToBoard() {
     bgAddedNote.style.zIndex = 999999;
     bgAddedNote.style.visibility = 'visible';
     let addedNote = document.getElementById('task-added-note');
-    addedNote.classList.add('confirmation-task-creation-shown');
+    addedNote.classList.remove('confirmation-task-creation-shown',
+        'confirmation-task-creation-hiding');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+        addedNote.classList.add('confirmation-task-creation-shown');
+    }));
     setTimeout(function () {
-            window.location.href = './board.html';
-        }, 2000);
+        addedNote.classList.remove('confirmation-task-creation-shown');
+        addedNote.classList.add('confirmation-task-creation-hiding');
+    }, 1400);
+    setTimeout(function () {
+        window.location.href = './board.html';
+    }, 1900);
 }
 
 /** Hides the custom contact-search placeholder while typing.

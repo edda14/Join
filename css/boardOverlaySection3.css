@@ -87,7 +87,11 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-top: 250px;
+    margin-top: 24px;
+}
+
+.edit-task-overlay:has(#at-contact-container:not(.select-hide)) .edit-btn-position-container {
+    margin-top: 244px;
 }
 
 .image-viewer-download {

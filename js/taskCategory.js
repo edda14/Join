@@ -53,6 +53,7 @@ function selectTaskCategory(option) {
         });
     checkIfCategoryEmpty();
     closeTaskCategory();
+    updateTaskSubmitState(document.querySelector('.join-task-form'));
     document.getElementById('task-category').focus();
 }
 

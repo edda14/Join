@@ -85,6 +85,7 @@ function clearCategoryDropdown() {
     document.getElementById('task-category-value').textContent = 'Select task category';
     document.querySelectorAll('[data-category]').forEach(option => option.setAttribute('aria-selected', 'false'));
     closeTaskCategory();
+    updateTaskSubmitState(document.querySelector('.join-task-form'));
 }
 
 /** Validates all required task fields.

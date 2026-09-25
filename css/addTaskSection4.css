@@ -40,7 +40,7 @@
     }
 
     #added-subcategories {
-        height: 150px;
+        height: auto;
     }
 
     .at-btn-container-mobile {
@@ -54,6 +54,18 @@
     .join-task-form .task-form-columns {
         column-gap: 12px !important;
     }
+}
+
+#added-subcategories {
+    height: auto;
+    overflow-y: visible;
+    overflow-x: visible;
+}
+
+#added-subcategories:has(> :nth-child(4)) {
+    height: 120px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 @media (max-width:830px) {

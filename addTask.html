@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="./css/gallery.css?v=20260916-1">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/addTask.css">
+    <link rel="stylesheet" href="./css/addTask.css?v=20260925-toast-motion">
     <link rel="shortcut icon" href="./assets/img/joinDark.png" type="image/x-icon" />
 
-    <link rel="stylesheet" href="./css/taskAccessibility.css?v=20260915-6">
-    <link rel="stylesheet" href="./css/taskDesign.css?v=20260915-6">
+    <link rel="stylesheet" href="./css/taskAccessibility.css?v=20260925-mobile-font-16">
+    <link rel="stylesheet" href="./css/taskDesign.css?v=20260925-mobile-font-16">
     <link rel="stylesheet" href="./css/interaction.css">
 </head>
 
@@ -56,7 +56,7 @@
             <div>Task added to Board</div><img src="./assets/img/boardIcon.png" alt="">
         </div>
     </div>
-    <main><form class="main-input-container join-task-form" onsubmit="event.preventDefault(); addTask()" novalidate>
+    <main><form class="main-input-container join-task-form" onsubmit="event.preventDefault(); addTask(event)" novalidate>
         <div class="at-headline">
             <h1 class="header-width">Add Task</h1>
         </div>
@@ -120,10 +120,10 @@
             <input onfocus="activateSubcategory()" class="at-input-date at-input-subcategory at-input-subcategory-template" type="text" id="add-subcategory"
                 placeholder="Add new subtask">
             <div class="at-subcategory-btn-container">
-                <button type="button" id="at-subcategory-clear" class="task-icon-button d-none" aria-label="Clear subtask input" onclick="clearInputSubcategory(event)"><img src="./assets/img/cancel.svg" alt=""></button>
+                <button type="button" id="at-subcategory-clear" class="task-icon-button d-none" aria-label="Clear subtask input" onclick="clearInputSubcategory(event)"><img src="./assets/img/clear-task.svg" alt=""></button>
                 <div class="small-border-container d-none" id="at-subcategory-border"></div>
-                <button type="button" id="at-subcategory-confirm" class="task-icon-button d-none" aria-label="Add subtask" onclick="renderSubcategory()"><img src="./assets/img/checkOkDarrk.png" alt=""></button>
-                <button type="button" id="at-subcategory-open" class="task-icon-button" aria-label="Enter a subtask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                <button type="button" id="at-subcategory-confirm" class="task-icon-button d-none" aria-label="Add subtask" onclick="renderSubcategory()"><img src="./assets/img/check-task.svg" alt=""></button>
+                <button type="button" id="at-subcategory-open" class="task-icon-button" aria-label="Enter a subtask"><img src="./assets/img/add.svg" alt=""></button>
             </div>
         </div>
         <div id="added-subcategories" class="added-subcategories-template"></div>
@@ -168,7 +168,7 @@
     <script src="./js/taskPersistence.js"></script>
     <script src="./js/taskCategory.js"></script>
     <script src="./js/taskAccessibility.js"></script>
-    <script src="./js/addTask.js"></script>
+    <script src="./js/addTask.js?v=20260925-toast-motion"></script>
     <script src="./js/taskAttachments.js"></script>
     <script src="./js/taskAttachmentGallery.js"></script>
     <script src="./js/taskFormValidation.js"></script>
@@ -189,7 +189,7 @@
     </template>
     <template id="showChoosedContactsTemplate">
         <div class="at-choosed-contact-shortcut"
-        style="background-color: '{{slot0}}'">
+        style="background-color: {{slot0}}">
         <div class="at-contact-shortcut">{{slot1}}</div></div>
     </template>
     <template id="subcategoryEditorHTMLTemplate">
@@ -207,7 +207,7 @@
     </template>
     <template id="taskTemplate">
         <div class="card" draggable="{{slot0}}" ondragstart="startDragging('{{slot1}}')" data-id="{{slot2}}">
-        <div class="cardContent"><span class="labelUser" style="background-color: '{{slot3}}';">{{slot4}}</span>
+        <div class="cardContent"><span class="labelUser" style="background-color: {{slot3}};">{{slot4}}</span>
         <div class="contextContent"><span class="cardTitle">{{slot5}}</span>
         <div><span class="cardContext">{{slot6}}</span></div>
         {{slot7}}
@@ -229,7 +229,7 @@
     <template id="assignedContactsHTMLTemplate">
         <label class="at-contact-layout">
         <span class="at-contact-name-container">
-        <span class="at-contact-shortcut-layout" style="background-color: '{{slot0}}';">
+        <span class="at-contact-shortcut-layout" style="background-color: {{slot0}};">
         <span class="at-contact-shortcut">{{slot1}}</span></span>
         <span class="at-contact-name">{{slot2}}</span></span>
         <span class="at-label-checkbox"><input type="checkbox" data-contact-id="{{slot3}}"
@@ -240,7 +240,7 @@
     </template>
     <template id="contactProfileHTMLTemplate">
         <div class="profileName">
-        <div class="profilePictureContact" id="pictureViewContact" style="background-color: '{{slot0}}'">{{slot1}}</div>
+        <div class="profilePictureContact" id="pictureViewContact" style="background-color: {{slot0}}">{{slot1}}</div>
         <div class="nameEditBox"><div class="nameBox"><h2>{{slot2}}</h2></div>
         <div class="editDivContact">
         <div class="editBox" role="button" tabindex="0" onkeydown="activateContactControl(event)" id="editDiv" onclick="showEditContact('{{slot3}}')"><img src="assets/img/edit.svg" alt="edit"><p>Edit</p></div>
@@ -294,7 +294,7 @@
     </template>
     <template id="taskOverlayHeaderHTMLTemplate">
         <section class="overlayUserTitle"><div class="overlayMeta">
-        <span style="background-color: '{{slot0}}';" class="overlayUser">{{slot1}}</span>{{slot2}}
+        <span style="background-color: {{slot0}};" class="overlayUser">{{slot1}}</span>{{slot2}}
         </div><button type="button" class="task-icon-button" aria-label="Close task details" onclick="off()"><img class="closeButton" src="./assets/img/Close.png" alt=""></button></section>
         <section><h2 class="overlayTitle">{{slot3}}</h2></section>
     </template>

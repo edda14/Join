@@ -56,7 +56,8 @@ function buildTaskOverlayHTML(title, description, date, priority, assignees,
  */
 function getOverlayAssignees(assignees) {
     if (!Array.isArray(assignees)) return '';
-    return assignees.map(assignee => getOverlayAssigneeHTML(assignee)).join('');
+    const assigneeRows = assignees.map(assignee => getOverlayAssigneeHTML(assignee)).join('');
+    return `<div class="task-overlay-assignees">${assigneeRows}</div>`;
 }
 
 /** Builds one task-detail assignee row.

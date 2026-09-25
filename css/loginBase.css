@@ -248,7 +248,7 @@ footer a:hover {
   display: block;
   min-height: 20px;
   padding-top: 6px;
-  color: #ff8190;
+  color: rgba(230, 0, 38, 1);
   font-size: 16px;
   line-height: 1.25;
 }
@@ -256,7 +256,7 @@ footer a:hover {
 .passwordAlert {
   min-height: 20px;
   margin-top: 6px;
-  color: #ff8190;
+  color: rgba(230, 0, 38, 1);
   font-size: 16px;
   line-height: 1.25;
 }
@@ -271,7 +271,7 @@ footer a:hover {
 }
 
 .inputInvalid {
-  border-color: #ff8190 !important;
+  border-color: rgba(230, 0, 38, 1) !important;
 }
 
 
@@ -349,6 +349,11 @@ footer a:hover {
   border: none;
   border-radius: 8px;
   padding: 15px 24px;
+}
+
+.logIn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 

@@ -81,7 +81,6 @@
     }
 
     .edit-task-overlay {
-        overflow-x: hidden;
         scrollbar-width: thin;
     }
 
@@ -145,10 +144,6 @@
         max-width: 145px;
     }
 
-}
-
-.overflow-hidden {
-    overflow: hidden;
 }
 
 .allTasks > .todo { height: auto; }

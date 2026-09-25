@@ -181,8 +181,9 @@
     }
 
     #contactContent {
-        position: absolute;
-        bottom: 0;
+        position: fixed;
+        top: 96px;
+        bottom: var(--contacts-navigation-height);
         right: 0;
         left: 0;
         visibility: visible;
@@ -190,7 +191,9 @@
         padding: 32px 0px 32px 32px;
         align-items: start !important;
         overflow-y: auto;
-
+        height: auto;
+        min-height: 0;
+        -webkit-overflow-scrolling: touch;
     }
 
     #contactHeadline {
@@ -229,10 +232,11 @@
     }
 
     #editContactThirdSection {
-        position: absolute;
+        position: fixed;
+        z-index: 1000;
         width: 56px;
         height: 56px;
-        bottom: 120px;
+        bottom: calc(var(--contacts-navigation-height) + 24px);
         right: 24px;
         border-radius: 50%;
         background-color: rgba(42, 54, 71, 1);
@@ -253,8 +257,9 @@
     }
 
     #editDivResp {
-        position: absolute;
-        bottom: 115px;
+        position: fixed;
+        z-index: 1000;
+        bottom: calc(var(--contacts-navigation-height) + 8px);
         right: -200px;
         width: 140px;
         height: 100px;

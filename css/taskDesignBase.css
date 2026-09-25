@@ -363,9 +363,14 @@
 
 .join-task-form .at-subcategory-btn-container img,
 .join-task-form .at-subcategory-btn-container svg {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     margin: 0;
+}
+
+.join-task-form #at-subcategory-open:hover img,
+.join-task-form #at-subcategory-open:focus-visible img {
+    content: url('../assets/img/add-hover.svg');
 }
 
 .join-task-form #added-subcategories .choosed-subcategorie-container {
@@ -390,9 +395,4 @@
 
 .join-task-form #added-subcategories .choosed-subcategorie-btn-container {
     display: none;
-}
-
-.join-task-form #added-subcategories .choosed-subcategorie-container:hover .choosed-subcategorie-btn-container,
-.join-task-form #added-subcategories .choosed-subcategory-input:focus~.choosed-subcategorie-btn-container {
-    display: flex;
 }

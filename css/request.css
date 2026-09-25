@@ -75,7 +75,7 @@
 }
 
 .formField label span:not(.optional) {
-  color: #ff3d00;
+  color: rgba(230, 0, 38, 1);
 }
 
 .optional {
@@ -108,13 +108,13 @@
 }
 
 .formField .invalid {
-  border-color: #ff3d00;
+  border-color: rgba(230, 0, 38, 1);
 }
 
 .fieldError {
   min-height: 18px;
   margin: 4px 0 0;
-  color: #e32b0c;
+  color: rgba(230, 0, 38, 1);
   font-size: 14px;
 }
 

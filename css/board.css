@@ -1,3 +1,3 @@
-@import url('./boardBase.css');
-@import url('./boardSection2.css');
+@import url('./boardBase.css?v=20260925-empty-state-font');
+@import url('./boardSection2.css?v=20260925-scrollbar-8px');
 @import url('./boardSection3.css');

@@ -156,7 +156,20 @@
 
 @media (max-width: 600px) {
     .creatorSection {
+        grid-template-columns: auto minmax(0, 1fr);
         align-items: center;
+    }
+
+    .creatorName {
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .creatorAction {
+        grid-column: 1 / -1;
+        justify-self: start;
     }
 }
 
@@ -238,6 +251,16 @@
 
 }
 
+.task-overlay-assignees {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}
+
 .subtasksOverlay {
     font-family: Inter;
     font-size: 20px;
@@ -250,52 +273,64 @@
 
 }
 
-input[type="checkbox"] {
+.task-overlay-subtasks-scrollable {
+    flex: 0 0 60px;
+    max-height: 150px;
+    min-height: 150px;
+    gap: 6px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.task-overlay-subtasks {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.task-overlay-subtasks input[type="checkbox"] {
     appearance: none;
-
-    width: 20px;
-    height: 20px;
-    border: 2px solid #2A3647;
-
-    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    border: 0;
     box-sizing: border-box;
-    background: none;
-
+    background: url('../assets/img/Check-normal.svg') center / 24px 24px no-repeat;
     position: relative;
     cursor: pointer;
+    flex: 0 0 24px;
 }
 
-input[type="checkbox"]:checked::after {
-    content: "✔";
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 16px;
-
-    color: #2A3647;
-
-    line-height: 20px;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.task-overlay-subtasks input[type="checkbox"]:hover {
+    background-image: url('../assets/img/check-hover.svg');
 }
 
-.checkBoxText {
+.task-overlay-subtasks input[type="checkbox"]:checked {
+    background-image: url('../assets/img/checked.svg');
+}
+
+.task-overlay-subtasks input[type="checkbox"]:checked:hover {
+    background-image: url('../assets/img/checked-hover.svg');
+}
+
+.task-overlay-subtasks .checkBoxText {
 
     font-family: Inter;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
     text-align: left;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
-.checkBoxDiv {
+.task-overlay-subtasks .checkBoxDiv {
     display: flex;
     align-items: center;
     gap: 16px;
+    min-height: 28px;
+    padding: 4px 8px;
+    box-sizing: border-box;
+
 }
 
 .editDiv {

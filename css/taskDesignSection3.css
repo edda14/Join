@@ -13,7 +13,7 @@ main > .join-task-form .task-fields-primary {
     grid-template-rows:
         auto auto 20px 0
         auto auto 20px
-        auto auto 20px 0
+        auto auto 40px 0
         auto auto 20px
         auto auto 20px;
     align-content: start;
@@ -60,14 +60,19 @@ main > .join-task-form #task-attachment-error {
     line-height: 16px;
 }
 
+main > .join-task-form #at-alert-due-date {
+    height: 40px !important;
+    min-height: 40px;
+}
+
 main > .join-task-form .task-fields-secondary {
     display: grid;
-    grid-template-rows: auto 0 auto auto minmax(20px, auto) 0 auto auto auto;
+    grid-template-rows: auto 0 auto auto minmax(20px, auto) 16px auto auto auto;
     align-content: start;
 }
 
 main > .join-task-form .task-fields-secondary:has(.task-attachment-preview-space.has-attachments) {
-    grid-template-rows: auto 20px auto auto minmax(20px, auto) 0 auto auto auto;
+    grid-template-rows: auto 20px auto auto minmax(20px, auto) 16px auto auto auto;
 }
 
 main > .join-task-form .task-fields-secondary > * {
@@ -81,12 +86,48 @@ main > .join-task-form .at-input-container { grid-row: 4; }
 main > .join-task-form #added-subcategories {
     grid-row: 5;
     box-sizing: border-box;
-    height: 20px !important;
+    height: auto !important;
     min-height: 20px;
 }
-main > .join-task-form #added-subcategories:not(:empty) {
-    height: 120px !important;
+main > .join-task-form #added-subcategories:has(> :nth-child(4)) {
+    height: 144px !important;
+    max-height: 144px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 main > .join-task-form label[for="contact-search"] { grid-row: 7; padding-bottom: 8px; }
 main > .join-task-form .custom-select { grid-row: 8; }
 main > .join-task-form #at-selected-contacts { grid-row: 9; }
+
+.join-task-form #added-subcategories .choosed-subcategorie-container:hover .choosed-subcategorie-btn-container,
+.join-task-form #added-subcategories .choosed-subcategory-input:focus~.choosed-subcategorie-btn-container {
+    display: flex;
+}
+
+.join-task-form #added-subcategories .choosed-subcategorie-btn-container .task-icon-button {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.join-task-form #added-subcategories .choosed-subcategorie-btn-container .task-icon-button:hover,
+.join-task-form #added-subcategories .choosed-subcategorie-btn-container .task-icon-button:focus-visible {
+    background-color: rgba(42, 54, 71, 0.15);
+}
+
+.join-task-form #added-subcategories {
+    height: auto !important;
+    max-height: none;
+    overflow: visible;
+}
+
+.join-task-form #added-subcategories:has(> :nth-child(4)) {
+    height: 144px !important;
+    max-height: 144px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+

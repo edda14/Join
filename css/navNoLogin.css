@@ -72,8 +72,82 @@ aside {
   font-weight: bold;
 }
 
+.policy a.currentPage {
+  color: rgb(41, 171, 226);
+  font-weight: bold;
+}
+
 @media (max-width: 1000px) {
   aside {
+    display: block;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .navbar {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    min-height: 80px;
+    flex-direction: row;
+    overflow: hidden;
+  }
+
+  .navbar > .joinIcon {
     display: none;
+  }
+
+  .loginNav {
+    position: static;
+    width: auto;
+    min-width: 88px;
+    height: 100%;
+    padding: 8px 10px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .loginNav img {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+
+  .policy {
+    height: 100%;
+    min-width: 0;
+    flex: 1;
+    flex-direction: row;
+    align-items: stretch;
+    padding-bottom: 0;
+    gap: 0;
+  }
+
+  .policy a {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .policy a:hover,
+  .policy a:focus-visible,
+  .policy a.currentPage {
+    background-color: #091931;
+    color: #ffffff;
+    font-weight: 400;
   }
 }

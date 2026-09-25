@@ -168,6 +168,12 @@ h1.header-width {
     padding-bottom: 16px;
 }
 
+.edit-task-overlay #at-selected-contacts {
+    height: 45px;
+    min-height: 45px;
+    flex-wrap: nowrap;
+}
+
 button.board-task-edit-btn {
     width: auto;
     min-width: 84px;
@@ -210,8 +216,9 @@ button.board-task-edit-btn {
         gap: 4px;
     }
 
-    .edit-task-overlay .join-task-form .at-input-headlines, .edit-task-overlay .join-task-form .at-prio-item {
-        font-size: 13px !important;
+    .edit-task-overlay .join-task-form .at-input-headlines,
+    .edit-task-overlay .join-task-form .at-prio-item {
+        font-size: 16px !important;
     }
 }
 

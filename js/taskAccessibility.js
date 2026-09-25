@@ -57,7 +57,7 @@ function updateAssignedContact(input) {
 function validateTaskField(id, messageId, invalid) {
     const input = document.getElementById(id);
     input.setAttribute('aria-invalid', String(invalid));
-    input.style.borderColor = invalid ? '#FF8190' : '';
+    input.style.borderColor = invalid ? 'rgba(230, 0, 38, 1)' : '';
     document.getElementById(messageId).classList.toggle('d-none', !invalid);
     return !invalid;
 }

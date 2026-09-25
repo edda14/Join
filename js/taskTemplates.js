@@ -115,7 +115,9 @@ function getTaskOverlayHeaderHTML(type, color, aiBadge, title) {
  */
 function getTaskOverlayDetailsHTML(description, creatorName, creator, date,
     priority, icon, assignees, subtasks, attachments = []) {
-    return renderHtmlTemplate('taskOverlayDetailsHTMLTemplate', [escapeTaskText(description), creator.badge, escapeTaskText(creatorName), creator.action, escapeTaskText(date), escapeTaskText(priority), icon, escapeTaskText(priority), assignees, getTaskAttachmentsHTML(attachments), subtasks ? renderHtmlTemplate('TaskOverlayDetailsHTMLItemTemplate', [subtasks]) : '']);
+    const subtaskCount = (subtasks.match(/class="checkBoxDiv"/g) || []).length;
+    const subtaskListClass = subtaskCount > 3 ? 'task-overlay-subtasks-scrollable' : '';
+    return renderHtmlTemplate('taskOverlayDetailsHTMLTemplate', [escapeTaskText(description), creator.badge, escapeTaskText(creatorName), creator.action, escapeTaskText(date), escapeTaskText(priority), icon, escapeTaskText(priority), assignees, getTaskAttachmentsHTML(attachments), subtasks ? renderHtmlTemplate('TaskOverlayDetailsHTMLItemTemplate', [subtasks, subtaskListClass]) : '']);
 }
 
 /** Returns stored task images as safe preview links.

@@ -1,7 +1,7 @@
 .contact-field-error,
 .contact-save-error {
     margin: 6px 0 0;
-    color: #d32745;
+    color: rgba(230, 0, 38, 1);
     font-size: 14px;
     line-height: 1.4;
     overflow-wrap: anywhere;
@@ -22,7 +22,7 @@
 
 
 .inputBox.contact-input-invalid {
-    border-color: #d32745;
+    border-color: rgba(230, 0, 38, 1);
 }
 
 
@@ -39,7 +39,7 @@
 
 
 #addNewContactAlert p {
-    color: rgba(255, 129, 144, 1);
+    color: rgba(230, 0, 38, 1);
     font-size: 13px;
     font-weight: 400;
     margin-top: 8px;
@@ -240,7 +240,7 @@
 
 
 #addNewContactAlert p {
-    color: rgba(255, 129, 144, 1);
+    color: rgba(230, 0, 38, 1);
     font-size: 13px;
     font-weight: 400;
     margin-top: 8px;

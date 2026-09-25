@@ -48,7 +48,7 @@
 }
 
 .redLine {
-  border-bottom: 1px solid #ff8190;
+  border-bottom: 1px solid rgba(230, 0, 38, 1);
 }
 
 
@@ -254,13 +254,13 @@
   width: 100%;
   min-height: 20px;
   box-sizing: border-box;
-  color: #ff8190;
+  color: rgba(230, 0, 38, 1);
   font-size: 18px;
   line-height: 1.25;
 }
 
 .signUpInputInvalid {
-  border-color: #ff8190 !important;
+  border-color: rgba(230, 0, 38, 1) !important;
 }
 
 @media (max-width: 730px) {

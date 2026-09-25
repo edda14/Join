@@ -9,7 +9,6 @@ body {
   background-color: rgb(246, 247, 248);
   font-family: "inter", sans-serif;
   min-height: 100vh;
-  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -298,7 +297,6 @@ body {
   display: flex;
   flex: 1 1 0;
   min-width: 0;
-  overflow: hidden;
 }
 
 .animatedImageContainer.greetingOverlay {

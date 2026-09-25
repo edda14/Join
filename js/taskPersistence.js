@@ -1,42 +1,80 @@
 /** Tracks whether a task write is already in progress. */
 let taskSaveInProgress = false;
+let taskSubmitButtons = [];
 
 /** Creates a manual task from the standalone Add Task page.
  * @returns {Promise<void>} Resolves when the operation is complete.
  */
-async function addTask() {
-    await createManualTask();
+async function addTask(event) {
+    await createManualTask(event?.currentTarget);
 }
 
 /** Creates a manual task from the Board overlay.
  * @returns {Promise<void>} Resolves when the operation is complete.
  */
-async function addTaskBoard() {
-    await createManualTask();
+async function addTaskBoard(event) {
+    await createManualTask(event?.currentTarget);
 }
 
 /** Saves a valid task and retains the form if Firebase rejects the write.
  * @returns {Promise<void>} Resolves when the operation is complete.
  */
-async function createManualTask() {
-    if (taskSaveInProgress || !checkRequiredInput()) return;
-    showTaskSaveError('');
+async function createManualTask(form) {
+    if (taskSaveInProgress) return;
     taskSaveInProgress = true;
-    try { await saveManualTaskAndReset(); }
+    taskSubmitButtons = [...(form?.querySelectorAll('button[type="submit"]') || [])];
+    taskSubmitButtons.forEach(button => {
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+    });
+    if (!checkRequiredInput()) {
+        releaseTaskSubmit();
+        return;
+    }
+    showTaskSaveError('');
+    let saved = false;
+    try { saved = await saveManualTaskAndReset(); }
     catch (error) { reportTaskSaveError(error); }
-    finally { taskSaveInProgress = false; }
+    finally {
+        if (!saved) releaseTaskSubmit();
+    }
+}
+
+function releaseTaskSubmit() {
+    taskSaveInProgress = false;
+    taskSubmitButtons.forEach(button => {
+        button.disabled = false;
+        button.removeAttribute('aria-busy');
+    });
+    taskSubmitButtons = [];
+}
+
+function updateTaskSubmitState(form) {
+    if (!form || taskSaveInProgress) return;
+    const title = document.getElementById('task-title')?.value.trim();
+    const dateInput = document.getElementById('task-due-date');
+    const date = dateInput?.value;
+    const dateValid = date && (!dateInput.min || date >= dateInput.min);
+    const categoryValid = Boolean(categoryIsSelected && selectedCategory);
+    const disabled = !(title && dateValid && categoryValid);
+    form.querySelectorAll('button[type="submit"]').forEach(button => {
+        button.disabled = disabled;
+        if (disabled) button.setAttribute('aria-disabled', 'true');
+        else button.removeAttribute('aria-disabled');
+    });
 }
 
 /** Persists the prepared task before clearing its browser draft.
  * @returns {Promise<void>} Resolves when the operation is complete.
  */
 async function saveManualTaskAndReset() {
-    if (!await prepareAttachmentsForSave()) return;
+    if (!await prepareAttachmentsForSave()) return false;
     await postTask('/task', buildManualTask());
     localStorage.removeItem('joinTaskDraft');
     localStorage.removeItem('joinPendingAttachments');
     clearTask();
     goToBoard();
+    return true;
 }
 
 /**
@@ -89,9 +127,9 @@ function buildManualTask() {
  */
 function getNewTaskStatus() {
     const overlay = document.getElementById('addTaskOverlay');
-    const status = overlay && !overlay.hidden ? overlay.dataset.status : 'triage';
+    const status = overlay && !overlay.hidden ? overlay.dataset.status : 'toDo';
     return ['triage', 'toDo', 'progress', 'feedback', 'done'].includes(status)
-    ? status : 'triage';
+    ? status : 'toDo';
 }
 
 /** Deletes a permitted task and refreshes the board.

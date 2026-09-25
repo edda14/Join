@@ -14,7 +14,7 @@ async function initBoard() {
  * @param {string} status status.
  * @returns {Promise<void>} Resolves when the operation is complete.
  */
-async function showOverlay(status = 'triage') {
+async function showOverlay(status = 'toDo') {
     const overlay = document.getElementById('addTaskOverlay');
     const form = document.getElementById('board-edit-task-main-input');
     form.innerHTML = '';

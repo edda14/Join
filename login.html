@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./assets/img/joinDark.png" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/login.css?v=20260925-login-submit-state" />
     <title>Join – Log in</title>
       <link rel="stylesheet" href="./css/interaction.css">
 </head>
@@ -23,10 +23,9 @@
         <h1 class="logIntText">Log in</h1>
         <form novalidate onsubmit="findUser(event)">
           <div class="logInInput">
-            <input id="logInEmailInput" data-error-id="loginEmailError" aria-describedby="loginEmailError" maxlength="254" class="emailInput" name="email" type="email" placeholder="Email" autocomplete="username" required />
-            <span id="loginEmailError" class="loginFeedback dNone" aria-live="polite"></span>
+            <input id="logInEmailInput" maxlength="254" class="emailInput" name="email" type="email" placeholder="Email" autocomplete="username" required />
             <div class="logInPasswordContainer">
-              <input onblur="handlePasswordImage(this)" onfocus="handlePasswordStyle(this)" id="logInPasswordInput" class="passwordInput passwordInputImg" name="password" type="password" placeholder="Password" autocomplete="current-password" required />
+              <input onblur="handlePasswordImage(this)" onfocus="handlePasswordStyle(this)" id="logInPasswordInput" class="passwordInput passwordInputImg" name="password" type="password" placeholder="Password" autocomplete="current-password" aria-describedby="loginPasswordError" required />
               <span class="paswordVisibilityBTN" onclick="handlePasswordVisibility()"></span>
               <span class="passwordAlert dNone">Check your email and password. Please try again.</span>
               <span id="loginPasswordError" class="loginFeedback dNone" aria-live="polite"></span>
@@ -40,7 +39,7 @@
             <p>Remember me</p>
           </div>
           <div class="logInButtons">
-            <button id="logIn" type="submit" class="logIn">Log in</button>
+            <button id="logIn" type="submit" class="logIn" disabled>Log in</button>
             <button type="button" class="GuestLogIn" onclick="guestLogin()">Guest Log in</button>
           </div>
         </form>
@@ -59,7 +58,7 @@
     <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
     <script src="./js/firebase.js"></script>
-    <script src="./js/logIn.js"></script>
+    <script src="./js/logIn.js?v=20260925-strict-email-validation"></script>
     <script src="./js/database.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/taskPersistence.js"></script>

@@ -68,8 +68,9 @@ function clearInputSubcategory(event) {
 function renderSubcategory() {
     let content = document.getElementById('added-subcategories');
     const input = document.getElementById('add-subcategory');
-    if (input.value !== '') {
-        selectedSubtasks.push(input.value);
+    const value = input.value.trim();
+    if (value) {
+        selectedSubtasks.push(value);
         subtaskCompleted.push('false');
         input.value = '';
         deactivateSubcategory();

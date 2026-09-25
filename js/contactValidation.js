@@ -1,5 +1,24 @@
 const contactSaveState = { add: false, edit: false };
 
+/** Validates a standard email address before a contact is saved.
+ * @param {string} email Email address to validate.
+ * @returns {boolean} Whether the address has a valid local part and domain.
+ */
+function isValidEmailAddress(email) {
+    const normalizedEmail = email.trim();
+    if (normalizedEmail.length > 254 || normalizedEmail.split('@').length !== 2) return false;
+    const [localPart, domain] = normalizedEmail.split('@');
+    if (!localPart || !domain || localPart.length > 64) return false;
+    if (!/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(localPart)
+        || localPart.startsWith('.') || localPart.endsWith('.') || localPart.includes('..')) return false;
+
+    const domainLabels = domain.split('.');
+    const validDomainLabel = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/;
+    return domainLabels.length >= 2
+        && domainLabels.every(label => validDomainLabel.test(label))
+        && /^[A-Za-z]{2,63}$/.test(domainLabels.at(-1));
+}
+
 /** Returns the input elements of the selected contact form.
  * @param {string} mode Add or edit contact mode.
  * @returns {{name: HTMLInputElement, email: HTMLInputElement, phone: HTMLInputElement}} Contact inputs.
@@ -18,9 +37,9 @@ function getContactFieldError(field, value) {
     if (!value.trim()) return 'This field is required.';
     const rules = {
         name: [/^[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*(?:\s+[\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*)+$/u, 'Enter a first and last name without numbers.'],
-        email: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Enter a valid email address.'],
         phone: [/^\+?[0-9]+$/, 'Use digits only, optionally starting with +.'],
     };
+    if (field === 'email') return isValidEmailAddress(value) ? '' : 'Enter a valid email address.';
     return rules[field][0].test(value.trim()) ? '' : rules[field][1];
 }
 
